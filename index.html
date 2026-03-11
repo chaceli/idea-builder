@@ -1150,8 +1150,8 @@
 </head>
 <body>
   <!-- 顶部导航栏 -->
-  <nav class="navbar" role="navigation" aria-label="主导航">
-    <a href="#" class="nav-brand" aria-label="IDEA Builder 首页">
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <a href="#" class="nav-brand" aria-label="IDEA Builder Home">
       <div class="nav-brand-icon">💡</div>
       <span>IDEA Builder</span>
     </a>
@@ -1164,11 +1164,11 @@
     </div>
 
     <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle" onclick="currentLang=currentLang==='zh'?'en'):'zh';localStorage.setItem('lang',currentLang);applyTranslations();void 0" aria-label="切换语言" title="English/中文">
+      <button class="lang-toggle" id="langToggle" onclick="currentLang=currentLang==='zh'?'en'):'zh';localStorage.setItem('lang',currentLang);applyTranslations();void 0" aria-label="Switch Language" title="English/中文">
         <span class="lang-zh">中</span>
         <span class="lang-en">EN</span>
       </button>
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换明暗主题">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch Theme" title="切换明暗主题">
         <span class="icon-moon">🌙</span>
         <span class="icon-sun">☀️</span>
       </button>
@@ -1296,7 +1296,7 @@
     <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="createModalTitle" data-i18n="createModalTitle">✨ Create New Project</h2>
-        <button class="modal-close" aria-label="Close">&times;</button>
+        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <form id="createForm">
         <div class="form-group">
@@ -1333,7 +1333,7 @@
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 Project Details</h2>
-        <button class="modal-close" aria-label="Close">&times;</button>
+        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
         <!-- 动态内容 -->
@@ -1346,7 +1346,7 @@
     <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="editModalTitle" data-i18n="editModalTitle">✏️ Edit Project</h2>
-        <button class="modal-close" aria-label="Close">&times;</button>
+        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <form id="editForm">
         <input type="hidden" id="editProjectId" name="id">
@@ -1383,7 +1383,7 @@
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
         <h2 class="modal-title" id="aiModalTitle">🤖 AI Generation</h2>
-        <button class="modal-close" aria-label="Close">&times;</button>
+        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <div class="ai-modal-content">
         <!-- API Key 提示 -->
@@ -1477,7 +1477,7 @@
     // ===== 国际化 (i18n) =====
     const translations = {
       zh: {
-        heroTitle: 'Turn Every Great Idea Into Reality',
+        heroTitle: '让每一个灵机一动的想法都能变成真正可实现的东西',
         heroDesc: 'AI 驱动的创意生成器，帮助你将创意想法快速转化为可实现的项目方案',
         exploreFeatures: '探索功能',
         viewDocs: '查看文档',
@@ -1546,7 +1546,6 @@
         github: 'GitHub'
       },
       en: {
-        heroTitle: 'Turn Every Great Idea Into Reality',
         heroDesc: 'AI-powered idea generator that transforms your creative ideas into actionable project plans',
         exploreFeatures: 'Explore Features',
         viewDocs: 'View Docs',
