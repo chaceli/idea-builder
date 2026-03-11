@@ -2,6 +2,7 @@
 
 import { User } from '../models/User';
 import { SUPPORTED_MODELS } from '../ai/adapters';
+import { encryptApiKey, decryptApiKey, maskApiKey } from '../utils/crypto';
 
 export class UserService {
   // 通过 OpenID 查找或创建用户
@@ -107,8 +108,13 @@ export class UserService {
 
     const updateData: any = {};
     if (config.modelId) updateData.aiModelId = config.modelId;
-    if (config.apiKey) updateData.aiApiKey = config.apiKey;
     if (config.provider) updateData.aiProvider = config.provider;
+    
+    // 加密存储 API Key
+    if (config.apiKey) {
+      updateData.aiApiKey = encryptApiKey(config.apiKey);
+      console.log(`[UserService] 用户 ${id} 更新了 API Key（已加密）`);
+    }
 
     await user.update(updateData);
 
@@ -122,13 +128,22 @@ export class UserService {
   /**
    * 获取用户的 API Key（用于调用 AI）
    * 优先级：用户自定义 > 系统默认
+   * 返回已解密的明文 API Key
    */
   async getUserApiKey(id: string): Promise<string | null> {
     const user = await User.findByPk(id);
-    if (!user) {
+    if (!user || !user.aiApiKey) {
       return null;
     }
-    return user.aiApiKey || null;
+    
+    try {
+      // 解密用户存储的 API Key
+      return decryptApiKey(user.aiApiKey);
+    } catch (error) {
+      console.error('[UserService] 解密 API Key 失败:', error);
+      // 如果解密失败，返回原始值（可能是旧格式的明文）
+      return user.aiApiKey;
+    }
   }
 
   /**
