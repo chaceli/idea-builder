@@ -1646,7 +1646,7 @@ zh: {
       const emptyStateTitle = document.querySelector('.empty-state-title');
       if (emptyStateTitle) emptyStateTitle.textContent = t('emptyStateTitle');
       const emptyStateDesc = document.querySelector('.empty-state-desc');
-      if (emptyStateDesc) emptyStateDesc.textContent = t('emptyState');
+      if (emptyStateDesc) emptyStateDesc.textContent = t('emptyStateDesc');
       const emptyCreateBtn = document.getElementById('emptyCreateBtn');
       if (emptyCreateBtn) emptyCreateBtn.textContent = t('createFirst');
       
@@ -2039,17 +2039,69 @@ zh: {
     }
 
     // When Page LoadsRender Project List
-    document.addEventListener("DOMContentLoaded", renderProjects);
+    document.addEventListener("DOMContentLoaded", function() {
+      renderProjects();
+      initApiKeySettings();
+    });
 
     // ===== AI =====
-    const MINI_MAX_API_KEY = "sk-cp-GGKQNKskuWpf0LFWztQrpq2xY29gD5fpyj_FjhuOg_f-XTw1GsS_I3oAt3Vy4bi1FHY2xdhEAnwIK875Gd7740n8hIbzp2R1_TiIpkxTwK6usZnBOfjtovY";
-    const MINI_MAX_API_URL = "https://api.minimaxi.com/anthropic/v1/messages";
+    const MINI_MAX_API_KEY_STORAGE = 'idea-builder-api-key';
+    
+    // Get API Key from localStorage or return null
+    function getApiKey() {
+      return localStorage.getItem(MINI_MAX_API_KEY_STORAGE);
+    }
+    
+    // Save API Key to localStorage
+    function saveApiKey(key) {
+      localStorage.setItem(MINI_MAX_API_KEY_STORAGE, key);
+    }
+
+    // Check if API Key is configured
+    function isApiKeyConfigured() {
+      const key = getApiKey();
+      return key && key.trim().length > 0;
+    }
+
+    // Initialize API Key settings on page load
+    function initApiKeySettings() {
+      const savedKey = getApiKey();
+      if (savedKey) {
+        document.getElementById('miniMaxApiKey').value = savedKey;
+        document.getElementById('apiKeyNotice').style.display = 'none';
+        document.getElementById('apiKeySettings').style.display = 'block';
+      }
+    }
+
+    // Show/hide API Key settings
+    document.getElementById('showApiKeySettings').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('apiKeyNotice').style.display = 'none';
+      document.getElementById('apiKeySettings').style.display = 'block';
+    });
+
+    // Save API Key button
+    document.getElementById('saveApiKeyBtn').addEventListener('click', function() {
+      const apiKey = document.getElementById('miniMaxApiKey').value.trim();
+      if (!apiKey) {
+        alert('Please enter your API Key');
+        return;
+      }
+      saveApiKey(apiKey);
+      alert('API Key saved successfully!');
+      document.getElementById('apiKeySettings').style.display = 'none';
+    });
 
     async function callMiniMax(prompt) {
+      const apiKey = getApiKey();
+      if (!apiKey) {
+        return "Error: API Key not configured. Please click 'Settings' to enter your MiniMax API Key.";
+      }
+      
       try {
-        const response = await fetch(MINI_MAX_API_URL, {
+        const response = await fetch("https://api.minimaxi.com/anthropic/v1/messages", {
           method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MINI_MAX_API_KEY}` },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
           body: JSON.stringify({ model: "MiniMax-M2.5", messages: [{ role: "user", content: prompt }], max_tokens: 2000 })
         });
         const data = await response.json();
