@@ -1164,7 +1164,7 @@
     </div>
 
     <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle" aria-label="切换语言" title="English/中文">
+      <button class="lang-toggle" id="langToggle" onclick="currentLang=currentLang==='zh'?'en'):'zh';localStorage.setItem('lang',currentLang);applyTranslations();void 0" aria-label="切换语言" title="English/中文">
         <span class="lang-zh">中</span>
         <span class="lang-en">EN</span>
       </button>
@@ -1172,7 +1172,7 @@
         <span class="icon-moon">🌙</span>
         <span class="icon-sun">☀️</span>
       </button>
-      <button id="createProjectBtn" class="btn btn-primary">
+      <button id="createProjectBtn" class="btn btn-primary" onclick="document.getElementById('createModal').classList.add('active')">
         ✨ Create Project
       </button>
       <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-secondary">
@@ -1249,7 +1249,7 @@
           <div class="empty-state-icon">📭</div>
           <h3 class="empty-state-title">No projects yet</h3>
           <p class="empty-state-desc">Click "Create Project" to start your creative journey</p>
-          <button class="btn btn-primary" id="emptyCreateBtn">✨ Create First Project</button>
+          <button class="btn btn-primary" id="emptyCreateBtn" onclick="document.getElementById('createModal').classList.add('active')">✨ Create First Project</button>
         </div>
       </section>
 
@@ -1422,7 +1422,7 @@
         </div>
 
         <!-- 生成按钮 -->
-        <button type="button" class="btn btn-primary" id="generateBtn" style="width: 100%;">
+        <button type="button" class="btn btn-primary" id="generateBtn" onclick="generateAI(document.querySelector('.ai-type-btn.active').dataset.type)" style="width: 100%;">
           🚀 开始生成
         </button>
 
