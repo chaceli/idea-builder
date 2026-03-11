@@ -1292,7 +1292,7 @@
         createSuccess: '项目创建成功',
         createSuccessMsg: '现在你可以继续完善项目详情。',
         confirmDelete: '确定要删除这个项目吗？此操作不可恢复。',
-        notExist: '项目不存在',
+        notExist: 'Project not found', fillRequired: 'Please fill in all required fields',
         copyright: '© 2024 IDEA Builder. 基于 AI 的创意生成工具。',
         navFeatures: '功能',
         navProjects: '项目',
@@ -1610,11 +1610,11 @@
         <div class="project-detail-icon">${icon}</div>
         <h3 class="project-detail-name">${escapeHtml(project.name)}</h3>
         <div class="project-detail-info">
-          <p><span>技术领域</span><span>${escapeHtml(project.field)}</span></p>
-          <p><span>项目类型</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
-          <p><span>创建日期</span><span>${project.date}</span></p>
-          <p><span>Description</span></p>
-          <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || '暂无描述'}</span></p>
+          <p><span>${t('field')}</span><span>${escapeHtml(project.field)}</span></p>
+          <p><span>${t('type')}</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
+          <p><span>${t('date')}</span><span>${project.date}</span></p>
+          <p><span>${t('description')}</span></p>
+          <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || t('noDesc')}</span></p>
         </div>
         <div class="project-detail-actions">
           <button class="btn btn-primary" onclick="editProject('${project.id}')">✏️ '${t('edit')}'</button>
@@ -1695,7 +1695,7 @@
         
         // 提示用户
         setTimeout(() => {
-          alert(`🎯 ${titles[index]}\n\n该功能正在开发中。\n\n请先创建一个项目，我会帮你完善"${feature}"相关的内容！`);
+          alert(`🎯 ${titles[index]}\n\n${t('featureTip')}`);
         }, 500);
       });
     });
@@ -1743,7 +1743,7 @@
         const description = document.getElementById('projectDesc').value.trim();
 
         if (!name || !field || !type) {
-          alert('请填写必填项');
+          alert(t('fillRequired'));
           return;
         }
 
@@ -1794,7 +1794,7 @@
         const description = document.getElementById('editProjectDesc').value.trim();
 
         if (!name || !field || !type) {
-          alert('请填写必填项');
+          alert(t('fillRequired'));
           return;
         }
 
