@@ -608,6 +608,14 @@
         display: none;
       }
 
+      .nav-actions {
+        gap: 8px;
+      }
+
+      .nav-actions .btn-secondary {
+        display: none;
+      }
+
       .hero-title {
         font-size: 32px;
       }
@@ -647,20 +655,64 @@
         padding: 10px 16px;
         font-size: 12px;
       }
+
+      .modal {
+        padding: 20px;
+        margin: 16px;
+      }
+
+      .form-input, .form-textarea {
+        font-size: 16px; /* 防止 iOS 自动缩放 */
+      }
     }
 
     @media (max-width: 480px) {
       .hero-title {
-        font-size: 28px;
+        font-size: 24px;
+      }
+
+      .hero-desc {
+        font-size: 14px;
       }
 
       .btn-lg {
-        padding: 12px 24px;
+        padding: 14px 28px;
+        font-size: 15px;
+        min-height: 48px; /* 移动端按钮最小高度 */
+      }
+
+      .btn {
+        padding: 12px 16px;
+        min-height: 44px; /* 移动端按钮最小高度 */
         font-size: 14px;
       }
 
       .feature-card {
-        padding: 24px;
+        padding: 20px;
+      }
+
+      .section {
+        padding: 40px 16px;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .project-card {
+        padding: 16px;
+      }
+
+      .modal-title {
+        font-size: 18px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-actions .btn {
+        width: 100%;
       }
     }
 
