@@ -27,7 +27,7 @@
       --transition: all 0.2s ease;
     }
 
-    /* Dark模式 */
+    /* DarkMode */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0F172A;
@@ -66,7 +66,7 @@
       overflow-x: hidden;
     }
 
-    /* 焦点样式 - 键盘Navigation */
+    /* FocusStyle - KeyboardNavigation */
     *:focus {
       outline: none;
     }
@@ -81,7 +81,7 @@
       outline-offset: 2px;
     }
 
-    /* 顶部Navigation栏 */
+    /* TopNavigation栏 */
     .navbar {
       position: fixed;
       top: 0;
@@ -152,7 +152,7 @@
       gap: 12px;
     }
 
-    /* Button样式 */
+    /* ButtonStyle */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -244,7 +244,7 @@
     .dark .theme-toggle .icon-sun { display: block; }
     .dark .theme-toggle .icon-moon { display: none; }
 
-    /* 语言切换Button */
+    /* LanguageSwitchButton */
     .lang-toggle {
       width: 40px;
       height: 40px;
@@ -402,7 +402,7 @@
       line-height: 1.6;
     }
 
-    /* 项目列表 */
+    /* ProjectList */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -559,7 +559,7 @@
       font-size: 20px;
     }
 
-    /* 键盘NavigationTip */
+    /* KeyboardNavigationTip */
     .keyboard-hint {
       position: fixed;
       bottom: 24px;
@@ -596,7 +596,7 @@
       color: var(--text);
     }
 
-    /* 页脚 */
+    /* Footer */
     .footer {
       text-align: center;
       padding: 40px 24px;
@@ -689,7 +689,7 @@
       }
 
       .form-input, .form-textarea {
-        font-size: 16px; /* 防止 iOS 自动缩放 */
+        font-size: 16px; /* Prevent iOS Auto Zoom */
       }
     }
 
@@ -705,12 +705,12 @@
       .btn-lg {
         padding: 14px 28px;
         font-size: 15px;
-        min-height: 48px; /* 移动端Button最小高度 */
+        min-height: 48px; /* MobileButtonMin Height */
       }
 
       .btn {
         padding: 12px 16px;
-        min-height: 44px; /* 移动端Button最小高度 */
+        min-height: 44px; /* MobileButtonMin Height */
         font-size: 14px;
       }
 
@@ -743,7 +743,7 @@
       }
     }
 
-    /* 高对比度模式 */
+    /* High ContrastMode */
     @media (prefers-contrast: high) {
       :root {
         --text: #000000;
@@ -760,7 +760,7 @@
       }
     }
 
-    /* Modal样式 */
+    /* ModalStyle */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -874,7 +874,7 @@
       margin-top: 24px;
     }
 
-    /* 项目详情Modal */
+    /* ProjectDetailsModal */
     .project-detail-content {
       text-align: center;
     }
@@ -929,7 +929,7 @@
       margin-top: 20px;
     }
 
-    /* AI 生成Modal样式 */
+    /* AI GenerateModalStyle */
     .ai-modal-content {
       max-height: 70vh;
       overflow-y: auto;
@@ -978,7 +978,7 @@
       margin-top: 4px;
     }
 
-    /* AI 生成中Animation */
+    /* AI Generate中Animation */
     .ai-loading {
       display: flex;
       flex-direction: column;
@@ -1006,7 +1006,7 @@
       font-size: 14px;
     }
 
-    /* AI 结果展示 */
+    /* AI ResultDisplay */
     .ai-result {
       margin-top: 20px;
       padding: 20px;
@@ -1085,7 +1085,7 @@
       color: var(--text-secondary);
     }
 
-    /* Step高亮 */
+    /* StepHighlight */
     .step.active {
       border-color: var(--primary);
       background: rgba(99, 102, 241, 0.05);
@@ -1095,7 +1095,7 @@
       background: var(--primary);
     }
 
-    /* 空状态 */
+    /* Empty State */
     .empty-state {
       text-align: center;
       padding: 60px 20px;
@@ -1121,12 +1121,12 @@
       margin-bottom: 20px;
     }
 
-    /* 项目类型标签颜色 */
+    /* ProjectTypeTag Color */
     .tag-invention { background: #6366F1; }
     .tag-utility { background: #10B981; }
     .tag-design { background: #F59E0B; }
 
-    /* 点击样式 */
+    /* ClickStyle */
     .feature-card,
     .project-card {
       cursor: pointer;
@@ -1149,7 +1149,7 @@
   </style>
 </head>
 <body>
-  <!-- 顶部Navigation栏 -->
+  <!-- TopNavigation栏 -->
   <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <a href="#" class="nav-brand" aria-label="IDEA Builder Home">
       <div class="nav-brand-icon">💡</div>
@@ -1212,7 +1212,7 @@
             <div class="feature-icon">🎯</div>
             <h3 class="feature-title">AI Prompt Generation</h3>
             <p class="feature-desc">
-              Intelligently Analyze Your Ideas，生成高质量的 AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency
+              Intelligently Analyze Your Ideas，GenerateHigh Quality AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency
             </p>
           </article>
 
@@ -1228,13 +1228,13 @@
             <div class="feature-icon">✨</div>
             <h3 class="feature-title">AI Creative Tools</h3>
             <p class="feature-desc">
-              MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，让每个想法都能得到专业的技术支持
+              MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，Every Idea Gets Professional Support
             </p>
           </article>
         </div>
       </section>
 
-      <!-- 项目列表 -->
+      <!-- ProjectList -->
       <section id="projects" class="section">
         <div class="section-header">
           <h2 class="section-title">My Projects</h2>
@@ -1284,7 +1284,7 @@
       </section>
     </div>
 
-    <!-- 页脚 -->
+    <!-- Footer -->
     <footer class="footer">
       <p>Have questions or suggestions? <a href="https://github.com/chaceli/idea-builder/issues" target="_blank">Contact Us</a></p>
       <p>© 2024 IDEA Builder. AI-powered Idea Generation Tool.</p>
@@ -1328,7 +1328,7 @@
     </div>
   </div>
 
-  <!-- 项目详情Modal -->
+  <!-- ProjectDetailsModal -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
@@ -1378,7 +1378,7 @@
     </div>
   </div>
 
-  <!-- AI 生成Modal -->
+  <!-- AI GenerateModal -->
   <div class="modal-overlay" id="aiModal">
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
@@ -1392,36 +1392,36 @@
           <a href="#" id="showApiKeySettings">Click to Settings</a>
         </div>
         
-        <!-- API Key 设置 -->
+        <!-- API Key Settings -->
         <div id="apiKeySettings" style="display: none; margin-bottom: 20px;">
           <div class="form-group">
             <label class="form-label" for="miniMaxApiKey">MiniMax API Key</label>
-            <input type="password" class="form-input" id="miniMaxApiKey" placeholder="输入你的 MiniMax API Key">
+            <input type="password" class="form-input" id="miniMaxApiKey" placeholder="InputYour MiniMax API Key">
           </div>
           <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;">Save API Key</button>
         </div>
 
-        <!-- 生成类型选择 -->
+        <!-- GenerateType Selection -->
         <div class="ai-generation-type" id="generationType">
           <button type="button" class="ai-type-btn active" data-type="prompt">
             <div class="ai-type-btn-icon">🎯</div>
             <div class="ai-type-btn-text">Prompt Generation</div>
-            <div class="ai-type-btn-desc">生成 AI Tip词</div>
+            <div class="ai-type-btn-desc">Generate AI Tip词</div>
           </button>
           <button type="button" class="ai-type-btn" data-type="project">
             <div class="ai-type-btn-icon">📔</div>
             <div class="ai-type-btn-text">Project Plan</div>
-            <div class="ai-type-btn-desc">生成完整项目</div>
+            <div class="ai-type-btn-desc">GenerateComplete Project</div>
           </button>
         </div>
 
-        <!-- 输入Section -->
+        <!-- InputSection -->
         <div class="form-group">
           <label class="form-label" for="aiIdeaInput">Describe Your Idea *</label>
           <textarea class="form-textarea" id="aiIdeaInput" placeholder="e.g., I want to build a smart home system that can control lights, AC, curtains via phone"></textarea>
         </div>
 
-        <!-- 生成Button -->
+        <!-- GenerateButton -->
         <button type="button" class="btn btn-primary" id="generateBtn" onclick="generateAI(document.querySelector('.ai-type-btn.active').dataset.type)" style="width: 100%;">
           🚀 Start Generation
         </button>
@@ -1432,7 +1432,7 @@
           <div class="ai-loading-text">AI is thinking...</div>
         </div>
 
-        <!-- AI 结果 -->
+        <!-- AI Result -->
         <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
             <span class="ai-result-title">Generated Result</span>
@@ -1449,9 +1449,9 @@
     </div>
   </div>
 
-  <!-- 键盘NavigationTip -->
+  <!-- KeyboardNavigationTip -->
   <div class="keyboard-hint" id="keyboardHint">
-    Use <kbd>Tab</kbd> 键Navigation，<kbd>Enter</kbd> 键确认
+    Use <kbd>Tab</kbd> 键Navigation，<kbd>Enter</kbd> Key Confirm
   </div>
 
   <script>
@@ -1464,7 +1464,7 @@
         keyboardDetected = true;
         document.body.classList.add('keyboard-nav');
         
-        // 显示Tip
+        // ShowTip
         setTimeout(() => {
           keyboardHint.classList.add('visible');
           setTimeout(() => {
@@ -1477,72 +1477,72 @@
     // ===== Internationalization (i18n) =====
     const translations = {
       zh: {
-        heroTitle: '让每一个灵机一动的想法都能变成真正可实现的东西',
-        heroDesc: 'AI 驱动的创意生成器，Help Transform Ideas into Actionable Projects',
+        heroTitle: 'Turn Every Great Idea Into Reality',
+        heroDesc: 'AI Poweredof CreativeGenerate器，Help Transform Ideas into Actionable Projects',
         exploreFeatures: 'ExploreFeatures',
         viewDocs: 'View Docs',
         coreFeatures: 'CoreFeatures',
         featuresDesc: 'Powerful AI Tools Help You Complete Creative Projects',
-        feature1Title: 'AI Tip词生成',
-        feature1Desc: 'Intelligently Analyze Your Ideas，生成高质量的 AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency',
-        feature2Title: 'AI 项目生成',
+        feature1Title: 'AI Tip词Generate',
+        feature1Desc: 'Intelligently Analyze Your Ideas，GenerateHigh Quality AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency',
+        feature2Title: 'AI ProjectGenerate',
         feature2Desc: 'Generate standardized project plans，Help You Realize Ideas',
         feature3Title: 'AI Creative Tools',
-        feature3Desc: 'MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，让每个想法都能得到专业的技术支持',
+        feature3Desc: 'MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，Every Idea Gets Professional Support',
         myProjects: 'My Projects',
-        projectsDesc: '管理你的创意项目',
-        emptyStateTitle: '还没有项目',
-        emptyStateDesc: '点击上方的"Create Project"Button，Start Your Creative Journey',
+        projectsDesc: 'Manage Your Creative Projects',
+        emptyStateTitle: 'No Projects Yet',
+        emptyStateDesc: 'ClickAbove"Create Project"Button，Start Your Creative Journey',
         createFirst: '✨ Create First Project',
         process: 'UseProcess',
-        processDesc: '简单的四步完成创意项目',
-        step1: '输入你的想法',
+        processDesc: 'Four Simple Steps to Complete Creative Project',
+        step1: 'InputYourIdea',
         step2: 'AI Optimize',
-        step3: '生成项目方案',
+        step3: 'GenerateProjectPlan',
         step4: 'Make It Real',
         createProject: '✨ Create Project',
-        projectName: '项目名称',
+        projectName: 'ProjectName',
         projectNamePlaceholder: 'e.g.,：Smart Home System',
         techField: 'Technology Field',
-        techFieldPlaceholder: 'e.g.,：物联网、AI、Mechanical Design',
-        projectType: '项目类型',
-        selectType: '请选择项目类型',
+        techFieldPlaceholder: 'e.g.,：IoT、AI、Mechanical Design',
+        projectType: 'ProjectType',
+        selectType: 'Please Select Project Type',
         invention: 'Invention Project',
         utility: 'Utility Project',
         design: 'Creative Design',
-        projectDesc: '项目描述',
+        projectDesc: 'ProjectDescription',
         projectDescPlaceholder: 'Describe your creative idea, technical solution...',
         cancel: 'Cancel',
         submit: 'Create Project',
-        edit: '编辑',
+        edit: 'Edit',
         delete: 'Delete',
-        projectDetail: '项目详情',
+        projectDetail: 'ProjectDetails',
         field: 'Technology Field',
-        type: '项目类型',
+        type: 'ProjectType',
         date: 'Created Date',
-        description: '项目描述',
+        description: 'ProjectDescription',
         noDesc: 'No Description',
-        editProject: '编辑项目',
+        editProject: 'EditProject',
         save: 'Save',
-        featureDev: '该Features正在In Development',
-        featureTip: '该Features正在In Development，Stay Tuned！IDEA Builder 让每个创意都能变成现实。',
-        createSuccess: '项目Created Successfully',
-        createSuccessMsg: '现在你可以继续完善项目详情。',
-        confirmDelete: '确定要Delete这个项目吗？This Cannot Be Undone。',
+        featureDev: '该FeaturesisIn Development',
+        featureTip: '该FeaturesisIn Development，Stay Tuned！IDEA Builder Make Every Idea Reality。',
+        createSuccess: 'ProjectCreated Successfully',
+        createSuccessMsg: 'Now you can continue to improve project details。',
+        confirmDelete: 'ConfirmDeleteThis Project？This Cannot Be Undone。',
         notExist: 'Project not found', fillRequired: 'Please fill in all required fields',
-        copyright: '© 2024 IDEA Builder. Based on AI 的创意生成工具。',
+        copyright: '© 2024 IDEA Builder. Based on AI of CreativeGenerateTools。',
         navFeatures: 'Features',
-        navProjects: '项目',
+        navProjects: 'Project',
         navProcess: 'Process',
         navGithub: 'GitHub',
         createModalTitle: '✨ Create New Project',
-        detailModalTitle: '📄 项目详情',
-        editModalTitle: '✏️ 编辑项目',
+        detailModalTitle: '📄 ProjectDetails',
+        editModalTitle: '✏️ EditProject',
         featureAlertTitle: 'FeaturesIn Development',
-        featureAlertTip: '请先创建一个项目，I will help you improve！',
-        createSuccessAlert: '项目已创建',
-        createSuccessTip: '现在你可以继续完善项目详情，Or Generate Project Plan。',
-        editSuccessAlert: '项目已Update',
+        featureAlertTip: 'Please Create a Project First，I will help you improve！',
+        createSuccessAlert: 'Project已Create',
+        createSuccessTip: 'Now you can continue to improve project details，Or Generate Project Plan。',
+        editSuccessAlert: 'Project已Update',
         github: 'GitHub'
       },
       en: {
@@ -1572,7 +1572,7 @@
         projectName: 'Project Name',
         projectNamePlaceholder: 'e.g.,：Smart Home System',
         techField: 'Technology Field',
-        techFieldPlaceholder: 'e.g.,：物联网、AI、Mechanical Design',
+        techFieldPlaceholder: 'e.g.,：IoT、AI、Mechanical Design',
         projectType: 'Project Type',
         selectType: 'Select type',
         invention: 'Invention Project',
@@ -1605,7 +1605,7 @@
     // Current Language
     let currentLang = localStorage.getItem('lang') || 'en';
 
-    // 翻译函数
+    // Translation Function
     function t(key) {
       return translations[currentLang][key] || key;
     }
@@ -1636,13 +1636,13 @@
       if (featureCards[2]) featureCards[2].querySelector('.feature-title').textContent = t('feature3Title');
       if (featureCards[2]) featureCards[2].querySelector('.feature-desc').textContent = t('feature3Desc');
       
-      // 项目区
+      // Project区
       const projectsTitle = document.querySelector('#projects .section-title');
       if (projectsTitle) projectsTitle.textContent = t('myProjects');
       const projectsDesc = document.querySelector('#projects .section-desc');
       if (projectsDesc) projectsDesc.textContent = t('projectsDesc');
       
-      // 空状态
+      // Empty State
       const emptyStateTitle = document.querySelector('.empty-state-title');
       if (emptyStateTitle) emptyStateTitle.textContent = t('emptyStateTitle');
       const emptyStateDesc = document.querySelector('.empty-state-desc');
@@ -1663,7 +1663,7 @@
       if (steps[2]) steps[2].textContent = t('step3');
       if (steps[3]) steps[3].textContent = t('step4');
       
-      // Navigation链接
+      // NavigationLinks
       const navLinks = document.querySelectorAll('.nav-link');
       if (navLinks[0]) navLinks[0].textContent = t('navFeatures');
       if (navLinks[1]) navLinks[1].textContent = t('navProjects');
@@ -1674,17 +1674,17 @@
       const createProjectBtn = document.getElementById('createProjectBtn');
       if (createProjectBtn) createProjectBtn.textContent = t('createProject');
       
-      // 页脚
+      // Footer
       document.querySelector('footer p').textContent = t('copyright');
       
-      // Update HTML 语言
+      // Update HTML Language
       html.lang = currentLang;
       
       // Switch Language Class
       html.classList.toggle('en', currentLang === 'en');
     }
 
-    // 语言切换
+    // LanguageSwitch
     function initLang() {
       currentLang = localStorage.getItem('lang') || 'en';
       applyTranslations();
@@ -1735,7 +1735,7 @@
       });
     });
 
-    // 焦点时滚动到可见Section
+    // Focus时ScrollTo VisibleSection
     document.querySelectorAll('[tabindex]:focus').forEach(el => {
       el.addEventListener('focus', function() {
         this.scrollIntoView({
@@ -1747,36 +1747,36 @@
 
     // ===== MVP FeaturesInteraction =====
 
-    // localStorage 键名
+    // localStorage Key Name
     const STORAGE_KEY = 'idea-builder-projects';
 
-    //项目类型映射
+    //ProjectTypeMapping
     const patentTypes = {
       'invention': { name: 'Invention Project', class: 'tag-invention', icon: '💡' },
       'utility': { name: 'Utility Project', class: 'tag-utility', icon: '⚙️' },
       'design': { name: 'Creative Design', class: 'tag-design', icon: '🎨' }
     };
 
-    // 项目图标数组
+    // ProjectIcon Array
     const projectIcons = ['🏠', '🚗', '🏥', '📱', '🔋', '🎮', '🤖', '🛰️', '💊', '🎓', '🌾', '🏭'];
 
-    // 获取项目列表
+    // Get Project List
     function getProjects() {
       const data = localStorage.getItem(STORAGE_KEY);
       return data ? JSON.parse(data) : [];
     }
 
-    // Save项目列表
+    // SaveProjectList
     function saveProjects(projects) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
     }
 
-    // 生成唯一ID
+    // GenerateUniqueID
     function generateId() {
       return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 
-    // 渲染项目列表
+    // Render Project List
     function renderProjects() {
       const projects = getProjects();
       const grid = document.getElementById('projectsGrid');
@@ -1811,7 +1811,7 @@
         `;
       }).join('');
 
-      // 绑定点击事件
+      // BindClickEvent
       grid.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('click', () => {
           const projectId = card.dataset.id;
@@ -1820,7 +1820,7 @@
       });
     }
 
-    // HTML 转义
+    // HTML Escape
     function escapeHtml(text) {
       if (!text) return '';
       const div = document.createElement('div');
@@ -1881,13 +1881,13 @@
       document.getElementById('editProjectType').value = project.type;
       document.getElementById('editProjectDesc').value = project.description || '';
 
-      // Open编辑Modal
+      // OpenEditModal
       setTimeout(() => {
         document.getElementById('editModal').classList.add('active');
       }, 100);
     };
 
-    // Delete项目
+    // DeleteProject
     window.deleteProject = function(projectId) {
       if (!confirm(t('confirmDelete'))) {
         return;
@@ -1919,13 +1919,13 @@
       createBtn.addEventListener('click', openCreateModal);
     }
 
-    // 空状态创建Button
+    // Empty StateCreateButton
     const emptyCreateBtn = document.getElementById('emptyCreateBtn');
     if (emptyCreateBtn) {
       emptyCreateBtn.addEventListener('click', openCreateModal);
     }
 
-    // Modal关闭Button
+    // ModalCloseButton
     document.querySelectorAll('.modal-close').forEach(btn => {
       btn.addEventListener('click', closeAllModals);
     });
@@ -1935,7 +1935,7 @@
       btn.addEventListener('click', closeAllModals);
     });
 
-    // 点击遮罩关闭
+    // ClickMaskClose
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
       overlay.addEventListener('click', function(e) {
         if (e.target === this) {
@@ -1944,7 +1944,7 @@
       });
     });
 
-    // Create Project表单提交
+    // Create ProjectForm Submit
     const createForm = document.getElementById('createForm');
     if (createForm) {
       createForm.addEventListener('submit', function(e) {
@@ -1972,17 +1972,17 @@
           icon: projectIcons[projects.length % projectIcons.length]
         };
 
-        projects.unshift(newProject); // 添加到列表开头
+        projects.unshift(newProject); // Add to List Start
         saveProjects(projects);
         
-        // 重新渲染
+        // Re-render
         renderProjects();
         
         // Close Modal
         closeAllModals();
         this.reset();
 
-        // 滚动to ProjectSection
+        // Scrollto ProjectSection
         setTimeout(() => {
           const projectsSection = document.getElementById('projects');
           if (projectsSection) {
@@ -1990,11 +1990,11 @@
           }
         }, 300);
 
-        alert(`✅ 项目 "${name}" Created Successfully！\n\n现在你可以继续完善项目详情，OrGenerate Project Plan。`);
+        alert(`✅ Project "${name}" Created Successfully！\n\nNow you can continue to improve project details，OrGenerate Project Plan。`);
       });
     }
 
-    // Edit Project表单提交
+    // Edit ProjectForm Submit
     const editForm = document.getElementById('editForm');
     if (editForm) {
       editForm.addEventListener('submit', function(e) {
@@ -2019,7 +2019,7 @@
           return;
         }
 
-        // Update项目
+        // UpdateProject
         projects[index] = {
           ...projects[index],
           name: name,
@@ -2030,18 +2030,18 @@
 
         saveProjects(projects);
         
-        // 重新渲染
+        // Re-render
         renderProjects();
         
         // Close Modal
         closeAllModals();
         this.reset();
 
-        alert(`✅ 项目 "${name}" Modified Successfully！`);
+        alert(`✅ Project "${name}" Modified Successfully！`);
       });
     }
 
-    // 页面加载时渲染项目列表
+    // When Page LoadsRender Project List
     document.addEventListener("DOMContentLoaded", renderProjects);
 
     // ===== AI =====
@@ -2074,7 +2074,7 @@
       if (btn) btn.disabled = false;
     }
 
-    // FeaturesCard点击 - Open AI 生成Modal
+    // FeaturesCardClick - Open AI GenerateModal
     document.querySelectorAll('.feature-card').forEach((card, i) => {
       card.style.cursor = 'pointer';
       card.onclick = function() {
