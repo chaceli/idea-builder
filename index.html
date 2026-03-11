@@ -1692,80 +1692,29 @@
 
     // Translation Function
     function t(key) {
-      return translations[currentLang][key] || key;
+      return translations[currentLang]?.[key] || key;
     }
 
-    // Apply Translation
+    // Apply Translation using data-i18n attributes
     function applyTranslations() {
-      // Hero
-      document.querySelector('.hero-title').textContent = t('heroTitle');
-      document.querySelector('.hero-desc').textContent = t('heroDesc');
-      
-      // Hero Button
-      const heroBtns = document.querySelectorAll('.hero-actions .btn-lg');
-      if (heroBtns[0]) heroBtns[0].textContent = t('exploreFeatures');
-      if (heroBtns[1]) heroBtns[1].textContent = t('viewDocs');
-      
-      // Features区
-      const featuresTitle = document.querySelector('#features .section-title');
-      if (featuresTitle) featuresTitle.textContent = t('coreFeatures');
-      const featuresDesc = document.querySelector('#features .section-desc');
-      if (featuresDesc) featuresDesc.textContent = t('featuresDesc');
-      
-      // FeaturesCard
-      const featureCards = document.querySelectorAll('.feature-card');
-      if (featureCards[0]) featureCards[0].querySelector('.feature-title').textContent = t('feature1Title');
-      if (featureCards[0]) featureCards[0].querySelector('.feature-desc').textContent = t('feature1Desc');
-      if (featureCards[1]) featureCards[1].querySelector('.feature-title').textContent = t('feature2Title');
-      if (featureCards[1]) featureCards[1].querySelector('.feature-desc').textContent = t('feature2Desc');
-      if (featureCards[2]) featureCards[2].querySelector('.feature-title').textContent = t('feature3Title');
-      if (featureCards[2]) featureCards[2].querySelector('.feature-desc').textContent = t('feature3Desc');
-      
-      // Project区
-      const projectsTitle = document.querySelector('#projects .section-title');
-      if (projectsTitle) projectsTitle.textContent = t('myProjects');
-      const projectsDesc = document.querySelector('#projects .section-desc');
-      if (projectsDesc) projectsDesc.textContent = t('projectsDesc');
-      
-      // Empty State
-      const emptyStateTitle = document.querySelector('.empty-state-title');
-      if (emptyStateTitle) emptyStateTitle.textContent = t('emptyStateTitle');
-      const emptyStateDesc = document.querySelector('.empty-state-desc');
-      if (emptyStateDesc) emptyStateDesc.textContent = t('emptyStateDesc');
-      const emptyCreateBtn = document.getElementById('emptyCreateBtn');
-      if (emptyCreateBtn) emptyCreateBtn.textContent = t('createFirst');
-      
-      // Process区
-      const processTitle = document.querySelector('#process .section-title');
-      if (processTitle) processTitle.textContent = t('process');
-      const processDesc = document.querySelector('#process .section-desc');
-      if (processDesc) processDesc.textContent = t('processDesc');
-      
-      // Step
-      const steps = document.querySelectorAll('.step-text');
-      if (steps[0]) steps[0].textContent = t('step1');
-      if (steps[1]) steps[1].textContent = t('step2');
-      if (steps[2]) steps[2].textContent = t('step3');
-      if (steps[3]) steps[3].textContent = t('step4');
-      
-      // NavigationLinks
-      const navLinks = document.querySelectorAll('.nav-link');
-      if (navLinks[0]) navLinks[0].textContent = t('navFeatures');
-      if (navLinks[1]) navLinks[1].textContent = t('navProjects');
-      if (navLinks[2]) navLinks[2].textContent = t('navProcess');
-      if (navLinks[3]) navLinks[3].textContent = t('navGithub');
-      
-      // NavigationCreate ProjectButton
-      const createProjectBtn = document.getElementById('createProjectBtn');
-      if (createProjectBtn) createProjectBtn.textContent = t('createProject');
-      
-      // Footer
-      document.querySelector('footer p').textContent = t('copyright');
-      
-      // Update HTML Language
+      // 1. Handle text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        el.textContent = t(key);
+      });
+
+      // 2. Handle placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+      });
+
+      // 3. Handle HTML content (preserves <span> etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        el.innerHTML = t(el.dataset.i18nHtml);
+      });
+
+      // 4. Update HTML lang attribute
       html.lang = currentLang;
-      
-      // Switch Language Class
       html.classList.toggle('en', currentLang === 'en');
     }
 
