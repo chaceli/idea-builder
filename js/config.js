@@ -127,20 +127,20 @@ export const translations = {
     navGithub: 'GitHub',
 
     // Hero
-    heroTitleHtml: 'Turn Every <span>Great Idea</span> Into Reality',
-    heroDesc: 'AI-powered idea generator that transforms your creative ideas into actionable project plans',
+    heroTitleHtml: 'Turn Every <span>Spark of Inspiration</span> Into Reality',
+    heroDesc: 'AI-powered creative incubator that transforms your spark into patents, blueprints, or prompt templates',
     exploreFeatures: 'Explore Features',
     viewDocs: 'View Docs',
 
     // Features
     coreFeatures: 'Core Features',
     featuresDesc: 'Powerful AI tools to help you complete creative projects with ease',
-    feature1Title: 'AI Prompt Generation',
-    feature1Desc: 'Intelligently analyze your ideas and generate high-quality AI prompts for better understanding',
-    feature2Title: 'AI Project Generation',
-    feature2Desc: 'Generate standardized project plans with one click to bring your ideas to life',
-    feature3Title: 'AI Creative Tools',
-    feature3Desc: 'Continuous updates of creative tools to support your innovation journey',
+    feature1Title: 'AI Prompt Template Generator',
+    feature1Desc: 'Intelligently analyze your ideas and generate high-quality prompt templates for images, videos, and more on other AI platforms',
+    feature2Title: 'AI Blueprint Generator',
+    feature2Desc: 'Generate complete project blueprints with one click, transforming creative ideas into actionable plans',
+    feature3Title: 'AI Patent Generator',
+    feature3Desc: 'Professional patent document generation supporting Invention Patents, Utility Models, and Design Patents',
 
     // Projects
     myProjects: 'My Projects',
@@ -152,10 +152,10 @@ export const translations = {
 
     // Process
     processTitle: 'How It Works',
-    processDesc: 'Four simple steps to complete your creative project',
-    step1: 'Input Your Idea',
-    step2: 'AI Optimization',
-    step3: 'Generate Plan',
+    processDesc: 'Four simple steps to bring your spark to reality',
+    step1: 'Input Your Spark',
+    step2: 'AI Refinement',
+    step3: 'Generate Output',
     step4: 'Make It Real',
 
     // Form
@@ -166,9 +166,9 @@ export const translations = {
     techFieldPlaceholder: 'Enter tech field',
     projectType: 'Project Type',
     selectType: 'Select type',
-    invention: 'Invention Project',
-    utility: 'Utility Project',
-    design: 'Creative Design',
+    invention: 'Invention Patent',
+    utility: 'Utility Model',
+    design: 'Design Patent',
     projectDesc: 'Description',
     projectDescPlaceholder: 'Describe your creative idea...',
     create: 'Create',
@@ -185,11 +185,11 @@ export const translations = {
 
     // AI Modal
     aiGeneration: 'AI Generation',
-    promptGeneration: 'Prompt Generation',
-    projectPlan: 'Project Plan',
-    aiIdeaPlaceholder: 'Enter your creative idea, AI will help optimize...',
-    generatePrompt: 'Generate Prompt',
-    generatePlan: 'Generate Plan',
+    promptGeneration: 'Generate Prompt Template',
+    projectPlan: 'Generate Blueprint',
+    aiIdeaPlaceholder: 'Enter your spark of inspiration, AI will help refine it...',
+    generatePrompt: 'Generate Prompt Template',
+    generatePlan: 'Generate Blueprint',
     generating: 'Generating...',
     saveToProject: 'Save to Project',
     apiKeyNotice: 'AI features require API Key configuration',
@@ -199,7 +199,7 @@ export const translations = {
 
     // Footer
     footerContact: 'Questions or suggestions? Contact Us',
-    footerCopyright: '© 2024 IDEA Builder. AI-powered Idea Generation Tool.',
+    footerCopyright: '© 2026 IDEA Builder. AI-powered Creative Incubator',
 
     // Messages
     confirmDelete: 'Are you sure you want to delete this project?',
