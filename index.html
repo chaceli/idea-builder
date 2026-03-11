@@ -1565,7 +1565,7 @@
             <div class="project-cover">${icon}</div>
             <div class="project-info">
               <h3 class="project-name">${escapeHtml(project.name)}</h3>
-              <p class="project-desc">${escapeHtml(project.description || '暂无描述')}</p>
+              <p class="project-desc">${escapeHtml(project.description || t('noDesc'))}</p>
               <div class="project-meta">
                 <span class="project-tag ${typeInfo.class}">${typeInfo.name}</span>
                 <span class="project-date">${project.date || ''}</span>
@@ -1598,7 +1598,7 @@
       const project = projects.find(p => p.id === projectId);
       
       if (!project) {
-        alert('项目不存在');
+        alert(t('notExist'));
         return;
       }
 
@@ -1617,8 +1617,8 @@
           <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || '暂无描述'}</span></p>
         </div>
         <div class="project-detail-actions">
-          <button class="btn btn-primary" onclick="editProject('${project.id}')">✏️ 编辑</button>
-          <button class="btn btn-secondary" onclick="deleteProject('${project.id}')">🗑️ 删除</button>
+          <button class="btn btn-primary" onclick="editProject('${project.id}')">✏️ '${t('edit')}'</button>
+          <button class="btn btn-secondary" onclick="deleteProject('${project.id}')">🗑️ '${t('delete')}'</button>
         </div>
       `;
 
@@ -1631,7 +1631,7 @@
       const project = projects.find(p => p.id === projectId);
       
       if (!project) {
-        alert('项目不存在');
+        alert(t('notExist'));
         return;
       }
 
@@ -1653,7 +1653,7 @@
 
     // 删除项目
     window.deleteProject = function(projectId) {
-      if (!confirm('确定要删除这个项目吗？此操作不可恢复。')) {
+      if (!confirm(t('confirmDelete'))) {
         return;
       }
 
@@ -1802,7 +1802,7 @@
         const index = projects.findIndex(p => p.id === id);
         
         if (index === -1) {
-          alert('项目不存在');
+          alert(t('notExist'));
           return;
         }
 
