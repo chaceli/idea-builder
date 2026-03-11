@@ -1203,14 +1203,14 @@
       <!-- 功能卡片区 -->
       <section id="features" class="section">
         <div class="section-header">
-          <h2 class="section-title">核心功能</h2>
+          <h2 class="section-title">Core Features</h2>
           <p class="section-desc">Powerful AI tools to help you complete creative projects with ease</p>
         </div>
         
         <div class="features-grid">
           <article class="feature-card" tabindex="0">
             <div class="feature-icon">🎯</div>
-            <h3 class="feature-title">AI 提示词生成</h3>
+            <h3 class="feature-title">AI Prompt Generation</h3>
             <p class="feature-desc">
               智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率
             </p>
@@ -1220,7 +1220,7 @@
             <div class="feature-icon">📔</div>
             <h3 class="feature-title">AI Project Generation</h3>
             <p class="feature-desc">
-              一键生成符合规范的项目方案，to bring your ideas to life
+              Generate project plans with one click to bring your ideas to life
             </p>
           </article>
 
@@ -1278,7 +1278,7 @@
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">4</span>
-            <span class="step-text">实现创意</span>
+            <span class="step-text">Make It Real</span>
           </div>
         </div>
       </section>
@@ -1322,7 +1322,7 @@
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary">创建项目</button>
+          <button type="submit" class="btn btn-primary">Create Project</button>
         </div>
       </form>
     </div>
@@ -1332,7 +1332,7 @@
   <div class="modal-overlay" id="detailModal">
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
-        <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 项目详情</h2>
+        <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 Project Details</h2>
         <button class="modal-close" aria-label="关闭">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
@@ -1382,14 +1382,14 @@
   <div class="modal-overlay" id="aiModal">
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
-        <h2 class="modal-title" id="aiModalTitle">🤖 AI 生成</h2>
+        <h2 class="modal-title" id="aiModalTitle">🤖 AI Generation</h2>
         <button class="modal-close" aria-label="关闭">&times;</button>
       </div>
       <div class="ai-modal-content">
         <!-- API Key 提示 -->
         <div class="api-key-notice" id="apiKeyNotice">
           💡 使用 AI 功能需要配置 MiniMax API Key。
-          <a href="#" id="showApiKeySettings">点击设置</a>
+          <a href="#" id="showApiKeySettings">Click to Settings</a>
         </div>
         
         <!-- API Key 设置 -->
@@ -1405,19 +1405,19 @@
         <div class="ai-generation-type" id="generationType">
           <button type="button" class="ai-type-btn active" data-type="prompt">
             <div class="ai-type-btn-icon">🎯</div>
-            <div class="ai-type-btn-text">提示词生成</div>
+            <div class="ai-type-btn-text">Prompt Generation</div>
             <div class="ai-type-btn-desc">生成 AI 提示词</div>
           </button>
           <button type="button" class="ai-type-btn" data-type="project">
             <div class="ai-type-btn-icon">📔</div>
-            <div class="ai-type-btn-text">项目方案</div>
+            <div class="ai-type-btn-text">Project Plan</div>
             <div class="ai-type-btn-desc">生成完整项目</div>
           </button>
         </div>
 
         <!-- 输入区域 -->
         <div class="form-group">
-          <label class="form-label" for="aiIdeaInput">描述你的想法 *</label>
+          <label class="form-label" for="aiIdeaInput">Describe Your Idea *</label>
           <textarea class="form-textarea" id="aiIdeaInput" placeholder="例如：我想做一个智能家居系统，可以通过手机控制灯光、空调、窗帘等设备，实现自动化场景和远程控制"></textarea>
         </div>
 
@@ -1429,13 +1429,13 @@
         <!-- 加载动画 -->
         <div class="ai-loading" id="aiLoading" style="display: none;">
           <div class="ai-loading-spinner"></div>
-          <div class="ai-loading-text">AI 正在思考中...</div>
+          <div class="ai-loading-text">AI is thinking...</div>
         </div>
 
         <!-- AI 结果 -->
         <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
-            <span class="ai-result-title">生成结果</span>
+            <span class="ai-result-title">Generated Result</span>
             <button class="ai-result-copy" id="copyResultBtn">📋 复制</button>
           </div>
           <div class="ai-result-content" id="aiResultContent"></div>
@@ -1486,7 +1486,7 @@
         feature1Title: 'AI 提示词生成',
         feature1Desc: '智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率',
         feature2Title: 'AI 项目生成',
-        feature2Desc: '一键生成符合规范的项目方案，to bring your ideas to life',
+        feature2Desc: 'Generate project plans with one click to bring your ideas to life',
         feature3Title: 'AI 创意工具',
         feature3Desc: '更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持',
         myProjects: '我的项目',
