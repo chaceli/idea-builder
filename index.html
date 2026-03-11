@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IDEA Builder - Creative Idea Generator</title>
   <style>
-    /* CSS 变量 - 支持暗色模式 */
+    /* CSS Variable - Support Dark Mode */
     :root {
       --primary: #6366F1;
       --primary-hover: #4F46E5;
@@ -27,7 +27,7 @@
       --transition: all 0.2s ease;
     }
 
-    /* 暗色模式 */
+    /* Dark模式 */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0F172A;
@@ -42,7 +42,7 @@
       }
     }
 
-    /* 手动暗色模式类 */
+    /* Manual Dark Mode Class */
     .dark {
       --bg: #0F172A;
       --bg-card: #1E293B;
@@ -66,7 +66,7 @@
       overflow-x: hidden;
     }
 
-    /* 焦点样式 - 键盘导航 */
+    /* 焦点样式 - 键盘Navigation */
     *:focus {
       outline: none;
     }
@@ -81,7 +81,7 @@
       outline-offset: 2px;
     }
 
-    /* 顶部导航栏 */
+    /* 顶部Navigation栏 */
     .navbar {
       position: fixed;
       top: 0;
@@ -152,7 +152,7 @@
       gap: 12px;
     }
 
-    /* 按钮样式 */
+    /* Button样式 */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -213,7 +213,7 @@
       color: var(--text);
     }
 
-    /* Switch Theme按钮 */
+    /* Switch ThemeButton */
     .theme-toggle {
       width: 40px;
       height: 40px;
@@ -244,7 +244,7 @@
     .dark .theme-toggle .icon-sun { display: block; }
     .dark .theme-toggle .icon-moon { display: none; }
 
-    /* 语言切换按钮 */
+    /* 语言切换Button */
     .lang-toggle {
       width: 40px;
       height: 40px;
@@ -283,7 +283,7 @@
       padding: 40px 24px;
     }
 
-    /* Hero 区域 */
+    /* Hero Section */
     .hero {
       text-align: center;
       padding: 60px 0;
@@ -325,7 +325,7 @@
       font-size: 16px;
     }
 
-    /* 功能卡片区 */
+    /* FeaturesCard区 */
     .section {
       margin-bottom: 60px;
     }
@@ -502,7 +502,7 @@
       color: var(--text-muted);
     }
 
-    /* 流程步骤 */
+    /* ProcessStep */
     .process-steps {
       display: flex;
       justify-content: center;
@@ -559,7 +559,7 @@
       font-size: 20px;
     }
 
-    /* 键盘导航提示 */
+    /* 键盘NavigationTip */
     .keyboard-hint {
       position: fixed;
       bottom: 24px;
@@ -614,7 +614,7 @@
       text-decoration: underline;
     }
 
-    /* 动画 */
+    /* Animation */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -625,7 +625,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 响应式布局 */
+    /* Responsive Layout */
     @media (max-width: 768px) {
       .navbar {
         padding: 0 16px;
@@ -705,12 +705,12 @@
       .btn-lg {
         padding: 14px 28px;
         font-size: 15px;
-        min-height: 48px; /* 移动端按钮最小高度 */
+        min-height: 48px; /* 移动端Button最小高度 */
       }
 
       .btn {
         padding: 12px 16px;
-        min-height: 44px; /* 移动端按钮最小高度 */
+        min-height: 44px; /* 移动端Button最小高度 */
         font-size: 14px;
       }
 
@@ -760,7 +760,7 @@
       }
     }
 
-    /* 模态框样式 */
+    /* Modal样式 */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -874,7 +874,7 @@
       margin-top: 24px;
     }
 
-    /* 项目详情弹窗 */
+    /* 项目详情Modal */
     .project-detail-content {
       text-align: center;
     }
@@ -929,7 +929,7 @@
       margin-top: 20px;
     }
 
-    /* AI 生成弹窗样式 */
+    /* AI 生成Modal样式 */
     .ai-modal-content {
       max-height: 70vh;
       overflow-y: auto;
@@ -978,7 +978,7 @@
       margin-top: 4px;
     }
 
-    /* AI 生成中动画 */
+    /* AI 生成中Animation */
     .ai-loading {
       display: flex;
       flex-direction: column;
@@ -1051,7 +1051,7 @@
       word-break: break-word;
     }
 
-    /* 保存到项目按钮 */
+    /* Saveto ProjectButton */
     .ai-save-btn {
       width: 100%;
       margin-top: 16px;
@@ -1075,7 +1075,7 @@
       cursor: not-allowed;
     }
 
-    /* API Key 提示 */
+    /* API Key Tip */
     .api-key-notice {
       padding: 12px 16px;
       background: rgba(99, 102, 241, 0.1);
@@ -1085,7 +1085,7 @@
       color: var(--text-secondary);
     }
 
-    /* 步骤高亮 */
+    /* Step高亮 */
     .step.active {
       border-color: var(--primary);
       background: rgba(99, 102, 241, 0.05);
@@ -1137,7 +1137,7 @@
       transform: scale(0.98);
     }
 
-    /* 动态项目卡片颜色 */
+    /* Dynamic Project Card Colors */
     .project-card[data-index="0"] .project-cover { background: linear-gradient(135deg, #6366F1 0%, #818CF8 100%); }
     .project-card[data-index="1"] .project-cover { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); }
     .project-card[data-index="2"] .project-cover { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
@@ -1149,7 +1149,7 @@
   </style>
 </head>
 <body>
-  <!-- 顶部导航栏 -->
+  <!-- 顶部Navigation栏 -->
   <nav class="navbar" role="navigation" aria-label="Main Navigation">
     <a href="#" class="nav-brand" aria-label="IDEA Builder Home">
       <div class="nav-brand-icon">💡</div>
@@ -1184,7 +1184,7 @@
   <!-- Main Content -->
   <main class="main">
     <div class="container">
-      <!-- Hero 区域 -->
+      <!-- Hero Section -->
       <section class="hero">
         <h1 class="hero-title">
           Turn Every <span>Great Idea</span> Into Reality
@@ -1200,7 +1200,7 @@
         </div>
       </section>
 
-      <!-- 功能卡片区 -->
+      <!-- FeaturesCard区 -->
       <section id="features" class="section">
         <div class="section-header">
           <h2 class="section-title">Core Features</h2>
@@ -1212,7 +1212,7 @@
             <div class="feature-icon">🎯</div>
             <h3 class="feature-title">AI Prompt Generation</h3>
             <p class="feature-desc">
-              智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率
+              Intelligently Analyze Your Ideas，生成高质量的 AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency
             </p>
           </article>
 
@@ -1228,7 +1228,7 @@
             <div class="feature-icon">✨</div>
             <h3 class="feature-title">AI Creative Tools</h3>
             <p class="feature-desc">
-              更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持
+              MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，让每个想法都能得到专业的技术支持
             </p>
           </article>
         </div>
@@ -1242,7 +1242,7 @@
         </div>
 
         <div class="projects-grid" id="projectsGrid">
-          <!-- 动态加载项目 -->
+          <!-- Dynamic Load Projects -->
         </div>
 
         <div class="empty-state" id="emptyState" style="display: none;">
@@ -1291,7 +1291,7 @@
     </footer>
   </main>
 
-  <!-- 创建项目模态框 -->
+  <!-- Create ProjectModal -->
   <div class="modal-overlay" id="createModal">
     <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
       <div class="modal-header">
@@ -1328,7 +1328,7 @@
     </div>
   </div>
 
-  <!-- 项目详情模态框 -->
+  <!-- 项目详情Modal -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
@@ -1336,12 +1336,12 @@
         <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
-        <!-- 动态内容 -->
+        <!-- Dynamic Content -->
       </div>
     </div>
   </div>
 
-  <!-- Edit Project模态框 -->
+  <!-- Edit ProjectModal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
       <div class="modal-header">
@@ -1378,7 +1378,7 @@
     </div>
   </div>
 
-  <!-- AI 生成模态框 -->
+  <!-- AI 生成Modal -->
   <div class="modal-overlay" id="aiModal">
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
@@ -1386,7 +1386,7 @@
         <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
       </div>
       <div class="ai-modal-content">
-        <!-- API Key 提示 -->
+        <!-- API Key Tip -->
         <div class="api-key-notice" id="apiKeyNotice">
           💡 Configure your MiniMax API Key to use AI features.
           <a href="#" id="showApiKeySettings">Click to Settings</a>
@@ -1398,7 +1398,7 @@
             <label class="form-label" for="miniMaxApiKey">MiniMax API Key</label>
             <input type="password" class="form-input" id="miniMaxApiKey" placeholder="输入你的 MiniMax API Key">
           </div>
-          <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;">保存 API Key</button>
+          <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;">Save API Key</button>
         </div>
 
         <!-- 生成类型选择 -->
@@ -1406,7 +1406,7 @@
           <button type="button" class="ai-type-btn active" data-type="prompt">
             <div class="ai-type-btn-icon">🎯</div>
             <div class="ai-type-btn-text">Prompt Generation</div>
-            <div class="ai-type-btn-desc">生成 AI 提示词</div>
+            <div class="ai-type-btn-desc">生成 AI Tip词</div>
           </button>
           <button type="button" class="ai-type-btn" data-type="project">
             <div class="ai-type-btn-icon">📔</div>
@@ -1415,18 +1415,18 @@
           </button>
         </div>
 
-        <!-- 输入区域 -->
+        <!-- 输入Section -->
         <div class="form-group">
           <label class="form-label" for="aiIdeaInput">Describe Your Idea *</label>
           <textarea class="form-textarea" id="aiIdeaInput" placeholder="e.g., I want to build a smart home system that can control lights, AC, curtains via phone"></textarea>
         </div>
 
-        <!-- 生成按钮 -->
+        <!-- 生成Button -->
         <button type="button" class="btn btn-primary" id="generateBtn" onclick="generateAI(document.querySelector('.ai-type-btn.active').dataset.type)" style="width: 100%;">
-          🚀 开始生成
+          🚀 Start Generation
         </button>
 
-        <!-- 加载动画 -->
+        <!-- Loading Animation -->
         <div class="ai-loading" id="aiLoading" style="display: none;">
           <div class="ai-loading-spinner"></div>
           <div class="ai-loading-text">AI is thinking...</div>
@@ -1436,26 +1436,26 @@
         <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
             <span class="ai-result-title">Generated Result</span>
-            <button class="ai-result-copy" id="copyResultBtn">📋 复制</button>
+            <button class="ai-result-copy" id="copyResultBtn">📋 Copy</button>
           </div>
           <div class="ai-result-content" id="aiResultContent"></div>
         </div>
 
-        <!-- 保存到项目按钮 -->
+        <!-- Saveto ProjectButton -->
         <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;">
-          💾 保存到项目
+          💾 Saveto Project
         </button>
       </div>
     </div>
   </div>
 
-  <!-- 键盘导航提示 -->
+  <!-- 键盘NavigationTip -->
   <div class="keyboard-hint" id="keyboardHint">
-    Use <kbd>Tab</kbd> 键导航，<kbd>Enter</kbd> 键确认
+    Use <kbd>Tab</kbd> 键Navigation，<kbd>Enter</kbd> 键确认
   </div>
 
   <script>
-    // 检测键盘导航
+    // Detect KeyboardNavigation
     let keyboardDetected = false;
     const keyboardHint = document.getElementById('keyboardHint');
     
@@ -1464,7 +1464,7 @@
         keyboardDetected = true;
         document.body.classList.add('keyboard-nav');
         
-        // 显示提示
+        // 显示Tip
         setTimeout(() => {
           keyboardHint.classList.add('visible');
           setTimeout(() => {
@@ -1474,75 +1474,75 @@
       }
     });
 
-    // ===== 国际化 (i18n) =====
+    // ===== Internationalization (i18n) =====
     const translations = {
       zh: {
         heroTitle: '让每一个灵机一动的想法都能变成真正可实现的东西',
-        heroDesc: 'AI 驱动的创意生成器，帮助你将创意想法快速转化为可实现的项目方案',
-        exploreFeatures: '探索功能',
-        viewDocs: '查看文档',
-        coreFeatures: '核心功能',
-        featuresDesc: '强大的 AI 工具助你轻松完成创意项目',
-        feature1Title: 'AI 提示词生成',
-        feature1Desc: '智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率',
+        heroDesc: 'AI 驱动的创意生成器，Help Transform Ideas into Actionable Projects',
+        exploreFeatures: 'ExploreFeatures',
+        viewDocs: 'View Docs',
+        coreFeatures: 'CoreFeatures',
+        featuresDesc: 'Powerful AI Tools Help You Complete Creative Projects',
+        feature1Title: 'AI Tip词生成',
+        feature1Desc: 'Intelligently Analyze Your Ideas，生成高质量的 AI Tip词，让 AI Better Understand Your Needs，ImproveInteractionEfficiency',
         feature2Title: 'AI 项目生成',
-        feature2Desc: 'Generate standardized project plans，帮助你实现创意',
-        feature3Title: 'AI 创意工具',
-        feature3Desc: '更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持',
-        myProjects: '我的项目',
+        feature2Desc: 'Generate standardized project plans，Help You Realize Ideas',
+        feature3Title: 'AI Creative Tools',
+        feature3Desc: 'MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，让每个想法都能得到专业的技术支持',
+        myProjects: 'My Projects',
         projectsDesc: '管理你的创意项目',
         emptyStateTitle: '还没有项目',
-        emptyStateDesc: '点击上方的"创建项目"按钮，开始你的创意之旅',
-        createFirst: '✨ 创建第一个项目',
-        process: 'Use流程',
+        emptyStateDesc: '点击上方的"Create Project"Button，Start Your Creative Journey',
+        createFirst: '✨ Create First Project',
+        process: 'UseProcess',
         processDesc: '简单的四步完成创意项目',
         step1: '输入你的想法',
         step2: 'AI Optimize',
         step3: '生成项目方案',
         step4: 'Make It Real',
-        createProject: '✨ 创建项目',
+        createProject: '✨ Create Project',
         projectName: '项目名称',
-        projectNamePlaceholder: '例如：智能家居控制系统',
-        techField: '技术领域',
-        techFieldPlaceholder: '例如：物联网、AI、机械结构',
+        projectNamePlaceholder: 'e.g.,：Smart Home System',
+        techField: 'Technology Field',
+        techFieldPlaceholder: 'e.g.,：物联网、AI、Mechanical Design',
         projectType: '项目类型',
         selectType: '请选择项目类型',
-        invention: '发明项目',
-        utility: '实用项目',
-        design: '创意设计',
+        invention: 'Invention Project',
+        utility: 'Utility Project',
+        design: 'Creative Design',
         projectDesc: '项目描述',
         projectDescPlaceholder: 'Describe your creative idea, technical solution...',
-        cancel: '取消',
-        submit: '创建项目',
+        cancel: 'Cancel',
+        submit: 'Create Project',
         edit: '编辑',
-        delete: '删除',
+        delete: 'Delete',
         projectDetail: '项目详情',
-        field: '技术领域',
+        field: 'Technology Field',
         type: '项目类型',
-        date: '创建日期',
+        date: 'Created Date',
         description: '项目描述',
-        noDesc: '暂无描述',
+        noDesc: 'No Description',
         editProject: '编辑项目',
-        save: '保存',
-        featureDev: '该功能正在开发中',
-        featureTip: '该功能正在开发中，敬请期待！IDEA Builder 让每个创意都能变成现实。',
-        createSuccess: '项目创建成功',
+        save: 'Save',
+        featureDev: '该Features正在In Development',
+        featureTip: '该Features正在In Development，Stay Tuned！IDEA Builder 让每个创意都能变成现实。',
+        createSuccess: '项目Created Successfully',
         createSuccessMsg: '现在你可以继续完善项目详情。',
-        confirmDelete: '确定要删除这个项目吗？此操作不可恢复。',
+        confirmDelete: '确定要Delete这个项目吗？This Cannot Be Undone。',
         notExist: 'Project not found', fillRequired: 'Please fill in all required fields',
-        copyright: '© 2024 IDEA Builder. 基于 AI 的创意生成工具。',
-        navFeatures: '功能',
+        copyright: '© 2024 IDEA Builder. Based on AI 的创意生成工具。',
+        navFeatures: 'Features',
         navProjects: '项目',
-        navProcess: '流程',
+        navProcess: 'Process',
         navGithub: 'GitHub',
-        createModalTitle: '✨ 创建新项目',
+        createModalTitle: '✨ Create New Project',
         detailModalTitle: '📄 项目详情',
         editModalTitle: '✏️ 编辑项目',
-        featureAlertTitle: '功能开发中',
-        featureAlertTip: '请先创建一个项目，我会帮你完善相关内容！',
+        featureAlertTitle: 'FeaturesIn Development',
+        featureAlertTip: '请先创建一个项目，I will help you improve！',
         createSuccessAlert: '项目已创建',
-        createSuccessTip: '现在你可以继续完善项目详情，或生成项目计划。',
-        editSuccessAlert: '项目已更新',
+        createSuccessTip: '现在你可以继续完善项目详情，Or Generate Project Plan。',
+        editSuccessAlert: '项目已Update',
         github: 'GitHub'
       },
       en: {
@@ -1570,9 +1570,9 @@
         step4: 'Make It Real',
         createProject: '✨ Create Project',
         projectName: 'Project Name',
-        projectNamePlaceholder: '例如：智能家居控制系统',
+        projectNamePlaceholder: 'e.g.,：Smart Home System',
         techField: 'Technology Field',
-        techFieldPlaceholder: '例如：物联网、AI、机械结构',
+        techFieldPlaceholder: 'e.g.,：物联网、AI、Mechanical Design',
         projectType: 'Project Type',
         selectType: 'Select type',
         invention: 'Invention Project',
@@ -1602,7 +1602,7 @@
       }
     };
 
-    // 当前语言
+    // Current Language
     let currentLang = localStorage.getItem('lang') || 'en';
 
     // 翻译函数
@@ -1610,24 +1610,24 @@
       return translations[currentLang][key] || key;
     }
 
-    // 应用翻译
+    // Apply Translation
     function applyTranslations() {
       // Hero
       document.querySelector('.hero-title').textContent = t('heroTitle');
       document.querySelector('.hero-desc').textContent = t('heroDesc');
       
-      // Hero 按钮
+      // Hero Button
       const heroBtns = document.querySelectorAll('.hero-actions .btn-lg');
       if (heroBtns[0]) heroBtns[0].textContent = t('exploreFeatures');
       if (heroBtns[1]) heroBtns[1].textContent = t('viewDocs');
       
-      // 功能区
+      // Features区
       const featuresTitle = document.querySelector('#features .section-title');
       if (featuresTitle) featuresTitle.textContent = t('coreFeatures');
       const featuresDesc = document.querySelector('#features .section-desc');
       if (featuresDesc) featuresDesc.textContent = t('featuresDesc');
       
-      // 功能卡片
+      // FeaturesCard
       const featureCards = document.querySelectorAll('.feature-card');
       if (featureCards[0]) featureCards[0].querySelector('.feature-title').textContent = t('feature1Title');
       if (featureCards[0]) featureCards[0].querySelector('.feature-desc').textContent = t('feature1Desc');
@@ -1650,37 +1650,37 @@
       const emptyCreateBtn = document.getElementById('emptyCreateBtn');
       if (emptyCreateBtn) emptyCreateBtn.textContent = t('createFirst');
       
-      // 流程区
+      // Process区
       const processTitle = document.querySelector('#process .section-title');
       if (processTitle) processTitle.textContent = t('process');
       const processDesc = document.querySelector('#process .section-desc');
       if (processDesc) processDesc.textContent = t('processDesc');
       
-      // 步骤
+      // Step
       const steps = document.querySelectorAll('.step-text');
       if (steps[0]) steps[0].textContent = t('step1');
       if (steps[1]) steps[1].textContent = t('step2');
       if (steps[2]) steps[2].textContent = t('step3');
       if (steps[3]) steps[3].textContent = t('step4');
       
-      // 导航链接
+      // Navigation链接
       const navLinks = document.querySelectorAll('.nav-link');
       if (navLinks[0]) navLinks[0].textContent = t('navFeatures');
       if (navLinks[1]) navLinks[1].textContent = t('navProjects');
       if (navLinks[2]) navLinks[2].textContent = t('navProcess');
       if (navLinks[3]) navLinks[3].textContent = t('navGithub');
       
-      // 导航创建项目按钮
+      // NavigationCreate ProjectButton
       const createProjectBtn = document.getElementById('createProjectBtn');
       if (createProjectBtn) createProjectBtn.textContent = t('createProject');
       
       // 页脚
       document.querySelector('footer p').textContent = t('copyright');
       
-      // 更新 HTML 语言
+      // Update HTML 语言
       html.lang = currentLang;
       
-      // 切换语言类
+      // Switch Language Class
       html.classList.toggle('en', currentLang === 'en');
     }
 
@@ -1703,7 +1703,7 @@
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
 
-    // 初始化主题（Priority Use localStorage，否则跟随系统）
+    // Init Theme（Priority Use localStorage，Otherwise Follow System）
     function initTheme() {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
@@ -1714,14 +1714,14 @@
     }
     initTheme();
 
-    // 手动切换主题
+    // Manual Switch Theme
     themeToggle.addEventListener('click', () => {
       const isDark = html.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      console.log('Switch Theme:', isDark ? '暗色' : 'Light');
+      console.log('Switch Theme:', isDark ? 'Dark' : 'Light');
     });
 
-    // 平滑滚动
+    // Smooth Scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1735,7 +1735,7 @@
       });
     });
 
-    // 焦点时滚动到可见区域
+    // 焦点时滚动到可见Section
     document.querySelectorAll('[tabindex]:focus').forEach(el => {
       el.addEventListener('focus', function() {
         this.scrollIntoView({
@@ -1745,16 +1745,16 @@
       });
     });
 
-    // ===== MVP 功能交互 =====
+    // ===== MVP FeaturesInteraction =====
 
     // localStorage 键名
     const STORAGE_KEY = 'idea-builder-projects';
 
     //项目类型映射
     const patentTypes = {
-      'invention': { name: '发明项目', class: 'tag-invention', icon: '💡' },
-      'utility': { name: '实用项目', class: 'tag-utility', icon: '⚙️' },
-      'design': { name: '创意设计', class: 'tag-design', icon: '🎨' }
+      'invention': { name: 'Invention Project', class: 'tag-invention', icon: '💡' },
+      'utility': { name: 'Utility Project', class: 'tag-utility', icon: '⚙️' },
+      'design': { name: 'Creative Design', class: 'tag-design', icon: '🎨' }
     };
 
     // 项目图标数组
@@ -1766,7 +1766,7 @@
       return data ? JSON.parse(data) : [];
     }
 
-    // 保存项目列表
+    // Save项目列表
     function saveProjects(projects) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
     }
@@ -1828,7 +1828,7 @@
       return div.innerHTML;
     }
 
-    // 显示项目详情
+    // Show Project Details
     function showProjectDetail(projectId) {
       const projects = getProjects();
       const project = projects.find(p => p.id === projectId);
@@ -1871,23 +1871,23 @@
         return;
       }
 
-      // 关闭详情弹窗
+      // Close Detail Modal
       document.getElementById('detailModal').classList.remove('active');
 
-      // 填充表单
+      // Fill Form
       document.getElementById('editProjectId').value = project.id;
       document.getElementById('editProjectName').value = project.name;
       document.getElementById('editProjectField').value = project.field;
       document.getElementById('editProjectType').value = project.type;
       document.getElementById('editProjectDesc').value = project.description || '';
 
-      // 打开编辑弹窗
+      // Open编辑Modal
       setTimeout(() => {
         document.getElementById('editModal').classList.add('active');
       }, 100);
     };
 
-    // 删除项目
+    // Delete项目
     window.deleteProject = function(projectId) {
       if (!confirm(t('confirmDelete'))) {
         return;
@@ -1898,17 +1898,17 @@
       saveProjects(projects);
       renderProjects();
 
-      // 关闭详情弹窗
+      // Close Detail Modal
       document.getElementById('detailModal').classList.remove('active');
     };
 
-    // 打开创建项目弹窗
+    // OpenCreate ProjectModal
     function openCreateModal() {
       document.getElementById('createForm').reset();
       document.getElementById('createModal').classList.add('active');
     }
 
-    // 关闭所有模态框
+    // Close All Modals
     function closeAllModals() {
       document.querySelectorAll('.modal-overlay').forEach(modal => {
         modal.classList.remove('active');
@@ -1919,18 +1919,18 @@
       createBtn.addEventListener('click', openCreateModal);
     }
 
-    // 空状态创建按钮
+    // 空状态创建Button
     const emptyCreateBtn = document.getElementById('emptyCreateBtn');
     if (emptyCreateBtn) {
       emptyCreateBtn.addEventListener('click', openCreateModal);
     }
 
-    // 模态框关闭按钮
+    // Modal关闭Button
     document.querySelectorAll('.modal-close').forEach(btn => {
       btn.addEventListener('click', closeAllModals);
     });
 
-    // Cancel按钮
+    // CancelButton
     document.querySelectorAll('.modal-cancel-btn').forEach(btn => {
       btn.addEventListener('click', closeAllModals);
     });
@@ -1944,7 +1944,7 @@
       });
     });
 
-    // 创建项目表单提交
+    // Create Project表单提交
     const createForm = document.getElementById('createForm');
     if (createForm) {
       createForm.addEventListener('submit', function(e) {
@@ -1960,7 +1960,7 @@
           return;
         }
 
-        // 创建新项目
+        // Create New Project
         const projects = getProjects();
         const newProject = {
           id: generateId(),
@@ -1978,11 +1978,11 @@
         // 重新渲染
         renderProjects();
         
-        // 关闭弹窗
+        // Close Modal
         closeAllModals();
         this.reset();
 
-        // 滚动到项目区域
+        // 滚动to ProjectSection
         setTimeout(() => {
           const projectsSection = document.getElementById('projects');
           if (projectsSection) {
@@ -1990,7 +1990,7 @@
           }
         }, 300);
 
-        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者Generate Project Plan。`);
+        alert(`✅ 项目 "${name}" Created Successfully！\n\n现在你可以继续完善项目详情，OrGenerate Project Plan。`);
       });
     }
 
@@ -2019,7 +2019,7 @@
           return;
         }
 
-        // 更新项目
+        // Update项目
         projects[index] = {
           ...projects[index],
           name: name,
@@ -2033,11 +2033,11 @@
         // 重新渲染
         renderProjects();
         
-        // 关闭弹窗
+        // Close Modal
         closeAllModals();
         this.reset();
 
-        alert(`✅ 项目 "${name}" 修改成功！`);
+        alert(`✅ 项目 "${name}" Modified Successfully！`);
       });
     }
 
@@ -2074,7 +2074,7 @@
       if (btn) btn.disabled = false;
     }
 
-    // 功能卡片点击 - 打开 AI 生成弹窗
+    // FeaturesCard点击 - Open AI 生成Modal
     document.querySelectorAll('.feature-card').forEach((card, i) => {
       card.style.cursor = 'pointer';
       card.onclick = function() {
