@@ -18,6 +18,7 @@ import { authRouter } from './routes/auth';
 import { chatRouter } from './routes/chat';
 import { userRouter } from './routes/user';
 import { scheduleRouter } from './routes/schedule';
+import { patentRouter } from './routes/patent';
 
 const app = express();
 

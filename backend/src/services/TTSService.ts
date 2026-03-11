@@ -40,7 +40,7 @@ export class TTSService {
       // 保存文件
       const filename = `${uuidv4()}.mp3`;
       const filepath = path.join(this.voiceDir, filename);
-      fs.writeFileSync(filepath, response.data);
+      fs.writeFileSync(filepath, response.data as any);
 
       // 返回文件路径（实际应该返回 CDN URL）
       return filepath;
@@ -55,7 +55,7 @@ export class TTSService {
     try {
       // 下载音频文件
       const audioResponse = await axios.get(audioUrl, { responseType: 'arraybuffer' });
-      const audioBuffer = Buffer.from(audioResponse.data);
+      const audioBuffer = Buffer.from(audioResponse.data as any);
 
       const response = await axios.post(
         `${config.ai.baseUrl}/a2a_v2`,
@@ -71,7 +71,7 @@ export class TTSService {
         }
       );
 
-      return response.data.text || '';
+      return (response.data as any).text || '';
     } catch (error) {
       console.error('ASR 识别失败:', error);
       throw new Error('语音识别失败');

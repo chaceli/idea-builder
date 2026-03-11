@@ -63,7 +63,7 @@ export class GeminiAdapter implements IAdapter {
         }
       );
 
-      const candidate = response.data.candidates?.[0];
+      const candidate = (response.data as any).candidates?.[0];
       const content = candidate?.content?.parts?.[0]?.text;
       
       return content || '抱歉，我刚才走神了~';

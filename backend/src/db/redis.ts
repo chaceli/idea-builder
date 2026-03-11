@@ -25,7 +25,8 @@ export { redisClient };
 // 会话存储
 export const sessionStore = {
   async get(key: string): Promise<string | null> {
-    return await redisClient.get(`session:${key}`);
+    const data = await redisClient.get(`session:${key}`);
+    return data ? String(data) : null;
   },
 
   async set(key: string, value: string, ttl: number = 3600): Promise<void> {
@@ -42,7 +43,7 @@ export const shortTermMemory = {
   async get(userId: string): Promise<string[]> {
     const key = `stm:${userId}`;
     const data = await redisClient.lRange(key, 0, -1);
-    return data;
+    return data.map(d => String(d));
   },
 
   async push(userId: string, message: string): Promise<void> {

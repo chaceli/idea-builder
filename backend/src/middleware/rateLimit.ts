@@ -26,7 +26,7 @@ export function rateLimit(config: RateLimitConfig = { windowMs: 60000, maxReques
           await redisClient.expire(key, Math.floor(config.windowMs / 1000));
         }
 
-        if (count > config.maxRequests) {
+        if (Number(count) > config.maxRequests) {
           return res.status(429).json({
             code: 429,
             message: '请求过于频繁，请稍后再试',

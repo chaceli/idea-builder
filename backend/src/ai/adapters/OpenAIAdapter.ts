@@ -51,7 +51,7 @@ export class OpenAIAdapter implements IAdapter {
         }
       );
 
-      const choice = response.data.choices?.[0];
+      const choice = (response.data as any).choices?.[0];
       return choice?.message?.content || '抱歉，我刚才走神了~';
     } catch (error: any) {
       console.error('OpenAI API 调用失败:', error?.response?.data || error?.message);

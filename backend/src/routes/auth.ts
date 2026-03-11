@@ -31,14 +31,15 @@ router.post('/login', async (req: Request, res: Response) => {
       },
     });
 
-    if (wxResponse.data.errcode) {
+    const wxData = wxResponse.data as any;
+    if (wxData.errcode) {
       return res.status(400).json({
         code: 400,
         message: '微信登录失败',
       });
     }
 
-    const { openid } = wxResponse.data;
+    const { openid } = wxData;
 
     // 查找或创建用户
     const user = await userService.findOrCreateByOpenId(openid, userInfo);

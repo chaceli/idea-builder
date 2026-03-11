@@ -58,7 +58,7 @@ export class ClaudeAdapter implements IAdapter {
         }
       );
 
-      const content = response.data.content;
+      const content = (response.data as any).content;
       if (Array.isArray(content)) {
         const textBlock = content.find((block: any) => block.type === 'text');
         return textBlock?.text || '抱歉，我刚才走神了~';

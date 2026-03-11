@@ -26,26 +26,6 @@ const routes: RouteRecordRaw[] = [
     path: '/settings',
     name: 'Settings',
     component: () => import('@/views/SettingsView.vue')
-  },
-  // AI 陪伴助手
-  {
-    path: '/companion',
-    redirect: '/companion/chat'
-  },
-  {
-    path: '/companion/chat',
-    name: 'CompanionChat',
-    component: () => import('@/views/companion/chat.vue')
-  },
-  {
-    path: '/companion/schedule',
-    name: 'CompanionSchedule',
-    component: () => import('@/views/companion/schedule.vue')
-  },
-  {
-    path: '/companion/profile',
-    name: 'CompanionProfile',
-    component: () => import('@/views/companion/profile.vue')
   }
 ]
 
