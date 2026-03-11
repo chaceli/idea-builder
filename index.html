@@ -2066,7 +2066,43 @@
     }
 
     // 页面加载时渲染项目列表
-    document.addEventListener('DOMContentLoaded', renderProjects);
+    document.addEventListener("DOMContentLoaded", renderProjects);
+
+    // ===== AI =====
+    const MINI_MAX_API_KEY = "sk-cp-GGKQNKskuWpf0LFWztQrpq2xY29gD5fpyj_FjhuOg_f-XTw1GsS_I3oAt3Vy4bi1FHY2xdhEAnwIK875Gd7740n8hIbzp2R1_TiIpkxTwK6usZnBOfjtovY";
+    const MINI_MAX_API_URL = "https://api.minimaxi.com/anthropic/v1/messages";
+
+    async function callMiniMax(prompt) {
+      try {
+        const response = await fetch(MINI_MAX_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MINI_MAX_API_KEY}` },
+          body: JSON.stringify({ model: "MiniMax-M2.5", messages: [{ role: "user", content: prompt }], max_tokens: 2000 })
+        });
+        const data = await response.json();
+        return data.content?.[0]?.text || "No response";
+      } catch (e) { return "Error: " + e.message; }
+    }
+
+    async function generateAI(type) {
+      const idea = document.getElementById("aiIdeaInput")?.value;
+      if (!idea) return alert("Please enter your idea");
+      const btn = document.getElementById("generateBtn");
+      if (btn) btn.disabled = true;
+      const prompt = type === "prompt" 
+        ? `Optimize this idea for AI: ${idea}` 
+        : `Create project plan for: ${idea}`;
+      const result = await callMiniMax(prompt);
+      const container = document.getElementById("aiResult");
+      if (container) container.innerHTML = `<pre style="white-space:pre-wrap">${result}</pre>`;
+      if (btn) btn.disabled = false;
+    }
+
+    document.querySelectorAll(".feature-card").forEach((card, i) => {
+      card.onclick = () => {
+        document.getElementById("aiModal")?.classList.add("active");
+      };
+    });
 
   </script>
 </body>
