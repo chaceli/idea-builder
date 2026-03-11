@@ -928,7 +928,7 @@
       margin-bottom: 20px;
     }
 
-    /* 专利类型标签颜色 */
+    /* 项目类型标签颜色 */
     .tag-invention { background: #6366F1; }
     .tag-utility { background: #10B981; }
     .tag-design { background: #F59E0B; }
@@ -1090,7 +1090,7 @@
     <!-- 页脚 -->
     <footer class="footer">
       <p>有问题或建议？<a href="https://github.com/chaceli/idea-builder/issues" target="_blank">联系我们</a></p>
-      <p>© 2024 IDEA Builder. 基于 AI 的专利生成工具。</p>
+      <p>© 2024 IDEA Builder. 基于 AI 的创意生成工具。</p>
     </footer>
   </main>
 
@@ -1111,12 +1111,12 @@
           <input type="text" class="form-input" id="projectField" name="field" required placeholder="例如：物联网、人工智能、机械结构">
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectType">专利类型 *</label>
+          <label class="form-label" for="projectType">项目类型 *</label>
           <select class="form-input" id="projectType" name="type" required>
-            <option value="">请选择专利类型</option>
-            <option value="invention">发明专利</option>
-            <option value="utility">实用新型</option>
-            <option value="design">外观设计</option>
+            <option value="">请选择项目类型</option>
+            <option value="invention">发明项目</option>
+            <option value="utility">实用项目</option>
+            <option value="design">创意设计</option>
           </select>
         </div>
         <div class="form-group">
@@ -1162,11 +1162,11 @@
           <input type="text" class="form-input" id="editProjectField" name="field" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectType">专利类型 *</label>
+          <label class="form-label" for="editProjectType">项目类型 *</label>
           <select class="form-input" id="editProjectType" name="type" required>
-            <option value="invention">发明专利</option>
-            <option value="utility">实用新型</option>
-            <option value="design">外观设计</option>
+            <option value="invention">发明项目</option>
+            <option value="utility">实用项目</option>
+            <option value="design">创意设计</option>
           </select>
         </div>
         <div class="form-group">
@@ -1269,11 +1269,11 @@
     // localStorage 键名
     const STORAGE_KEY = 'idea-builder-projects';
 
-    //专利类型映射
+    //项目类型映射
     const patentTypes = {
-      'invention': { name: '发明专利', class: 'tag-invention', icon: '💡' },
-      'utility': { name: '实用新型', class: 'tag-utility', icon: '⚙️' },
-      'design': { name: '外观设计', class: 'tag-design', icon: '🎨' }
+      'invention': { name: '发明项目', class: 'tag-invention', icon: '💡' },
+      'utility': { name: '实用项目', class: 'tag-utility', icon: '⚙️' },
+      'design': { name: '创意设计', class: 'tag-design', icon: '🎨' }
     };
 
     // 项目图标数组
@@ -1366,7 +1366,7 @@
         <h3 class="project-detail-name">${escapeHtml(project.name)}</h3>
         <div class="project-detail-info">
           <p><span>技术领域</span><span>${escapeHtml(project.field)}</span></p>
-          <p><span>专利类型</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
+          <p><span>项目类型</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
           <p><span>创建日期</span><span>${project.date}</span></p>
           <p><span>项目描述</span></p>
           <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || '暂无描述'}</span></p>
@@ -1438,8 +1438,8 @@
     document.querySelectorAll('.feature-card').forEach((card, index) => {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function() {
-        const titles = ['AI 提示词生成', 'AI 专利生成', 'AI 创意工具'];
-        const features = ['提示词生成', '专利生成', '创意工具'];
+        const titles = ['AI 提示词生成', 'AI 项目生成', 'AI 创意工具'];
+        const features = ['提示词生成', '项目生成', '创意工具'];
         const feature = features[index];
         
         // 滚动到项目区域并提示
@@ -1532,7 +1532,7 @@
           }
         }, 300);
 
-        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者生成专利申请文件。`);
+        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者生成项目方案。`);
       });
     }
 
