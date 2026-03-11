@@ -1,0 +1,17 @@
+{
+  "name": "AI陪伴助手",
+  "appid": "wx0000000000000000",
+  "description": "一个具有强人格化的AI陪伴助手",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wx0000000000000000",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "minified": true
+    },
+    "usingComponents": true
+  }
+}
