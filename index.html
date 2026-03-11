@@ -1284,33 +1284,30 @@
     <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="createModalTitle" data-i18n="createModalTitle">✨ Create New Project</h2>
-        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <form id="createForm">
         <div class="form-group">
-          <label class="form-label" for="projectName">Project Name *</label>
-          <input type="text" class="form-input" id="projectName" name="name" required placeholder="e.g., Smart Home System">
+          <label class="form-label" for="projectName" data-i18n="projectName">Project Name *</label>
+          <input type="text" class="form-input" id="projectName" name="name" required data-i18n-placeholder="projectNamePlaceholder" placeholder="e.g., Smart Home System">
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectField">Technology Field *</label>
-          <input type="text" class="form-input" id="projectField" name="field" required placeholder="e.g., IoT, AI, Mechanical Design">
+          <label class="form-label" for="projectField" data-i18n="techField">Technology Field *</label>
+          <input type="text" class="form-input" id="projectField" name="field" required data-i18n-placeholder="techFieldPlaceholder" placeholder="e.g., IoT, AI, Mechanical Design">
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectType">Project Type *</label>
+          <label class="form-label" for="projectType" data-i18n="projectType">Project Type *</label>
           <select class="form-input" id="projectType" name="type" required>
-            <option value="">Select project type</option>
-            <option value="invention">${t('invention')}</option>
-            <option value="utility">${t('utility')}</option>
-            <option value="design">${t('design')}</option>
+            <!-- Options rendered dynamically -->
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectDesc">Description</label>
-          <textarea class="form-textarea" id="projectDesc" name="description" placeholder="Describe your creative idea, technical solution..."></textarea>
+          <label class="form-label" for="projectDesc" data-i18n="projectDesc">Description</label>
+          <textarea class="form-textarea" id="projectDesc" name="description" data-i18n-placeholder="projectDescPlaceholder" placeholder="Describe your creative idea..."></textarea>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary">Create Project</button>
+          <button type="button" class="btn btn-secondary modal-cancel-btn" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-i18n="submit">Create Project</button>
         </div>
       </form>
     </div>
@@ -1321,7 +1318,7 @@
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 Project Details</h2>
-        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
         <!-- Dynamic Content -->
@@ -1334,33 +1331,31 @@
     <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="editModalTitle" data-i18n="editModalTitle">✏️ Edit Project</h2>
-        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <form id="editForm">
         <input type="hidden" id="editProjectId" name="id">
         <div class="form-group">
-          <label class="form-label" for="editProjectName">Project Name *</label>
+          <label class="form-label" for="editProjectName" data-i18n="projectName">Project Name *</label>
           <input type="text" class="form-input" id="editProjectName" name="name" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectField">Technology Field *</label>
+          <label class="form-label" for="editProjectField" data-i18n="techField">Technology Field *</label>
           <input type="text" class="form-input" id="editProjectField" name="field" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectType">Project Type *</label>
+          <label class="form-label" for="editProjectType" data-i18n="projectType">Project Type *</label>
           <select class="form-input" id="editProjectType" name="type" required>
-            <option value="invention">${t('invention')}</option>
-            <option value="utility">${t('utility')}</option>
-            <option value="design">${t('design')}</option>
+            <!-- Options rendered dynamically -->
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectDesc">Description</label>
+          <label class="form-label" for="editProjectDesc" data-i18n="projectDesc">Description</label>
           <textarea class="form-textarea" id="editProjectDesc" name="description"></textarea>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary modal-cancel-btn" data-i18n="cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" data-i18n="save">Save Changes</button>
         </div>
       </form>
     </div>
@@ -1370,76 +1365,72 @@
   <div class="modal-overlay" id="aiModal">
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
-        <h2 class="modal-title" id="aiModalTitle">🤖 AI Generation</h2>
-        <button class="modal-close" aria-label="Close" onclick="document.querySelectorAll('.modal-overlay.active').forEach(m=>m.classList.remove('active'))">&times;</button>
+        <h2 class="modal-title" id="aiModalTitle" data-i18n="aiModalTitle">🤖 AI Generation</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="ai-modal-content">
         <!-- API Key Tip -->
         <div class="api-key-notice" id="apiKeyNotice">
-          💡 Configure your MiniMax API Key to use AI features.
-          <a href="#" id="showApiKeySettings">Click to Settings</a>
+          <span data-i18n="apiKeyNotice">💡 Configure your MiniMax API Key to use AI features</span>
+          <a href="#" id="showApiKeySettings" data-i18n="apiKeySettings">Click to Settings</a>
         </div>
-        
+
         <!-- API Key Settings -->
         <div id="apiKeySettings" style="display: none; margin-bottom: 20px;">
           <div class="form-group">
-            <label class="form-label" for="miniMaxApiKey">MiniMax API Key</label>
-            <input type="password" class="form-input" id="miniMaxApiKey" placeholder="InputYour MiniMax API Key">
+            <label class="form-label" for="miniMaxApiKey" data-i18n="apiKeyLabel">MiniMax API Key</label>
+            <input type="password" class="form-input" id="miniMaxApiKey" data-i18n-placeholder="apiKeyPlaceholder" placeholder="Enter your MiniMax API Key">
           </div>
-          <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;">Save API Key</button>
+          <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;" data-i18n="saveApiKey">Save API Key</button>
         </div>
 
         <!-- GenerateType Selection -->
         <div class="ai-generation-type" id="generationType">
           <button type="button" class="ai-type-btn active" data-type="prompt">
             <div class="ai-type-btn-icon">🎯</div>
-            <div class="ai-type-btn-text">Prompt Generation</div>
-            <div class="ai-type-btn-desc">生成 AI 提示词</div>
+            <div class="ai-type-btn-text" data-i18n="promptGeneration">Prompt Generation</div>
+            <div class="ai-type-btn-desc" data-i18n="promptGenDesc">Generate AI prompts</div>
           </button>
           <button type="button" class="ai-type-btn" data-type="project">
             <div class="ai-type-btn-icon">📔</div>
-            <div class="ai-type-btn-text">Project Plan</div>
-            <div class="ai-type-btn-desc">生成完整项目</div>
+            <div class="ai-type-btn-text" data-i18n="projectPlan">Project Plan</div>
+            <div class="ai-type-btn-desc" data-i18n="projectGenDesc">Generate complete project</div>
           </button>
         </div>
 
         <!-- InputSection -->
         <div class="form-group">
-          <label class="form-label" for="aiIdeaInput">Describe Your Idea *</label>
-          <textarea class="form-textarea" id="aiIdeaInput" placeholder="e.g., I want to build a smart home system that can control lights, AC, curtains via phone"></textarea>
+          <label class="form-label" for="aiIdeaInput" data-i18n="describeIdea">Describe Your Idea *</label>
+          <textarea class="form-textarea" id="aiIdeaInput" data-i18n-placeholder="ideaPlaceholder" placeholder="e.g., I want to build a smart home system..."></textarea>
         </div>
 
         <!-- GenerateButton -->
-        <button type="button" class="btn btn-primary" id="generateBtn" onclick="generateAI(document.querySelector('.ai-type-btn.active').dataset.type)" style="width: 100%;">
-          🚀 Start Generation
-        </button>
+        <button type="button" class="btn btn-primary" id="generateBtn" style="width: 100%;" data-i18n="startGeneration">🚀 Start Generation</button>
 
         <!-- Loading Animation -->
         <div class="ai-loading" id="aiLoading" style="display: none;">
           <div class="ai-loading-spinner"></div>
-          <div class="ai-loading-text">AI is thinking...</div>
+          <div class="ai-loading-text" data-i18n="aiThinking">AI is thinking...</div>
         </div>
 
         <!-- AI Result -->
         <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
-            <span class="ai-result-title">Generated Result</span>
-            <button class="ai-result-copy" id="copyResultBtn">📋 Copy</button>
+            <span class="ai-result-title" data-i18n="generatedResult">Generated Result</span>
+            <button class="ai-result-copy" id="copyResultBtn" data-i18n="copy">📋 Copy</button>
           </div>
           <div class="ai-result-content" id="aiResultContent"></div>
         </div>
 
-        <!-- Saveto ProjectButton -->
-        <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;">
-          💾 Saveto Project
-        </button>
+        <!-- Save to Project Button -->
+        <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;" data-i18n="saveToProject">💾 Save to Project</button>
       </div>
     </div>
   </div>
 
   <!-- KeyboardNavigationTip -->
-  <div class="keyboard-hint" id="keyboardHint">
-    Use <kbd>Tab</kbd> 键Navigation，<kbd>Enter</kbd> Key Confirm
+  <div class="keyboard-hint" id="keyboardHint" data-i18n="keyboardHint">
+    Use Tab to navigate, Enter to confirm
   </div>
 
   <script>
