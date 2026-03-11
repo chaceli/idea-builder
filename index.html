@@ -1197,33 +1197,27 @@
       <!-- FeaturesCard区 -->
       <section id="features" class="section">
         <div class="section-header">
-          <h2 class="section-title">Core Features</h2>
-          <p class="section-desc">Powerful AI tools to help you complete creative projects with ease</p>
+          <h2 class="section-title" data-i18n="coreFeatures">Core Features</h2>
+          <p class="section-desc" data-i18n="featuresDesc">Powerful AI tools to help you complete creative projects with ease</p>
         </div>
-        
+
         <div class="features-grid">
-          <article class="feature-card" tabindex="0" onclick="document.getElementById('aiModal').classList.add('active')">
+          <article class="feature-card" tabindex="0" data-feature="ai">
             <div class="feature-icon">🎯</div>
-            <h3 class="feature-title">AI Prompt Generation</h3>
-            <p class="feature-desc">
-              智能分析你的想法，生成高质量AI提示词，让AI更好地理解你的需求，提高交互效率
-            </p>
+            <h3 class="feature-title" data-i18n="feature1Title">AI Prompt Generation</h3>
+            <p class="feature-desc" data-i18n="feature1Desc">Intelligently analyze your ideas and generate high-quality AI prompts for better understanding</p>
           </article>
 
-          <article class="feature-card" tabindex="0" onclick="document.getElementById('aiModal').classList.add('active')">
+          <article class="feature-card" tabindex="0" data-feature="ai">
             <div class="feature-icon">📔</div>
-            <h3 class="feature-title">AI Project Generation</h3>
-            <p class="feature-desc">
-              Generate project plans with one click to bring your ideas to life
-            </p>
+            <h3 class="feature-title" data-i18n="feature2Title">AI Project Generation</h3>
+            <p class="feature-desc" data-i18n="feature2Desc">Generate standardized project plans with one click to bring your ideas to life</p>
           </article>
 
-          <article class="feature-card" tabindex="0" onclick="document.getElementById('aiModal').classList.add('active')">
+          <article class="feature-card" tabindex="0" data-feature="ai">
             <div class="feature-icon">✨</div>
-            <h3 class="feature-title">AI Creative Tools</h3>
-            <p class="feature-desc">
-              MoreCreative ToolsContinuously Updated，Support Your Innovation Journey，Every Idea Gets Professional Support
-            </p>
+            <h3 class="feature-title" data-i18n="feature3Title">AI Creative Tools</h3>
+            <p class="feature-desc" data-i18n="feature3Desc">Continuous updates of creative tools to support your innovation journey</p>
           </article>
         </div>
       </section>
@@ -1231,8 +1225,8 @@
       <!-- ProjectList -->
       <section id="projects" class="section">
         <div class="section-header">
-          <h2 class="section-title">My Projects</h2>
-          <p class="section-desc">Manage your creative projects</p>
+          <h2 class="section-title" data-i18n="myProjects">My Projects</h2>
+          <p class="section-desc" data-i18n="projectsDesc">Manage your creative projects</p>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
@@ -1241,38 +1235,38 @@
 
         <div class="empty-state" id="emptyState" style="display: none;">
           <div class="empty-state-icon">📭</div>
-          <h3 class="empty-state-title">No projects yet</h3>
-          <p class="empty-state-desc">Click "Create Project" to start your creative journey</p>
-          <button class="btn btn-primary" id="emptyCreateBtn" onclick="document.getElementById('createModal').classList.add('active')">✨ Create First Project</button>
+          <h3 class="empty-state-title" data-i18n="emptyStateTitle">No projects yet</h3>
+          <p class="empty-state-desc" data-i18n="emptyStateDesc">Click "Create Project" to start your creative journey</p>
+          <button class="btn btn-primary" id="emptyCreateBtn" data-i18n="createFirst">✨ Create First Project</button>
         </div>
       </section>
 
       <!-- How It Works -->
       <section id="process" class="section">
         <div class="section-header">
-          <h2 class="section-title">How It Works</h2>
-          <p class="section-desc">Four simple steps to complete your creative project</p>
+          <h2 class="section-title" data-i18n="processTitle">How It Works</h2>
+          <p class="section-desc" data-i18n="processDesc">Four simple steps to complete your creative project</p>
         </div>
 
         <div class="process-steps">
           <div class="step" tabindex="0">
             <span class="step-num">1</span>
-            <span class="step-text">Input Your Idea</span>
+            <span class="step-text" data-i18n="step1">Input Your Idea</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">2</span>
-            <span class="step-text">AI Optimization</span>
+            <span class="step-text" data-i18n="step2">AI Optimization</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">3</span>
-            <span class="step-text">Generate Project Plan</span>
+            <span class="step-text" data-i18n="step3">Generate Project Plan</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">4</span>
-            <span class="step-text">Make It Real</span>
+            <span class="step-text" data-i18n="step4">Make It Real</span>
           </div>
         </div>
       </section>
@@ -1280,8 +1274,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>Have questions or suggestions? <a href="https://github.com/chaceli/idea-builder/issues" target="_blank">Contact Us</a></p>
-      <p>© 2024 IDEA Builder. AI-powered Idea Generation Tool.</p>
+      <p><span data-i18n="footerContact">Have questions or suggestions?</span> <a href="https://github.com/chaceli/idea-builder/issues" target="_blank" data-i18n="navGithub">Contact Us</a></p>
+      <p data-i18n="copyright">© 2024 IDEA Builder. AI-powered Idea Generation Tool.</p>
     </footer>
   </main>
 
