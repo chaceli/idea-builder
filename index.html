@@ -2076,14 +2076,11 @@
     }
 
     // 功能卡片点击 - 打开 AI 生成弹窗
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.feature-card').forEach((card, i) => {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', function(e) {
-          e.preventDefault();
-          document.getElementById('aiModal').classList.add('active');
-        });
-      });
+    document.querySelectorAll('.feature-card').forEach((card, i) => {
+      card.style.cursor = 'pointer';
+      card.onclick = function() {
+        document.getElementById('aiModal').classList.add('active');
+      };
     });
 
   </script>
