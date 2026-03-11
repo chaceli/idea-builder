@@ -2075,10 +2075,15 @@
       if (btn) btn.disabled = false;
     }
 
-    document.querySelectorAll(".feature-card").forEach((card, i) => {
-      card.onclick = () => {
-        document.getElementById("aiModal")?.classList.add("active");
-      };
+    // 功能卡片点击 - 打开 AI 生成弹窗
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.feature-card').forEach((card, i) => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('aiModal').classList.add('active');
+        });
+      });
     });
 
   </script>
