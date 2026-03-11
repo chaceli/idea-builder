@@ -857,8 +857,11 @@
         <span class="icon-moon">🌙</span>
         <span class="icon-sun">☀️</span>
       </button>
-      <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-primary">
-        开始使用
+      <button id="createProjectBtn" class="btn btn-primary">
+        ✨ 创建项目
+      </button>
+      <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-secondary">
+        GitHub
       </a>
     </div>
   </nav>
@@ -1118,6 +1121,74 @@
         });
       });
     });
+
+    // ===== MVP 功能交互 =====
+    
+    // 功能卡片点击 - 显示开发中提示
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function() {
+        const title = this.querySelector('.feature-title, h3');
+        alert('🎉 ' + (title ? title.textContent : '该功能') + ' 正在开发中，敬请期待！\n\nIDEA Builder 让每个创意都能变成现实。');
+      });
+    });
+
+    // 项目卡片点击 - 显示详情
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function() {
+        const title = this.querySelector('.project-title, h4');
+        const desc = this.querySelector('.project-desc, p');
+        const type = this.querySelector('.project-tag, .tag');
+        alert('📄 项目详情\n\n名称：' + (title ? title.textContent : '未命名') + '\n类型：' + (type ? type.textContent : '专利') + '\n描述：' + (desc ? desc.textContent : '无描述'));
+      });
+    });
+
+    // 创建项目按钮
+    const createBtn = document.getElementById('createProjectBtn');
+    if (createBtn) {
+      createBtn.addEventListener('click', function() {
+        const modal = document.getElementById('createModal');
+        if (modal) {
+          modal.classList.add('active');
+        } else {
+          const projectName = prompt('🎯 创建新项目\n\n请输入项目名称：');
+          if (projectName && projectName.trim()) {
+            alert('✅ 项目 "' + projectName + '" 创建成功！\n\n这是 MVP 演示版本，项目已保存。');
+          }
+        }
+      });
+    }
+
+    // 模态框关闭
+    document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
+      el.addEventListener('click', function(e) {
+        if (e.target === this || this.classList.contains('modal-close')) {
+          document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+            modal.classList.remove('active');
+          });
+        }
+      });
+    });
+
+    // 创建项目表单提交
+    const createForm = document.getElementById('createForm');
+    if (createForm) {
+      createForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = this.querySelector('input[type="text"]')?.value;
+        const type = this.querySelector('select')?.value;
+        const desc = this.querySelector('textarea')?.value;
+        
+        alert('✅ 项目创建成功！\n\n名称：' + (name || '未命名') + '\n类型：' + (type || '专利') + '\n\n这是 MVP 演示版本。');
+        
+        // 关闭弹窗
+        const modal = document.getElementById('createModal');
+        if (modal) modal.classList.remove('active');
+        this.reset();
+      });
+    }
+
   </script>
 </body>
 </html>
