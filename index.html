@@ -680,6 +680,161 @@
         }
       }
     }
+
+    /* 模态框样式 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      max-width: 480px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg);
+      transition: var(--transition);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus);
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
+
+    /* 项目详情弹窗 */
+    .project-detail-content {
+      text-align: center;
+    }
+
+    .project-detail-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .project-detail-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .project-detail-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .project-detail-meta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* 点击样式 */
+    .feature-card,
+    .project-card {
+      cursor: pointer;
+    }
+
+    .feature-card:active,
+    .project-card:active {
+      transform: scale(0.98);
+    }
   </style>
 </head>
 <body>
