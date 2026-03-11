@@ -1604,6 +1604,7 @@ zh: {
 
     // Current Language
     let currentLang = localStorage.getItem('lang') || 'en';
+    const html = document.documentElement;
 
     // Translation Function
     function t(key) {
@@ -1701,7 +1702,6 @@ zh: {
 
     // Switch Theme
     const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
 
     // Init Theme（Priority Use localStorage，Otherwise Follow System）
     function initTheme() {
