@@ -1007,7 +1007,7 @@
         <span class="icon-sun">☀️</span>
       </button>
       <button id="createProjectBtn" class="btn btn-primary">
-        ✨ 创建项目
+        ✨ Create Project
       </button>
       <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-secondary">
         GitHub
@@ -1024,12 +1024,12 @@
           让每一个<span>灵机一动</span>的想法<br>都能变成真正可实现的东西
         </h1>
         <p class="hero-desc">
-          AI 驱动的创意生成器，帮助你将创意想法快速转化为可实现的项目方案
+          AI-powered idea generator that transforms your creative ideas into actionable project plans
         </p>
         <div class="hero-actions">
-          <a href="#features" class="btn btn-primary btn-lg">探索功能</a>
+          <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
           <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-secondary btn-lg">
-            查看文档
+            View Docs
           </a>
         </div>
       </section>
@@ -1038,7 +1038,7 @@
       <section id="features" class="section">
         <div class="section-header">
           <h2 class="section-title">核心功能</h2>
-          <p class="section-desc">强大的 AI 工具助你轻松完成创意项目</p>
+          <p class="section-desc">Powerful AI tools to help you complete creative projects with ease</p>
         </div>
         
         <div class="features-grid">
@@ -1052,7 +1052,7 @@
 
           <article class="feature-card" tabindex="0">
             <div class="feature-icon">📔</div>
-            <h3 class="feature-title">AI 项目生成</h3>
+            <h3 class="feature-title">AI Project Generation</h3>
             <p class="feature-desc">
               一键生成符合规范的项目方案，帮助你实现创意
             </p>
@@ -1060,7 +1060,7 @@
 
           <article class="feature-card" tabindex="0">
             <div class="feature-icon">✨</div>
-            <h3 class="feature-title">AI 创意工具</h3>
+            <h3 class="feature-title">AI Creative Tools</h3>
             <p class="feature-desc">
               更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持
             </p>
@@ -1071,8 +1071,8 @@
       <!-- 项目列表 -->
       <section id="projects" class="section">
         <div class="section-header">
-          <h2 class="section-title">我的项目</h2>
-          <p class="section-desc">管理你的创意项目</p>
+          <h2 class="section-title">My Projects</h2>
+          <p class="section-desc">Manage your creative projects</p>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
@@ -1081,33 +1081,33 @@
 
         <div class="empty-state" id="emptyState" style="display: none;">
           <div class="empty-state-icon">📭</div>
-          <h3 class="empty-state-title">还没有项目</h3>
-          <p class="empty-state-desc">点击上方的"创建项目"按钮，开始你的创意之旅</p>
-          <button class="btn btn-primary" id="emptyCreateBtn">✨ 创建第一个项目</button>
+          <h3 class="empty-state-title">No projects yet</h3>
+          <p class="empty-state-desc">Click "Create Project" to start your creative journey</p>
+          <button class="btn btn-primary" id="emptyCreateBtn">✨ Create First Project</button>
         </div>
       </section>
 
-      <!-- 使用流程 -->
+      <!-- How It Works -->
       <section id="process" class="section">
         <div class="section-header">
-          <h2 class="section-title">使用流程</h2>
-          <p class="section-desc">简单的四步完成创意项目</p>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-desc">Four simple steps to complete your creative project</p>
         </div>
 
         <div class="process-steps">
           <div class="step" tabindex="0">
             <span class="step-num">1</span>
-            <span class="step-text">输入你的想法</span>
+            <span class="step-text">Input Your Idea</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">2</span>
-            <span class="step-text">AI 优化完善</span>
+            <span class="step-text">AI Optimization</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
             <span class="step-num">3</span>
-            <span class="step-text">生成项目方案</span>
+            <span class="step-text">Generate Project Plan</span>
           </div>
           <span class="step-arrow">→</span>
           <div class="step" tabindex="0">
@@ -1121,7 +1121,7 @@
     <!-- 页脚 -->
     <footer class="footer">
       <p>有问题或建议？<a href="https://github.com/chaceli/idea-builder/issues" target="_blank">联系我们</a></p>
-      <p>© 2024 IDEA Builder. 基于 AI 的创意生成工具。</p>
+      <p>© 2024 IDEA Builder. AI-powered Idea Generation Tool.</p>
     </footer>
   </main>
 
@@ -1129,33 +1129,33 @@
   <div class="modal-overlay" id="createModal">
     <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
       <div class="modal-header">
-        <h2 class="modal-title" id="createModalTitle">✨ 创建新项目</h2>
+        <h2 class="modal-title" id="createModalTitle" data-i18n="createModalTitle">✨ Create New Project</h2>
         <button class="modal-close" aria-label="关闭">&times;</button>
       </div>
       <form id="createForm">
         <div class="form-group">
-          <label class="form-label" for="projectName">项目名称 *</label>
+          <label class="form-label" for="projectName">Project Name *</label>
           <input type="text" class="form-input" id="projectName" name="name" required placeholder="例如：智能家居控制系统">
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectField">技术领域 *</label>
+          <label class="form-label" for="projectField">Technology Field *</label>
           <input type="text" class="form-input" id="projectField" name="field" required placeholder="例如：物联网、人工智能、机械结构">
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectType">项目类型 *</label>
+          <label class="form-label" for="projectType">Project Type *</label>
           <select class="form-input" id="projectType" name="type" required>
-            <option value="">请选择项目类型</option>
+            <option value="">Select project type</option>
             <option value="invention">发明项目</option>
             <option value="utility">实用项目</option>
             <option value="design">创意设计</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectDesc">项目描述</label>
+          <label class="form-label" for="projectDesc">Description</label>
           <textarea class="form-textarea" id="projectDesc" name="description" placeholder="描述你的创意想法、技术方案等..."></textarea>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary modal-cancel-btn">取消</button>
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
           <button type="submit" class="btn btn-primary">创建项目</button>
         </div>
       </form>
@@ -1166,7 +1166,7 @@
   <div class="modal-overlay" id="detailModal">
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
-        <h2 class="modal-title" id="detailModalTitle">📄 项目详情</h2>
+        <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 项目详情</h2>
         <button class="modal-close" aria-label="关闭">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
@@ -1175,25 +1175,25 @@
     </div>
   </div>
 
-  <!-- 编辑项目模态框 -->
+  <!-- Edit Project模态框 -->
   <div class="modal-overlay" id="editModal">
     <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
       <div class="modal-header">
-        <h2 class="modal-title" id="editModalTitle">✏️ 编辑项目</h2>
+        <h2 class="modal-title" id="editModalTitle" data-i18n="editModalTitle">✏️ Edit Project</h2>
         <button class="modal-close" aria-label="关闭">&times;</button>
       </div>
       <form id="editForm">
         <input type="hidden" id="editProjectId" name="id">
         <div class="form-group">
-          <label class="form-label" for="editProjectName">项目名称 *</label>
+          <label class="form-label" for="editProjectName">Project Name *</label>
           <input type="text" class="form-input" id="editProjectName" name="name" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectField">技术领域 *</label>
+          <label class="form-label" for="editProjectField">Technology Field *</label>
           <input type="text" class="form-input" id="editProjectField" name="field" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectType">项目类型 *</label>
+          <label class="form-label" for="editProjectType">Project Type *</label>
           <select class="form-input" id="editProjectType" name="type" required>
             <option value="invention">发明项目</option>
             <option value="utility">实用项目</option>
@@ -1201,12 +1201,12 @@
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectDesc">项目描述</label>
+          <label class="form-label" for="editProjectDesc">Description</label>
           <textarea class="form-textarea" id="editProjectDesc" name="description"></textarea>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-secondary modal-cancel-btn">取消</button>
-          <button type="submit" class="btn btn-primary">保存修改</button>
+          <button type="button" class="btn btn-secondary modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
         </div>
       </form>
     </div>
@@ -1240,41 +1240,42 @@
     // ===== 国际化 (i18n) =====
     const translations = {
       zh: {
-        heroTitle: '让每一个灵机一动的想法都能变成真正可实现的东西',
-        heroDesc: 'AI 驱动的创意生成器，帮助你将创意想法快速转化为可实现的项目方案',
-        exploreFeatures: '探索功能',
-        viewDocs: '查看文档',
+        heroTitle: 'Turn Every Great Idea Into Reality',
+        heroDesc: 'AI-powered idea generator that transforms your creative ideas into actionable project plans',
+        exploreFeatures: 'Explore Features',
+        viewDocs: 'View Docs',
         coreFeatures: '核心功能',
-        featuresDesc: '强大的 AI 工具助你轻松完成创意项目',
+        featuresDesc: 'Powerful AI tools to help you complete creative projects with ease',
         feature1Title: 'AI 提示词生成',
         feature1Desc: '智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率',
-        feature2Title: 'AI 项目生成',
+        feature2Title: 'AI Project Generation',
         feature2Desc: '一键生成符合规范的项目方案，帮助你实现创意',
-        feature3Title: 'AI 创意工具',
+        feature3Title: 'AI Creative Tools',
         feature3Desc: '更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持',
-        myProjects: '我的项目',
-        projectsDesc: '管理你的创意项目',
-        emptyState: '点击上方的"创建项目"按钮，开始你的创意之旅',
-        createFirst: '✨ 创建第一个项目',
-        process: '使用流程',
-        processDesc: '简单的四步完成创意项目',
-        step1: '输入你的想法',
-        step2: 'AI 优化完善',
-        step3: '生成项目方案',
+        myProjects: 'My Projects',
+        projectsDesc: 'Manage your creative projects',
+        emptyStateTitle: 'No projects yet',
+        emptyState: 'Click "Create Project" to start your creative journey',
+        createFirst: '✨ Create First Project',
+        process: 'How It Works',
+        processDesc: 'Four simple steps to complete your creative project',
+        step1: 'Input Your Idea',
+        step2: 'AI Optimization',
+        step3: 'Generate Project Plan',
         step4: '实现创意',
-        createProject: '✨ 创建项目',
+        createProject: '✨ Create Project',
         projectName: '项目名称',
         projectNamePlaceholder: '例如：智能家居控制系统',
         techField: '技术领域',
         techFieldPlaceholder: '例如：物联网、人工智能、机械结构',
         projectType: '项目类型',
-        selectType: '请选择项目类型',
+        selectType: 'Select project type',
         invention: '发明项目',
         utility: '实用项目',
         design: '创意设计',
-        projectDesc: '项目描述',
+        projectDesc: 'Description',
         projectDescPlaceholder: '描述你的创意想法、技术方案等...',
-        cancel: '取消',
+        cancel: 'Cancel',
         submit: '创建项目',
         edit: '编辑',
         delete: '删除',
@@ -1282,17 +1283,30 @@
         field: '技术领域',
         type: '项目类型',
         date: '创建日期',
-        description: '项目描述',
+        description: 'Description',
         noDesc: '暂无描述',
-        editProject: '编辑项目',
-        save: '保存',
+        editProject: 'Edit Project',
+        save: 'Save Changes',
         featureDev: '该功能正在开发中',
         featureTip: '该功能正在开发中，敬请期待！IDEA Builder 让每个创意都能变成现实。',
         createSuccess: '项目创建成功',
         createSuccessMsg: '现在你可以继续完善项目详情。',
         confirmDelete: '确定要删除这个项目吗？此操作不可恢复。',
         notExist: '项目不存在',
-        copyright: '© 2024 IDEA Builder. 基于 AI 的创意生成工具。'
+        copyright: '© 2024 IDEA Builder. 基于 AI 的创意生成工具。',
+        navFeatures: '功能',
+        navProjects: '项目',
+        navProcess: '流程',
+        navGithub: 'GitHub',
+        createModalTitle: '✨ Create New Project',
+        detailModalTitle: '📄 项目详情',
+        editModalTitle: '✏️ Edit Project',
+        featureAlertTitle: '该功能正在开发中',
+        featureAlertTip: '请先创建一个项目，我会帮你完善',
+        createSuccessAlert: '项目创建成功',
+        createSuccessTip: '现在你可以继续完善项目详情，或者Generate Project Plan。',
+        editSuccessAlert: '项目修改成功',
+        github: 'GitHub'
       },
       en: {
         heroTitle: 'Turn Every Great Idea Into Reality',
@@ -1309,6 +1323,7 @@
         feature3Desc: 'Continuous updates of creative tools to support your innovation journey',
         myProjects: 'My Projects',
         projectsDesc: 'Manage your creative projects',
+        emptyStateTitle: 'No Projects Yet',
         emptyState: 'Click "Create Project" above to start your creative journey',
         createFirst: '✨ Create First Project',
         process: 'How It Works',
@@ -1330,7 +1345,7 @@
         projectDesc: 'Description',
         projectDescPlaceholder: 'Describe your creative idea, technical solution...',
         cancel: 'Cancel',
-        submit: 'Create',
+        submit: 'Create Project',
         edit: 'Edit',
         delete: 'Delete',
         projectDetail: 'Project Details',
@@ -1340,14 +1355,27 @@
         description: 'Description',
         noDesc: 'No description',
         editProject: 'Edit Project',
-        save: 'Save',
+        save: 'Save Changes',
         featureDev: 'Feature In Development',
         featureTip: 'This feature is coming soon! IDEA Builder turns every idea into reality.',
         createSuccess: 'Project Created',
         createSuccessMsg: 'You can now continue to improve your project details.',
         confirmDelete: 'Are you sure you want to delete this project? This cannot be undone.',
         notExist: 'Project not found',
-        copyright: '© 2024 IDEA Builder. AI-powered Idea Generation Tool.'
+        copyright: '© 2024 IDEA Builder. AI-powered Idea Generation Tool.',
+        navFeatures: 'Features',
+        navProjects: 'Projects',
+        navProcess: 'Process',
+        navGithub: 'GitHub',
+        createModalTitle: '✨ Create New Project',
+        detailModalTitle: '📄 Project Details',
+        editModalTitle: '✏️ Edit Project',
+        featureAlertTitle: 'Feature In Development',
+        featureAlertTip: 'Create a project first, and I will help you improve',
+        createSuccessAlert: 'Project Created',
+        createSuccessTip: 'You can now continue to improve your project details, or generate a project plan.',
+        editSuccessAlert: 'Project Updated',
+        github: 'GitHub'
       }
     };
 
@@ -1365,9 +1393,10 @@
       document.querySelector('.hero-title').textContent = t('heroTitle');
       document.querySelector('.hero-desc').textContent = t('heroDesc');
       
-      // 按钮
-      const exploreBtn = document.querySelector('.hero-actions .btn-lg');
-      if (exploreBtn) exploreBtn.textContent = t('exploreFeatures');
+      // Hero 按钮
+      const heroBtns = document.querySelectorAll('.hero-actions .btn-lg');
+      if (heroBtns[0]) heroBtns[0].textContent = t('exploreFeatures');
+      if (heroBtns[1]) heroBtns[1].textContent = t('viewDocs');
       
       // 功能区
       const featuresTitle = document.querySelector('#features .section-title');
@@ -1390,6 +1419,14 @@
       const projectsDesc = document.querySelector('#projects .section-desc');
       if (projectsDesc) projectsDesc.textContent = t('projectsDesc');
       
+      // 空状态
+      const emptyStateTitle = document.querySelector('.empty-state-title');
+      if (emptyStateTitle) emptyStateTitle.textContent = t('emptyStateTitle');
+      const emptyStateDesc = document.querySelector('.empty-state-desc');
+      if (emptyStateDesc) emptyStateDesc.textContent = t('emptyState');
+      const emptyCreateBtn = document.getElementById('emptyCreateBtn');
+      if (emptyCreateBtn) emptyCreateBtn.textContent = t('createFirst');
+      
       // 流程区
       const processTitle = document.querySelector('#process .section-title');
       if (processTitle) processTitle.textContent = t('process');
@@ -1402,6 +1439,17 @@
       if (steps[1]) steps[1].textContent = t('step2');
       if (steps[2]) steps[2].textContent = t('step3');
       if (steps[3]) steps[3].textContent = t('step4');
+      
+      // 导航链接
+      const navLinks = document.querySelectorAll('.nav-link');
+      if (navLinks[0]) navLinks[0].textContent = t('navFeatures');
+      if (navLinks[1]) navLinks[1].textContent = t('navProjects');
+      if (navLinks[2]) navLinks[2].textContent = t('navProcess');
+      if (navLinks[3]) navLinks[3].textContent = t('navGithub');
+      
+      // 导航创建项目按钮
+      const createProjectBtn = document.getElementById('createProjectBtn');
+      if (createProjectBtn) createProjectBtn.textContent = t('createProject');
       
       // 页脚
       document.querySelector('footer p').textContent = t('copyright');
@@ -1578,7 +1626,7 @@
           <p><span>技术领域</span><span>${escapeHtml(project.field)}</span></p>
           <p><span>项目类型</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
           <p><span>创建日期</span><span>${project.date}</span></p>
-          <p><span>项目描述</span></p>
+          <p><span>Description</span></p>
           <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || '暂无描述'}</span></p>
         </div>
         <div class="project-detail-actions">
@@ -1590,7 +1638,7 @@
       document.getElementById('detailModal').classList.add('active');
     }
 
-    // 编辑项目
+    // Edit Project
     window.editProject = function(projectId) {
       const projects = getProjects();
       const project = projects.find(p => p.id === projectId);
@@ -1648,7 +1696,7 @@
     document.querySelectorAll('.feature-card').forEach((card, index) => {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function() {
-        const titles = ['AI 提示词生成', 'AI 项目生成', 'AI 创意工具'];
+        const titles = ['AI 提示词生成', 'AI Project Generation', 'AI Creative Tools'];
         const features = ['提示词生成', '项目生成', '创意工具'];
         const feature = features[index];
         
@@ -1682,7 +1730,7 @@
       btn.addEventListener('click', closeAllModals);
     });
 
-    // 取消按钮
+    // Cancel按钮
     document.querySelectorAll('.modal-cancel-btn').forEach(btn => {
       btn.addEventListener('click', closeAllModals);
     });
@@ -1742,11 +1790,11 @@
           }
         }, 300);
 
-        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者生成项目方案。`);
+        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者Generate Project Plan。`);
       });
     }
 
-    // 编辑项目表单提交
+    // Edit Project表单提交
     const editForm = document.getElementById('editForm');
     if (editForm) {
       editForm.addEventListener('submit', function(e) {
