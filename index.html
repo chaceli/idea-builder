@@ -823,7 +823,63 @@
       display: flex;
       justify-content: center;
       gap: 16px;
+      flex-wrap: wrap;
     }
+
+    .project-detail-info {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .project-detail-info p {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-detail-info span:first-child {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .project-detail-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* 空状态 */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+    }
+
+    .empty-state-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-state-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .empty-state-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* 专利类型标签颜色 */
+    .tag-invention { background: #6366F1; }
+    .tag-utility { background: #10B981; }
+    .tag-design { background: #F59E0B; }
 
     /* 点击样式 */
     .feature-card,
@@ -835,6 +891,16 @@
     .project-card:active {
       transform: scale(0.98);
     }
+
+    /* 动态项目卡片颜色 */
+    .project-card[data-index="0"] .project-cover { background: linear-gradient(135deg, #6366F1 0%, #818CF8 100%); }
+    .project-card[data-index="1"] .project-cover { background: linear-gradient(135deg, #10B981 0%, #34D399 100%); }
+    .project-card[data-index="2"] .project-cover { background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%); }
+    .project-card[data-index="3"] .project-cover { background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%); }
+    .project-card[data-index="4"] .project-cover { background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%); }
+    .project-card[data-index="5"] .project-cover { background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%); }
+    .project-card[data-index="6"] .project-cover { background: linear-gradient(135deg, #EF4444 0%, #F87171 100%); }
+    .project-card[data-index="7"] .project-cover { background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 100%); }
   </style>
 </head>
 <body>
@@ -922,82 +988,19 @@
       <!-- 项目列表 -->
       <section id="projects" class="section">
         <div class="section-header">
-          <h2 class="section-title">热门项目</h2>
-          <p class="section-desc">发现更多创意可能</p>
+          <h2 class="section-title">我的项目</h2>
+          <p class="section-desc">管理你的专利创意</p>
         </div>
 
-        <div class="projects-grid">
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">🏠</div>
-            <div class="project-info">
-              <h3 class="project-name">智能家居系统</h3>
-              <p class="project-desc">基于物联网的智能家居控制系统</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2024-01-15</span>
-              </div>
-            </div>
-          </article>
+        <div class="projects-grid" id="projectsGrid">
+          <!-- 动态加载项目 -->
+        </div>
 
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">🚗</div>
-            <div class="project-info">
-              <h3 class="project-name">自动驾驶算法</h3>
-              <p class="project-desc">新一代自动驾驶路径规划算法</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2024-01-10</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">🏥</div>
-            <div class="project-info">
-              <h3 class="project-name">医疗诊断 AI</h3>
-              <p class="project-desc">基于深度学习的医学影像诊断系统</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2024-01-05</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">📱</div>
-            <div class="project-info">
-              <h3 class="project-name">移动支付安全</h3>
-              <p class="project-desc">新一代移动支付安全认证方案</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2023-12-28</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">🔋</div>
-            <div class="project-info">
-              <h3 class="project-name">电池管理技术</h3>
-              <p class="project-desc">智能电池充放电优化系统</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2023-12-20</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card" tabindex="0">
-            <div class="project-cover">🎮</div>
-            <div class="project-info">
-              <h3 class="project-name">VR 交互系统</h3>
-              <p class="project-desc">沉浸式虚拟现实交互技术</p>
-              <div class="project-meta">
-                <span class="project-tag">专利</span>
-                <span class="project-date">2023-12-15</span>
-              </div>
-            </div>
-          </article>
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-state-icon">📭</div>
+          <h3 class="empty-state-title">还没有项目</h3>
+          <p class="empty-state-desc">点击上方的"创建项目"按钮，开始你的专利创意之旅</p>
+          <button class="btn btn-primary" id="emptyCreateBtn">✨ 创建第一个项目</button>
         </div>
       </section>
 
@@ -1038,6 +1041,93 @@
       <p>© 2024 IDEA Builder. 基于 AI 的专利生成工具。</p>
     </footer>
   </main>
+
+  <!-- 创建项目模态框 -->
+  <div class="modal-overlay" id="createModal">
+    <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
+      <div class="modal-header">
+        <h2 class="modal-title" id="createModalTitle">✨ 创建新项目</h2>
+        <button class="modal-close" aria-label="关闭">&times;</button>
+      </div>
+      <form id="createForm">
+        <div class="form-group">
+          <label class="form-label" for="projectName">项目名称 *</label>
+          <input type="text" class="form-input" id="projectName" name="name" required placeholder="例如：智能家居控制系统">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="projectField">技术领域 *</label>
+          <input type="text" class="form-input" id="projectField" name="field" required placeholder="例如：物联网、人工智能、机械结构">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="projectType">专利类型 *</label>
+          <select class="form-input" id="projectType" name="type" required>
+            <option value="">请选择专利类型</option>
+            <option value="invention">发明专利</option>
+            <option value="utility">实用新型</option>
+            <option value="design">外观设计</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="projectDesc">项目描述</label>
+          <textarea class="form-textarea" id="projectDesc" name="description" placeholder="描述你的创意想法、技术方案等..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">取消</button>
+          <button type="submit" class="btn btn-primary">创建项目</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 项目详情模态框 -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
+      <div class="modal-header">
+        <h2 class="modal-title" id="detailModalTitle">📄 项目详情</h2>
+        <button class="modal-close" aria-label="关闭">&times;</button>
+      </div>
+      <div class="project-detail-content" id="detailContent">
+        <!-- 动态内容 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑项目模态框 -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
+      <div class="modal-header">
+        <h2 class="modal-title" id="editModalTitle">✏️ 编辑项目</h2>
+        <button class="modal-close" aria-label="关闭">&times;</button>
+      </div>
+      <form id="editForm">
+        <input type="hidden" id="editProjectId" name="id">
+        <div class="form-group">
+          <label class="form-label" for="editProjectName">项目名称 *</label>
+          <input type="text" class="form-input" id="editProjectName" name="name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editProjectField">技术领域 *</label>
+          <input type="text" class="form-input" id="editProjectField" name="field" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editProjectType">专利类型 *</label>
+          <select class="form-input" id="editProjectType" name="type" required>
+            <option value="invention">发明专利</option>
+            <option value="utility">实用新型</option>
+            <option value="design">外观设计</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editProjectDesc">项目描述</label>
+          <textarea class="form-textarea" id="editProjectDesc" name="description"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary modal-cancel-btn">取消</button>
+          <button type="submit" class="btn btn-primary">保存修改</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- 键盘导航提示 -->
   <div class="keyboard-hint" id="keyboardHint">
@@ -1123,50 +1213,223 @@
     });
 
     // ===== MVP 功能交互 =====
-    
-    // 功能卡片点击 - 显示开发中提示
-    document.querySelectorAll('.feature-card').forEach(card => {
-      card.style.cursor = 'pointer';
-      card.addEventListener('click', function() {
-        const title = this.querySelector('.feature-title, h3');
-        alert('🎉 ' + (title ? title.textContent : '该功能') + ' 正在开发中，敬请期待！\n\nIDEA Builder 让每个创意都能变成现实。');
-      });
-    });
 
-    // 项目卡片点击 - 显示详情
-    document.querySelectorAll('.project-card').forEach(card => {
+    // localStorage 键名
+    const STORAGE_KEY = 'idea-builder-projects';
+
+    //专利类型映射
+    const patentTypes = {
+      'invention': { name: '发明专利', class: 'tag-invention', icon: '💡' },
+      'utility': { name: '实用新型', class: 'tag-utility', icon: '⚙️' },
+      'design': { name: '外观设计', class: 'tag-design', icon: '🎨' }
+    };
+
+    // 项目图标数组
+    const projectIcons = ['🏠', '🚗', '🏥', '📱', '🔋', '🎮', '🤖', '🛰️', '💊', '🎓', '🌾', '🏭'];
+
+    // 获取项目列表
+    function getProjects() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+
+    // 保存项目列表
+    function saveProjects(projects) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    }
+
+    // 生成唯一ID
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+
+    // 渲染项目列表
+    function renderProjects() {
+      const projects = getProjects();
+      const grid = document.getElementById('projectsGrid');
+      const emptyState = document.getElementById('emptyState');
+
+      if (!projects || projects.length === 0) {
+        grid.innerHTML = '';
+        grid.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      grid.style.display = 'grid';
+      emptyState.style.display = 'none';
+
+      grid.innerHTML = projects.map((project, index) => {
+        const typeInfo = patentTypes[project.type] || patentTypes['invention'];
+        const icon = project.icon || projectIcons[index % projectIcons.length];
+        
+        return `
+          <article class="project-card" data-index="${index % 8}" data-id="${project.id}" tabindex="0">
+            <div class="project-cover">${icon}</div>
+            <div class="project-info">
+              <h3 class="project-name">${escapeHtml(project.name)}</h3>
+              <p class="project-desc">${escapeHtml(project.description || '暂无描述')}</p>
+              <div class="project-meta">
+                <span class="project-tag ${typeInfo.class}">${typeInfo.name}</span>
+                <span class="project-date">${project.date || ''}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      // 绑定点击事件
+      grid.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const projectId = card.dataset.id;
+          showProjectDetail(projectId);
+        });
+      });
+    }
+
+    // HTML 转义
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // 显示项目详情
+    function showProjectDetail(projectId) {
+      const projects = getProjects();
+      const project = projects.find(p => p.id === projectId);
+      
+      if (!project) {
+        alert('项目不存在');
+        return;
+      }
+
+      const typeInfo = patentTypes[project.type] || patentTypes['invention'];
+      const icon = project.icon || '📄';
+
+      const content = document.getElementById('detailContent');
+      content.innerHTML = `
+        <div class="project-detail-icon">${icon}</div>
+        <h3 class="project-detail-name">${escapeHtml(project.name)}</h3>
+        <div class="project-detail-info">
+          <p><span>技术领域</span><span>${escapeHtml(project.field)}</span></p>
+          <p><span>专利类型</span><span class="project-tag ${typeInfo.class}">${typeInfo.name}</span></p>
+          <p><span>创建日期</span><span>${project.date}</span></p>
+          <p><span>项目描述</span></p>
+          <p style="border-bottom: none;"><span></span><span>${escapeHtml(project.description) || '暂无描述'}</span></p>
+        </div>
+        <div class="project-detail-actions">
+          <button class="btn btn-primary" onclick="editProject('${project.id}')">✏️ 编辑</button>
+          <button class="btn btn-secondary" onclick="deleteProject('${project.id}')">🗑️ 删除</button>
+        </div>
+      `;
+
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    // 编辑项目
+    window.editProject = function(projectId) {
+      const projects = getProjects();
+      const project = projects.find(p => p.id === projectId);
+      
+      if (!project) {
+        alert('项目不存在');
+        return;
+      }
+
+      // 关闭详情弹窗
+      document.getElementById('detailModal').classList.remove('active');
+
+      // 填充表单
+      document.getElementById('editProjectId').value = project.id;
+      document.getElementById('editProjectName').value = project.name;
+      document.getElementById('editProjectField').value = project.field;
+      document.getElementById('editProjectType').value = project.type;
+      document.getElementById('editProjectDesc').value = project.description || '';
+
+      // 打开编辑弹窗
+      setTimeout(() => {
+        document.getElementById('editModal').classList.add('active');
+      }, 100);
+    };
+
+    // 删除项目
+    window.deleteProject = function(projectId) {
+      if (!confirm('确定要删除这个项目吗？此操作不可恢复。')) {
+        return;
+      }
+
+      let projects = getProjects();
+      projects = projects.filter(p => p.id !== projectId);
+      saveProjects(projects);
+      renderProjects();
+
+      // 关闭详情弹窗
+      document.getElementById('detailModal').classList.remove('active');
+    };
+
+    // 打开创建项目弹窗
+    function openCreateModal() {
+      document.getElementById('createForm').reset();
+      document.getElementById('createModal').classList.add('active');
+    }
+
+    // 关闭所有模态框
+    function closeAllModals() {
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.classList.remove('active');
+      });
+    }
+
+    // 功能卡片点击 - 跳转到对应区域
+    document.querySelectorAll('.feature-card').forEach((card, index) => {
       card.style.cursor = 'pointer';
       card.addEventListener('click', function() {
-        const title = this.querySelector('.project-title, h4');
-        const desc = this.querySelector('.project-desc, p');
-        const type = this.querySelector('.project-tag, .tag');
-        alert('📄 项目详情\n\n名称：' + (title ? title.textContent : '未命名') + '\n类型：' + (type ? type.textContent : '专利') + '\n描述：' + (desc ? desc.textContent : '无描述'));
+        const titles = ['AI 提示词生成', 'AI 专利生成', 'AI 创意工具'];
+        const features = ['提示词生成', '专利生成', '创意工具'];
+        const feature = features[index];
+        
+        // 滚动到项目区域并提示
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // 提示用户
+        setTimeout(() => {
+          alert(`🎯 ${titles[index]}\n\n该功能正在开发中。\n\n请先创建一个项目，我会帮你完善"${feature}"相关的内容！`);
+        }, 500);
       });
     });
 
     // 创建项目按钮
     const createBtn = document.getElementById('createProjectBtn');
     if (createBtn) {
-      createBtn.addEventListener('click', function() {
-        const modal = document.getElementById('createModal');
-        if (modal) {
-          modal.classList.add('active');
-        } else {
-          const projectName = prompt('🎯 创建新项目\n\n请输入项目名称：');
-          if (projectName && projectName.trim()) {
-            alert('✅ 项目 "' + projectName + '" 创建成功！\n\n这是 MVP 演示版本，项目已保存。');
-          }
-        }
-      });
+      createBtn.addEventListener('click', openCreateModal);
     }
 
-    // 模态框关闭
-    document.querySelectorAll('.modal-close, .modal-overlay').forEach(el => {
-      el.addEventListener('click', function(e) {
-        if (e.target === this || this.classList.contains('modal-close')) {
-          document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-            modal.classList.remove('active');
-          });
+    // 空状态创建按钮
+    const emptyCreateBtn = document.getElementById('emptyCreateBtn');
+    if (emptyCreateBtn) {
+      emptyCreateBtn.addEventListener('click', openCreateModal);
+    }
+
+    // 模态框关闭按钮
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', closeAllModals);
+    });
+
+    // 取消按钮
+    document.querySelectorAll('.modal-cancel-btn').forEach(btn => {
+      btn.addEventListener('click', closeAllModals);
+    });
+
+    // 点击遮罩关闭
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeAllModals();
         }
       });
     });
@@ -1176,18 +1439,100 @@
     if (createForm) {
       createForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = this.querySelector('input[type="text"]')?.value;
-        const type = this.querySelector('select')?.value;
-        const desc = this.querySelector('textarea')?.value;
         
-        alert('✅ 项目创建成功！\n\n名称：' + (name || '未命名') + '\n类型：' + (type || '专利') + '\n\n这是 MVP 演示版本。');
+        const name = document.getElementById('projectName').value.trim();
+        const field = document.getElementById('projectField').value.trim();
+        const type = document.getElementById('projectType').value;
+        const description = document.getElementById('projectDesc').value.trim();
+
+        if (!name || !field || !type) {
+          alert('请填写必填项');
+          return;
+        }
+
+        // 创建新项目
+        const projects = getProjects();
+        const newProject = {
+          id: generateId(),
+          name: name,
+          field: field,
+          type: type,
+          description: description,
+          date: new Date().toISOString().split('T')[0],
+          icon: projectIcons[projects.length % projectIcons.length]
+        };
+
+        projects.unshift(newProject); // 添加到列表开头
+        saveProjects(projects);
+        
+        // 重新渲染
+        renderProjects();
         
         // 关闭弹窗
-        const modal = document.getElementById('createModal');
-        if (modal) modal.classList.remove('active');
+        closeAllModals();
         this.reset();
+
+        // 滚动到项目区域
+        setTimeout(() => {
+          const projectsSection = document.getElementById('projects');
+          if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+
+        alert(`✅ 项目 "${name}" 创建成功！\n\n现在你可以继续完善项目详情，或者生成专利申请文件。`);
       });
     }
+
+    // 编辑项目表单提交
+    const editForm = document.getElementById('editForm');
+    if (editForm) {
+      editForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const id = document.getElementById('editProjectId').value;
+        const name = document.getElementById('editProjectName').value.trim();
+        const field = document.getElementById('editProjectField').value.trim();
+        const type = document.getElementById('editProjectType').value;
+        const description = document.getElementById('editProjectDesc').value.trim();
+
+        if (!name || !field || !type) {
+          alert('请填写必填项');
+          return;
+        }
+
+        let projects = getProjects();
+        const index = projects.findIndex(p => p.id === id);
+        
+        if (index === -1) {
+          alert('项目不存在');
+          return;
+        }
+
+        // 更新项目
+        projects[index] = {
+          ...projects[index],
+          name: name,
+          field: field,
+          type: type,
+          description: description
+        };
+
+        saveProjects(projects);
+        
+        // 重新渲染
+        renderProjects();
+        
+        // 关闭弹窗
+        closeAllModals();
+        this.reset();
+
+        alert(`✅ 项目 "${name}" 修改成功！`);
+      });
+    }
+
+    // 页面加载时渲染项目列表
+    document.addEventListener('DOMContentLoaded', renderProjects);
 
   </script>
 </body>
