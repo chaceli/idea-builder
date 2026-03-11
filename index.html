@@ -1697,9 +1697,23 @@
       html.classList.toggle('en', currentLang === 'en');
     }
 
+    // Render select options dynamically
+    function renderSelectOptions(selectId) {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      select.innerHTML = `
+        <option value="">${t('selectType')}</option>
+        <option value="invention">${t('invention')}</option>
+        <option value="utility">${t('utility')}</option>
+        <option value="design">${t('design')}</option>
+      `;
+    }
+
     // LanguageSwitch
     function initLang() {
       currentLang = localStorage.getItem('lang') || 'en';
+      renderSelectOptions('projectType');
+      renderSelectOptions('editProjectType');
       applyTranslations();
     }
 
@@ -1707,6 +1721,8 @@
     langToggle.addEventListener('click', () => {
       currentLang = currentLang === 'zh' ? 'en' : 'zh';
       localStorage.setItem('lang', currentLang);
+      renderSelectOptions('projectType');
+      renderSelectOptions('editProjectType');
       applyTranslations();
     });
 
@@ -1807,7 +1823,7 @@
       grid.innerHTML = projects.map((project, index) => {
         const typeInfo = patentTypes[project.type] || patentTypes['invention'];
         const icon = project.icon || projectIcons[index % projectIcons.length];
-        
+
         return `
           <article class="project-card" data-index="${index % 8}" data-id="${project.id}" tabindex="0">
             <div class="project-cover">${icon}</div>
@@ -1815,7 +1831,7 @@
               <h3 class="project-name">${escapeHtml(project.name)}</h3>
               <p class="project-desc">${escapeHtml(project.description || t('noDesc'))}</p>
               <div class="project-meta">
-                <span class="project-tag ${typeInfo.class}">${typeInfo.name}</span>
+                <span class="project-tag ${typeInfo.class}">${t(project.type)}</span>
                 <span class="project-date">${project.date || ''}</span>
               </div>
             </div>
@@ -2139,11 +2155,11 @@
     }
 
     // FeaturesCardClick - Open AI GenerateModal
-    document.querySelectorAll('.feature-card').forEach((card, i) => {
-      card.style.cursor = 'pointer';
-      card.onclick = function() {
+    // Feature Card Click - Open AI Generate Modal
+    document.querySelectorAll('.feature-card[data-feature="ai"]').forEach(card => {
+      card.addEventListener('click', () => {
         document.getElementById('aiModal').classList.add('active');
-      };
+      });
     });
 
   </script>
