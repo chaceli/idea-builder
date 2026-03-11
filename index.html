@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1352,7 +1352,7 @@
     };
 
     // 当前语言
-    let currentLang = localStorage.getItem('lang') || 'zh';
+    let currentLang = localStorage.getItem('lang') || 'en';
 
     // 翻译函数
     function t(key) {
@@ -1375,6 +1375,15 @@
       const featuresDesc = document.querySelector('#features .section-desc');
       if (featuresDesc) featuresDesc.textContent = t('featuresDesc');
       
+      // 功能卡片
+      const featureCards = document.querySelectorAll('.feature-card');
+      if (featureCards[0]) featureCards[0].querySelector('.feature-title').textContent = t('feature1Title');
+      if (featureCards[0]) featureCards[0].querySelector('.feature-desc').textContent = t('feature1Desc');
+      if (featureCards[1]) featureCards[1].querySelector('.feature-title').textContent = t('feature2Title');
+      if (featureCards[1]) featureCards[1].querySelector('.feature-desc').textContent = t('feature2Desc');
+      if (featureCards[2]) featureCards[2].querySelector('.feature-title').textContent = t('feature3Title');
+      if (featureCards[2]) featureCards[2].querySelector('.feature-desc').textContent = t('feature3Desc');
+      
       // 项目区
       const projectsTitle = document.querySelector('#projects .section-title');
       if (projectsTitle) projectsTitle.textContent = t('myProjects');
@@ -1386,6 +1395,13 @@
       if (processTitle) processTitle.textContent = t('process');
       const processDesc = document.querySelector('#process .section-desc');
       if (processDesc) processDesc.textContent = t('processDesc');
+      
+      // 步骤
+      const steps = document.querySelectorAll('.step-text');
+      if (steps[0]) steps[0].textContent = t('step1');
+      if (steps[1]) steps[1].textContent = t('step2');
+      if (steps[2]) steps[2].textContent = t('step3');
+      if (steps[3]) steps[3].textContent = t('step4');
       
       // 页脚
       document.querySelector('footer p').textContent = t('copyright');
@@ -1399,7 +1415,7 @@
 
     // 语言切换
     function initLang() {
-      currentLang = localStorage.getItem('lang') || 'zh';
+      currentLang = localStorage.getItem('lang') || 'en';
       applyTranslations();
     }
 

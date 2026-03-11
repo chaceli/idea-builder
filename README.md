@@ -1,6 +1,8 @@
-# IDEA Builder - Creative Idea Generator / 创意生成器
+# IDEA Builder - Creative Idea Generator
 
-[English](#english) | [中文](#中文)
+Turn every great idea into reality.
+
+[English](https://chaceli.github.io/idea-builder/) | [中文](https://chaceli.github.io/idea-builder/?lang=zh)
 
 ---
 
