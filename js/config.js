@@ -32,8 +32,8 @@ export const translations = {
     navGithub: 'GitHub',
 
     // Hero
-    heroTitleHtml: '让每一个<span>灵机一动</span>的想法都能变成真正可实现的东西',
-    heroDesc: 'AI 驱动的创意生成器，帮助你将创意想法快速转化为可实现的项目方案',
+    heroTitleHtml: '让每一个<span>灵感火花</span>，都变成现实',
+    heroDesc: 'AI 驱动的创意孵化器，帮你把灵感变成专利、蓝图或提示词',
     exploreFeatures: '探索功能',
     viewDocs: '查看文档',
 
@@ -41,11 +41,11 @@ export const translations = {
     coreFeatures: '核心功能',
     featuresDesc: '强大的 AI 工具助你轻松完成创意项目',
     feature1Title: 'AI 提示词生成',
-    feature1Desc: '智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率',
-    feature2Title: 'AI 项目生成',
-    feature2Desc: '一键生成符合规范的项目方案，帮助你实现创意',
-    feature3Title: 'AI 创意工具',
-    feature3Desc: '更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持',
+    feature1Desc: '智能分析你的想法，生成高质量的提示词模板，可在其他AI平台生成图片、视频等',
+    feature2Title: 'AI 蓝图生成',
+    feature2Desc: '一键生成完整的项目蓝图，帮你把创意想法转化为可落地的执行方案',
+    feature3Title: 'AI 专利生成',
+    feature3Desc: '专业专利文档生成，支持发明专利、实用新型、外观设计三种类型',
 
     // Projects
     myProjects: '我的项目',
@@ -57,11 +57,11 @@ export const translations = {
 
     // Process
     processTitle: '使用流程',
-    processDesc: '简单的四步完成创意项目',
-    step1: '输入你的想法',
+    processDesc: '简单四步，让灵感变成现实',
+    step1: '输入你的灵感',
     step2: 'AI 优化完善',
-    step3: '生成项目方案',
-    step4: '实现创意',
+    step3: '生成成果',
+    step4: '付诸实践',
 
     // Form
     createProject: '✨ 创建项目',
@@ -71,9 +71,9 @@ export const translations = {
     techFieldPlaceholder: '请输入技术领域',
     projectType: '项目类型',
     selectType: '请选择项目类型',
-    invention: '发明项目',
-    utility: '实用项目',
-    design: '创意设计',
+    invention: '发明专利',
+    utility: '实用新型',
+    design: '外观设计',
     projectDesc: '项目描述',
     projectDescPlaceholder: '请描述您的创意想法...',
     create: '创建',
@@ -91,10 +91,10 @@ export const translations = {
     // AI Modal
     aiGeneration: 'AI 智能生成',
     promptGeneration: '提示词生成',
-    projectPlan: '项目方案生成',
-    aiIdeaPlaceholder: '输入你的创意想法，AI 将帮你优化...',
+    projectPlan: '蓝图生成',
+    aiIdeaPlaceholder: '输入你的灵感想法，AI 将帮你优化...',
     generatePrompt: '生成提示词',
-    generatePlan: '生成项目方案',
+    generatePlan: '生成蓝图',
     generating: '生成中...',
     saveToProject: '保存到项目',
     apiKeyNotice: '使用 AI 功能需要配置 API Key',
@@ -104,7 +104,7 @@ export const translations = {
 
     // Footer
     footerContact: '有问题或建议？联系我们',
-    footerCopyright: '© 2024 IDEA Builder. 基于 AI 的创意生成工具。',
+    footerCopyright: '© 2026 IDEA Builder. 基于 AI 的创意孵化工具',
 
     // Messages
     confirmDelete: '确定要删除这个项目吗？',
