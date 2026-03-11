@@ -12,9 +12,9 @@ export const PROJECT_ICONS = [
 ];
 
 export const PROJECT_TYPES = {
-  invention: { name: 'Invention Project', class: 'tag-invention', icon: '💡' },
-  utility: { name: 'Utility Project', class: 'tag-utility', icon: '🔧' },
-  design: { name: 'Creative Design', class: 'tag-design', icon: '🎨' }
+  invention: { name: 'Invention Patent', class: 'tag-invention', icon: '💡' },
+  utility: { name: 'Utility Model', class: 'tag-utility', icon: '🔧' },
+  design: { name: 'Design Patent', class: 'tag-design', icon: '🎨' }
 };
 
 export const AI_CONFIG = {
