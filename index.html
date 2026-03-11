@@ -1296,16 +1296,16 @@
     <div class="modal" role="dialog" aria-labelledby="createModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="createModalTitle" data-i18n="createModalTitle">✨ Create New Project</h2>
-        <button class="modal-close" aria-label="关闭">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <form id="createForm">
         <div class="form-group">
           <label class="form-label" for="projectName">Project Name *</label>
-          <input type="text" class="form-input" id="projectName" name="name" required placeholder="例如：智能家居控制系统">
+          <input type="text" class="form-input" id="projectName" name="name" required placeholder="e.g., Smart Home System">
         </div>
         <div class="form-group">
           <label class="form-label" for="projectField">Technology Field *</label>
-          <input type="text" class="form-input" id="projectField" name="field" required placeholder="例如：物联网、人工智能、机械结构">
+          <input type="text" class="form-input" id="projectField" name="field" required placeholder="e.g., IoT, AI, Mechanical Design">
         </div>
         <div class="form-group">
           <label class="form-label" for="projectType">Project Type *</label>
@@ -1333,7 +1333,7 @@
     <div class="modal" role="dialog" aria-labelledby="detailModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="detailModalTitle" data-i18n="detailModalTitle">📄 Project Details</h2>
-        <button class="modal-close" aria-label="关闭">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="project-detail-content" id="detailContent">
         <!-- 动态内容 -->
@@ -1346,7 +1346,7 @@
     <div class="modal" role="dialog" aria-labelledby="editModalTitle" aria-modal="true">
       <div class="modal-header">
         <h2 class="modal-title" id="editModalTitle" data-i18n="editModalTitle">✏️ Edit Project</h2>
-        <button class="modal-close" aria-label="关闭">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <form id="editForm">
         <input type="hidden" id="editProjectId" name="id">
@@ -1383,12 +1383,12 @@
     <div class="modal" role="dialog" aria-labelledby="aiModalTitle" aria-modal="true" style="max-width: 560px;">
       <div class="modal-header">
         <h2 class="modal-title" id="aiModalTitle">🤖 AI Generation</h2>
-        <button class="modal-close" aria-label="关闭">&times;</button>
+        <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="ai-modal-content">
         <!-- API Key 提示 -->
         <div class="api-key-notice" id="apiKeyNotice">
-          💡 使用 AI 功能需要配置 MiniMax API Key。
+          💡 Configure your MiniMax API Key to use AI features.
           <a href="#" id="showApiKeySettings">Click to Settings</a>
         </div>
         
@@ -1418,7 +1418,7 @@
         <!-- 输入区域 -->
         <div class="form-group">
           <label class="form-label" for="aiIdeaInput">Describe Your Idea *</label>
-          <textarea class="form-textarea" id="aiIdeaInput" placeholder="例如：我想做一个智能家居系统，可以通过手机控制灯光、空调、窗帘等设备，实现自动化场景和远程控制"></textarea>
+          <textarea class="form-textarea" id="aiIdeaInput" placeholder="e.g., I want to build a smart home system that can control lights, AC, curtains via phone"></textarea>
         </div>
 
         <!-- 生成按钮 -->
@@ -1502,9 +1502,9 @@
         step4: 'Make It Real',
         createProject: '✨ 创建项目',
         projectName: '项目名称',
-        projectNamePlaceholder: '例如：智能家居控制系统',
+        projectNamePlaceholder: 'e.g., Smart Home System',
         techField: '技术领域',
-        techFieldPlaceholder: '例如：物联网、人工智能、机械结构',
+        techFieldPlaceholder: 'e.g., IoT, AI, Mechanical Design',
         projectType: '项目类型',
         selectType: '请选择项目类型',
         invention: '发明项目',
