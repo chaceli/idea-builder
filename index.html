@@ -5,197 +5,964 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IDEA Builder - 专利生成器</title>
   <style>
+    /* CSS 变量 - 支持暗色模式 */
+    :root {
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --primary-active: #4338CA;
+      --primary-light: #818CF8;
+      --bg: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --bg-nav: rgba(255, 255, 255, 0.95);
+      --text: #1E293B;
+      --text-secondary: #64748B;
+      --text-muted: #94A3B8;
+      --border: #E2E8F0;
+      --border-focus: #6366F1;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.4);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --transition: all 0.2s ease;
+    }
+
+    /* 暗色模式 */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F172A;
+        --bg-card: #1E293B;
+        --bg-nav: rgba(30, 41, 59, 0.95);
+        --text: #F1F5F9;
+        --text-secondary: #CBD5E1;
+        --text-muted: #64748B;
+        --border: #334155;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    /* 手动暗色模式类 */
+    .dark {
+      --bg: #0F172A;
+      --bg-card: #1E293B;
+      --bg-nav: rgba(30, 41, 59, 0.95);
+      --text: #F1F5F9;
+      --text-secondary: #CBD5E1;
+      --text-muted: #64748B;
+      --border: #334155;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body { 
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', sans-serif; 
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: background 0.3s ease, color 0.3s ease;
       overflow-x: hidden;
     }
-    .container { 
-      text-align: center; 
-      color: #fff; 
-      padding: 40px 20px; 
+
+    /* 焦点样式 - 键盘导航 */
+    *:focus {
+      outline: none;
+    }
+    
+    *:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    .keyboard-nav *:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* 顶部导航栏 */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--bg-nav);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .nav-link:focus-visible {
+      background: var(--primary);
+      color: white;
+      outline: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* 按钮样式 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:active {
+      background: var(--primary-active);
+      transform: translateY(0);
+    }
+
+    .btn-primary:focus-visible {
+      box-shadow: var(--shadow-focus);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn-secondary:focus-visible {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    /* 主题切换按钮 */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background: var(--border);
+    }
+
+    .theme-toggle:focus-visible {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus);
+    }
+
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    .dark .theme-toggle .icon-sun { display: block; }
+    .dark .theme-toggle .icon-moon { display: none; }
+
+    /* 主内容区 */
+    .main {
+      padding-top: 64px;
+      min-height: 100vh;
+    }
+
+    .container {
       max-width: 1200px;
-      width: 100%;
+      margin: 0 auto;
+      padding: 40px 24px;
     }
-    h1 { 
-      font-size: 56px; 
-      margin-bottom: 20px; 
-      animation: fadeInDown 0.8s ease-out;
+
+    /* Hero 区域 */
+    .hero {
+      text-align: center;
+      padding: 60px 0;
     }
-    p { 
-      font-size: 22px; 
-      opacity: 0.9; 
-      margin-bottom: 40px; 
-      animation: fadeInUp 0.8s ease-out 0.2s both;
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+      animation: fadeInDown 0.6s ease-out;
     }
-    .features { 
-      display: flex; 
-      gap: 30px; 
-      justify-content: center; 
-      flex-wrap: wrap; 
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary) 0%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 16px;
+    }
+
+    /* 功能卡片区 */
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      text-align: center;
       margin-bottom: 40px;
     }
-    .feature { 
-      background: rgba(255,255,255,0.2); 
-      padding: 40px 30px; 
-      border-radius: 20px; 
-      width: 280px; 
-      max-width: 100%;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-      animation: fadeInUp 0.8s ease-out 0.4s both;
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
     }
-    .feature:nth-child(2) { animation-delay: 0.5s; }
-    .feature:nth-child(3) { animation-delay: 0.6s; }
-    .feature:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
     }
-    .feature-icon { font-size: 48px; margin-bottom: 15px; }
-    .feature h3 { font-size: 22px; margin-bottom: 10px; }
-    .feature p { font-size: 16px; margin: 0; opacity: 0.9; }
-    
-    .btn { 
-      display: inline-block; 
-      padding: 18px 50px; 
-      background: #fff; 
-      color: #667eea; 
-      text-decoration: none; 
-      border-radius: 50px; 
-      font-weight: bold; 
-      font-size: 18px; 
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: fadeInUp 0.8s ease-out 0.7s both;
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
     }
-    .btn:hover { 
-      transform: scale(1.05); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
     }
-    
-    .process { 
-      margin: 60px 0; 
-      animation: fadeInUp 0.8s ease-out 0.8s both;
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
     }
-    .process h2 { 
-      font-size: 28px; 
-      margin-bottom: 30px; 
+
+    .feature-card:focus-within {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus);
     }
-    .process-steps { 
-      display: flex; 
-      justify-content: center; 
-      gap: 20px; 
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 项目列表 */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.15s; }
+    .project-card:nth-child(3) { animation-delay: 0.2s; }
+    .project-card:nth-child(4) { animation-delay: 0.25s; }
+    .project-card:nth-child(5) { animation-delay: 0.3s; }
+    .project-card:nth-child(6) { animation-delay: 0.35s; }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-card:focus-within {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-focus);
+    }
+
+    .project-cover {
+      height: 140px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .project-card:nth-child(2) .project-cover {
+      background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+    }
+
+    .project-card:nth-child(3) .project-cover {
+      background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+    }
+
+    .project-card:nth-child(4) .project-cover {
+      background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%);
+    }
+
+    .project-card:nth-child(5) .project-cover {
+      background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
+    }
+
+    .project-card:nth-child(6) .project-cover {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .project-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 流程步骤 */
+    .process-steps {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
+      margin-top: 40px;
     }
-    .step { 
-      background: rgba(255,255,255,0.15); 
-      padding: 20px 30px; 
-      border-radius: 15px;
-      min-width: 150px;
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      min-width: 200px;
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
     }
-    .step-num { 
-      font-size: 32px; 
-      font-weight: bold; 
-      margin-bottom: 10px;
+
+    .step:nth-child(1) { animation-delay: 0.1s; }
+    .step:nth-child(2) { animation-delay: 0.2s; }
+    .step:nth-child(3) { animation-delay: 0.3s; }
+    .step:nth-child(4) { animation-delay: 0.4s; }
+
+    .step:hover {
+      border-color: var(--primary-light);
+      box-shadow: var(--shadow);
     }
-    
-    .contact { 
-      margin-top: 40px; 
-      animation: fadeInUp 0.8s ease-out 0.9s both;
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
     }
-    .contact a { 
-      color: #fff; 
-      opacity: 0.8; 
+
+    .step-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .step-arrow {
+      color: var(--text-muted);
+      font-size: 20px;
+    }
+
+    /* 键盘导航提示 */
+    .keyboard-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-lg);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .keyboard-hint.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .keyboard-hint kbd {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* 页脚 */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
       text-decoration: underline;
     }
-    .contact a:hover { opacity: 1; }
 
+    /* 动画 */
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
+      from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* 响应式布局 */
     @media (max-width: 768px) {
-      h1 { font-size: 36px; }
-      p { font-size: 18px; }
-      .container { padding: 30px 15px; }
-      .feature { 
-        padding: 30px 20px; 
-        width: 100%;
+      .navbar {
+        padding: 0 16px;
       }
-      .process-steps { flex-direction: column; align-items: center; }
-      .step { width: 100%; max-width: 300px; }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .hero-desc {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .step {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .step-arrow {
+        transform: rotate(90deg);
+      }
+
+      .keyboard-hint {
+        bottom: 16px;
+        padding: 10px 16px;
+        font-size: 12px;
+      }
     }
-    
+
     @media (max-width: 480px) {
-      h1 { font-size: 28px; }
-      p { font-size: 16px; }
-      .btn { padding: 15px 35px; font-size: 16px; }
-      .feature-icon { font-size: 36px; }
-      .feature h3 { font-size: 18px; }
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .btn-lg {
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+
+      .feature-card {
+        padding: 24px;
+      }
+    }
+
+    /* 高对比度模式 */
+    @media (prefers-contrast: high) {
+      :root {
+        --text: #000000;
+        --text-secondary: #1a1a1a;
+        --border: #000000;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text: #FFFFFF;
+          --text-secondary: #F0F0F0;
+          --border: #FFFFFF;
+        }
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>💡 IDEA Builder</h1>
-    <p>让每一个灵机一动的想法，都能变成真正可实现的东西</p>
+  <!-- 顶部导航栏 -->
+  <nav class="navbar" role="navigation" aria-label="主导航">
+    <a href="#" class="nav-brand" aria-label="IDEA Builder 首页">
+      <div class="nav-brand-icon">💡</div>
+      <span>IDEA Builder</span>
+    </a>
     
-    <div class="features">
-      <div class="feature">
-        <div class="feature-icon">🎯</div>
-        <h3>AI 提示词生成</h3>
-        <p>帮你写出高质量提示词，让 AI 更好地理解你的需求</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📔</div>
-        <h3>AI 专利生成</h3>
-        <p>一键生成专利申请文件，保护你的创新成果</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">✨</div>
-        <h3>AI 创意工具</h3>
-        <p>更多创意工具助力你的创新之旅</p>
-      </div>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">功能</a>
+      <a href="#projects" class="nav-link">项目</a>
+      <a href="#process" class="nav-link">流程</a>
+      <a href="https://github.com/chaceli/idea-builder" target="_blank" class="nav-link">GitHub</a>
     </div>
 
-    <div class="process">
-      <h2>使用流程</h2>
-      <div class="process-steps">
-        <div class="step">
-          <div class="step-num">1️⃣</div>
-          <p>输入你的想法</p>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题" title="切换明暗主题">
+        <span class="icon-moon">🌙</span>
+        <span class="icon-sun">☀️</span>
+      </button>
+      <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-primary">
+        开始使用
+      </a>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="main">
+    <div class="container">
+      <!-- Hero 区域 -->
+      <section class="hero">
+        <h1 class="hero-title">
+          让每一个<span>灵机一动</span>的想法<br>都能变成真正可实现的东西
+        </h1>
+        <p class="hero-desc">
+          AI 驱动的专利生成器，帮助你将创意想法快速转化为专业的专利申请文件
+        </p>
+        <div class="hero-actions">
+          <a href="#features" class="btn btn-primary btn-lg">探索功能</a>
+          <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn btn-secondary btn-lg">
+            查看文档
+          </a>
         </div>
-        <div class="step">
-          <div class="step-num">2️⃣</div>
-          <p>AI 优化完善</p>
+      </section>
+
+      <!-- 功能卡片区 -->
+      <section id="features" class="section">
+        <div class="section-header">
+          <h2 class="section-title">核心功能</h2>
+          <p class="section-desc">强大的 AI 工具助你轻松完成专利申请</p>
         </div>
-        <div class="step">
-          <div class="step-num">3️⃣</div>
-          <p>生成专利申请</p>
+        
+        <div class="features-grid">
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">AI 提示词生成</h3>
+            <p class="feature-desc">
+              智能分析你的想法，生成高质量的 AI 提示词，让 AI 更好地理解你的需求，提升交互效率
+            </p>
+          </article>
+
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon">📔</div>
+            <h3 class="feature-title">AI 专利生成</h3>
+            <p class="feature-desc">
+              一键生成符合规范的专利申请文件，包括说明书、权利要求书、摘要等，保护你的创新成果
+            </p>
+          </article>
+
+          <article class="feature-card" tabindex="0">
+            <div class="feature-icon">✨</div>
+            <h3 class="feature-title">AI 创意工具</h3>
+            <p class="feature-desc">
+              更多创意工具持续更新，助力你的创新之旅，让每个想法都能得到专业的技术支持
+            </p>
+          </article>
         </div>
-        <div class="step">
-          <div class="step-num">4️⃣</div>
-          <p>获取保护</p>
+      </section>
+
+      <!-- 项目列表 -->
+      <section id="projects" class="section">
+        <div class="section-header">
+          <h2 class="section-title">热门项目</h2>
+          <p class="section-desc">发现更多创意可能</p>
         </div>
-      </div>
+
+        <div class="projects-grid">
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">🏠</div>
+            <div class="project-info">
+              <h3 class="project-name">智能家居系统</h3>
+              <p class="project-desc">基于物联网的智能家居控制系统</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2024-01-15</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">🚗</div>
+            <div class="project-info">
+              <h3 class="project-name">自动驾驶算法</h3>
+              <p class="project-desc">新一代自动驾驶路径规划算法</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2024-01-10</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">🏥</div>
+            <div class="project-info">
+              <h3 class="project-name">医疗诊断 AI</h3>
+              <p class="project-desc">基于深度学习的医学影像诊断系统</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2024-01-05</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">📱</div>
+            <div class="project-info">
+              <h3 class="project-name">移动支付安全</h3>
+              <p class="project-desc">新一代移动支付安全认证方案</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2023-12-28</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">🔋</div>
+            <div class="project-info">
+              <h3 class="project-name">电池管理技术</h3>
+              <p class="project-desc">智能电池充放电优化系统</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2023-12-20</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="project-cover">🎮</div>
+            <div class="project-info">
+              <h3 class="project-name">VR 交互系统</h3>
+              <p class="project-desc">沉浸式虚拟现实交互技术</p>
+              <div class="project-meta">
+                <span class="project-tag">专利</span>
+                <span class="project-date">2023-12-15</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 使用流程 -->
+      <section id="process" class="section">
+        <div class="section-header">
+          <h2 class="section-title">使用流程</h2>
+          <p class="section-desc">简单的四步完成专利申请</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="step" tabindex="0">
+            <span class="step-num">1</span>
+            <span class="step-text">输入你的想法</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="step" tabindex="0">
+            <span class="step-num">2</span>
+            <span class="step-text">AI 优化完善</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="step" tabindex="0">
+            <span class="step-num">3</span>
+            <span class="step-text">生成专利申请</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="step" tabindex="0">
+            <span class="step-num">4</span>
+            <span class="step-text">获取保护</span>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <a href="https://github.com/chaceli/idea-builder" target="_blank" class="btn">即将上线，敬请期待</a>
-    
-    <div class="contact">
-      <p>有问题或建议？<a href="https://github.com/chaceli/idea-builder/issues">联系我们</a></p>
-    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>有问题或建议？<a href="https://github.com/chaceli/idea-builder/issues" target="_blank">联系我们</a></p>
+      <p>© 2024 IDEA Builder. 基于 AI 的专利生成工具。</p>
+    </footer>
+  </main>
+
+  <!-- 键盘导航提示 -->
+  <div class="keyboard-hint" id="keyboardHint">
+    使用 <kbd>Tab</kbd> 键导航，<kbd>Enter</kbd> 键确认
   </div>
+
+  <script>
+    // 检测键盘导航
+    let keyboardDetected = false;
+    const keyboardHint = document.getElementById('keyboardHint');
+    
+    document.addEventListener('keydown', (e) => {
+      if (!keyboardDetected && (e.key === 'Tab' || e.key === 'Shift' || e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
+        keyboardDetected = true;
+        document.body.classList.add('keyboard-nav');
+        
+        // 显示提示
+        setTimeout(() => {
+          keyboardHint.classList.add('visible');
+          setTimeout(() => {
+            keyboardHint.classList.remove('visible');
+          }, 3000);
+        }, 1000);
+      }
+    });
+
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // 检查系统主题偏好
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark');
+    }
+
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (e.matches) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+    });
+
+    // 手动切换主题
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      
+      // 保存偏好
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // 恢复保存的主题
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      html.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      html.classList.remove('dark');
+    }
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // 焦点时滚动到可见区域
+    document.querySelectorAll('[tabindex]:focus').forEach(el => {
+      el.addEventListener('focus', function() {
+        this.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      });
+    });
+  </script>
 </body>
 </html>
