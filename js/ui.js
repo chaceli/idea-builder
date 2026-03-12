@@ -321,63 +321,76 @@ export const UI = {
 
   bindAIGeneration() {
     const generateBtn = document.getElementById('generateBtn');
-    const promptBtn = document.getElementById('generatePromptBtn');
-    const planBtn = document.getElementById('generatePlanBtn');
 
-    // Generate button (legacy)
     generateBtn?.addEventListener('click', async () => {
       const idea = document.getElementById('aiIdeaInput')?.value?.trim();
       if (!idea) {
-        this.showNotice(I18n.t('enterIdea'), 'error');
+        this.showNotice(I18n.t('enterIdea') || 'Please enter your idea', 'error');
         return;
       }
+
       generateBtn.disabled = true;
       generateBtn.textContent = I18n.t('generating');
-      const result = await AI.generatePrompt(idea);
+
+      let result;
+
+      // Check if using demo mode
+      if (AI.shouldUseDemo()) {
+        // Use demo response based on current tab
+        await new Promise(resolve => setTimeout(resolve, 800)); // Simulate delay
+        switch (this.currentAITab) {
+          case 'blueprint':
+            result = { error: false, content: AI.getDemoBlueprintResponse(idea) };
+            break;
+          case 'patent':
+            result = { error: false, content: AI.getDemoPatentResponse(idea) };
+            break;
+          default:
+            result = { error: false, content: AI.getDemoPromptResponse(idea) };
+        }
+      } else {
+        // Use real AI
+        switch (this.currentAITab) {
+          case 'blueprint':
+            result = await AI.generatePlan(idea);
+            break;
+          case 'patent':
+            result = await AI.generatePatent(idea);
+            break;
+          default:
+            result = await AI.generatePrompt(idea);
+        }
+      }
+
       generateBtn.disabled = false;
-      generateBtn.textContent = I18n.t('generatePrompt');
+      const labels = {
+        prompt: I18n.t('generatePrompt'),
+        blueprint: I18n.t('generatePlan'),
+        patent: I18n.t('generatePatent') || 'Generate Patent'
+      };
+      generateBtn.textContent = `🚀 ${labels[this.currentAITab] || I18n.t('startGeneration')}`;
 
       const output = document.getElementById('aiOutput');
       if (output) {
         output.value = result.error ? result.message : result.content;
+      }
+
+      // Show result section
+      const aiResult = document.getElementById('aiResult');
+      const aiResultContent = document.getElementById('aiResultContent');
+      if (aiResult && aiResultContent && !result.error) {
+        aiResultContent.textContent = result.content;
+        aiResult.style.display = 'block';
       }
     });
 
-    // Prompt generation button
-    promptBtn?.addEventListener('click', async () => {
-      const idea = document.getElementById('aiIdeaInput')?.value?.trim();
-      if (!idea) {
-        this.showNotice('Please enter your idea', 'error');
-        return;
-      }
-      promptBtn.disabled = true;
-      promptBtn.textContent = I18n.t('generating');
-      const result = await AI.generatePrompt(idea);
-      promptBtn.disabled = false;
-      promptBtn.textContent = I18n.t('generatePrompt');
-
-      const output = document.getElementById('aiOutput');
-      if (output) {
-        output.value = result.error ? result.message : result.content;
-      }
-    });
-
-    // Plan generation button
-    planBtn?.addEventListener('click', async () => {
-      const idea = document.getElementById('aiIdeaInput')?.value?.trim();
-      if (!idea) {
-        this.showNotice('Please enter your idea', 'error');
-        return;
-      }
-      planBtn.disabled = true;
-      planBtn.textContent = I18n.t('generating');
-      const result = await AI.generatePlan(idea);
-      planBtn.disabled = false;
-      planBtn.textContent = I18n.t('generatePlan');
-
-      const output = document.getElementById('aiOutput');
-      if (output) {
-        output.value = result.error ? result.message : result.content;
+    // Copy result button
+    const copyResultBtn = document.getElementById('copyResultBtn');
+    copyResultBtn?.addEventListener('click', () => {
+      const content = document.getElementById('aiResultContent')?.textContent;
+      if (content) {
+        navigator.clipboard.writeText(content);
+        this.showNotice(I18n.t('copied') || 'Copied to clipboard', 'success');
       }
     });
   }

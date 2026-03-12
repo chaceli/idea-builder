@@ -75,6 +75,11 @@ export const AI = {
     return this.callMiniMax(prompt);
   },
 
+  async generatePatent(idea) {
+    const prompt = `Generate a patent application draft for this idea: ${idea}\n\nPlease include:\n1. 技术领域 (Technical Field)\n2. 背景技术 (Background)\n3. 发明内容 (Invention Summary)\n4. 权利要求书 (Claims)\n5. 说明书摘要 (Abstract)`;
+    return this.callMiniMax(prompt);
+  },
+
   // Demo Mode - Check if should use demo mode
   shouldUseDemo() {
     return !this.isConfigured();
