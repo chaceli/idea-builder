@@ -4,7 +4,8 @@ export const STORAGE_KEYS = {
   PROJECTS: 'idea-builder-projects',
   THEME: 'idea-builder-theme',
   LANG: 'idea-builder-lang',
-  API_KEY: 'idea-builder-api-key'
+  API_KEY: 'idea-builder-api-key',
+  API_PROVIDER: 'idea-builder-api-provider'
 };
 
 export const PROJECT_ICONS = [
@@ -17,10 +18,19 @@ export const PROJECT_TYPES = {
   design: { name: 'Design Patent', class: 'tag-design', icon: '🎨' }
 };
 
-export const AI_CONFIG = {
-  model: 'MiniMax-M2.5',
-  maxTokens: 2000,
-  apiUrl: 'https://api.minimaxi.com/anthropic/v1/messages'
+export const AI_PROVIDERS = {
+  minimax: {
+    name: 'MiniMax',
+    model: 'MiniMax-M2',
+    apiUrl: 'https://api.minimax.chat/v1/chat/completions',
+    keyPlaceholder: 'Enter your MiniMax API Key'
+  },
+  openai: {
+    name: 'OpenAI',
+    model: 'gpt-4o',
+    apiUrl: 'https://api.openai.com/v1/chat/completions',
+    keyPlaceholder: 'Enter your OpenAI API Key (sk-...)'
+  }
 };
 
 export const translations = {
