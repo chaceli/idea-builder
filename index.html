@@ -255,8 +255,15 @@
         <!-- API Key Settings -->
         <div id="apiKeySettings" style="display: none; margin-bottom: 20px;">
           <div class="form-group">
-            <label class="form-label" for="miniMaxApiKey" data-i18n="apiKeyLabel">MiniMax API Key</label>
-            <input type="password" class="form-input" id="miniMaxApiKey" data-i18n-placeholder="apiKeyPlaceholder" placeholder="Enter your MiniMax API Key">
+            <label class="form-label" for="apiProvider">API Provider</label>
+            <select class="form-input" id="apiProvider">
+              <option value="minimax">MiniMax</option>
+              <option value="openai">OpenAI</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="apiKeyInput" data-i18n="apiKeyLabel">API Key</label>
+            <input type="password" class="form-input" id="apiKeyInput" data-i18n-placeholder="apiKeyPlaceholder" placeholder="Enter your API Key">
           </div>
           <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;" data-i18n="saveApiKey">Save API Key</button>
         </div>
