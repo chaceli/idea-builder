@@ -150,18 +150,21 @@
       </div>
       <form id="createForm">
         <div class="form-group">
-          <label class="form-label" for="projectName" data-i18n="projectName">Project Name *</label>
+          <label class="form-label" for="projectName" data-i18n="projectName">Project Name<span class="required">*</span></label>
           <input type="text" class="form-input" id="projectName" name="name" required data-i18n-placeholder="projectNamePlaceholder" placeholder="e.g., Smart Home System">
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectField" data-i18n="techField">Technology Field *</label>
+          <label class="form-label" for="projectField" data-i18n="techField">Technology Field<span class="required">*</span></label>
           <input type="text" class="form-input" id="projectField" name="field" required data-i18n-placeholder="techFieldPlaceholder" placeholder="e.g., IoT, AI, Mechanical Design">
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="projectType" data-i18n="projectType">Project Type *</label>
+          <label class="form-label" for="projectType" data-i18n="projectType">Project Type<span class="required">*</span></label>
           <select class="form-input" id="projectType" name="type" required>
             <!-- Options rendered dynamically -->
           </select>
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
           <label class="form-label" for="projectDesc" data-i18n="projectDesc">Description</label>
@@ -198,18 +201,21 @@
       <form id="editForm">
         <input type="hidden" id="editProjectId" name="id">
         <div class="form-group">
-          <label class="form-label" for="editProjectName" data-i18n="projectName">Project Name *</label>
+          <label class="form-label" for="editProjectName" data-i18n="projectName">Project Name<span class="required">*</span></label>
           <input type="text" class="form-input" id="editProjectName" name="name" required>
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectField" data-i18n="techField">Technology Field *</label>
+          <label class="form-label" for="editProjectField" data-i18n="techField">Technology Field<span class="required">*</span></label>
           <input type="text" class="form-input" id="editProjectField" name="field" required>
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
-          <label class="form-label" for="editProjectType" data-i18n="projectType">Project Type *</label>
+          <label class="form-label" for="editProjectType" data-i18n="projectType">Project Type<span class="required">*</span></label>
           <select class="form-input" id="editProjectType" name="type" required>
             <!-- Options rendered dynamically -->
           </select>
+          <div class="error-message" data-i18n="requiredField">This field is required</div>
         </div>
         <div class="form-group">
           <label class="form-label" for="editProjectDesc" data-i18n="projectDesc">Description</label>

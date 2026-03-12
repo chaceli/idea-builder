@@ -137,6 +137,7 @@ export const UI = {
     this.bindKeyboardNav();
     this.bindAITabs();
     this.bindAIGeneration();
+    this.bindFormValidation();
   },
 
   bindThemeToggle() {
@@ -206,15 +207,15 @@ export const UI = {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
+      if (!this.validateForm(form)) {
+        this.showNotice(I18n.t('fillRequired'), 'error');
+        return;
+      }
+
       const name = document.getElementById('projectName')?.value.trim();
       const field = document.getElementById('projectField')?.value.trim();
       const type = document.getElementById('projectType')?.value;
       const description = document.getElementById('projectDesc')?.value.trim();
-
-      if (!name || !field || !type) {
-        this.showNotice(I18n.t('fillRequired'), 'error');
-        return;
-      }
 
       const projects = ProjectStorage.getAll();
       const newProject = {
@@ -244,16 +245,16 @@ export const UI = {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
+      if (!this.validateForm(form)) {
+        this.showNotice(I18n.t('fillRequired'), 'error');
+        return;
+      }
+
       const id = document.getElementById('editProjectId')?.value;
       const name = document.getElementById('editProjectName')?.value.trim();
       const field = document.getElementById('editProjectField')?.value.trim();
       const type = document.getElementById('editProjectType')?.value;
       const description = document.getElementById('editProjectDesc')?.value.trim();
-
-      if (!name || !field || !type) {
-        this.showNotice(I18n.t('fillRequired'), 'error');
-        return;
-      }
 
       ProjectStorage.update(id, { name, field, type, description });
       Projects.render();
@@ -302,6 +303,53 @@ export const UI = {
         e.preventDefault();
         const href = anchor.getAttribute('href');
         if (href) this.smoothScrollTo(href);
+      });
+    });
+  },
+
+  // Form validation
+  validateField(input) {
+    const group = input.closest('.form-group');
+    if (!group) return true;
+
+    const isRequired = input.hasAttribute('required');
+    const isEmpty = !input.value.trim();
+
+    if (isRequired && isEmpty) {
+      group.classList.add('error');
+      return false;
+    } else {
+      group.classList.remove('error');
+      return true;
+    }
+  },
+
+  validateForm(form) {
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+      if (!this.validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  },
+
+  bindFormValidation() {
+    // Real-time validation on blur
+    document.querySelectorAll('input[required], select[required], textarea[required]').forEach(input => {
+      input.addEventListener('blur', () => this.validateField(input));
+
+      // Clear error on input
+      input.addEventListener('input', () => {
+        const group = input.closest('.form-group');
+        if (group && group.classList.contains('error')) {
+          if (input.value.trim()) {
+            group.classList.remove('error');
+          }
+        }
       });
     });
   },
