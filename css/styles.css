@@ -1223,3 +1223,62 @@ body {
     transform: translateY(-20px);
   }
 }
+
+/* ==================== Demo Mode Banner ==================== */
+.demo-banner {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.demo-banner-icon {
+  font-size: 24px;
+}
+
+.demo-banner-content {
+  flex: 1;
+}
+
+.demo-banner-title {
+  font-weight: 600;
+  color: #92400E;
+  margin-bottom: 2px;
+}
+
+.demo-banner-desc {
+  font-size: 12px;
+  color: #B45309;
+}
+
+.demo-banner a {
+  color: #D97706;
+  text-decoration: underline;
+  font-size: 12px;
+}
+
+/* Dark mode demo banner */
+html.dark .demo-banner,
+html[data-theme="dark"] .demo-banner {
+  background: linear-gradient(135deg, #78350F 0%, #92400E 100%);
+  border-color: #B45309;
+}
+
+html.dark .demo-banner-title,
+html[data-theme="dark"] .demo-banner-title {
+  color: #FEF3C7;
+}
+
+html.dark .demo-banner-desc,
+html[data-theme="dark"] .demo-banner-desc {
+  color: #FDE68A;
+}
+
+html.dark .demo-banner a,
+html[data-theme="dark"] .demo-banner a {
+  color: #FBBF24;
+}
