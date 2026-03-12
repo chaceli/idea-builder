@@ -1282,3 +1282,39 @@ html.dark .demo-banner a,
 html[data-theme="dark"] .demo-banner a {
   color: #FBBF24;
 }
+
+/* ==================== AI Generation Tabs ==================== */
+.ai-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.ai-tab {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ai-tab:hover {
+  color: var(--text);
+  background: var(--bg);
+}
+
+.ai-tab.active {
+  color: var(--primary);
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: -9px;
+}
