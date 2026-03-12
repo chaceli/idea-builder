@@ -65,6 +65,10 @@ export const translations = {
 
     // Form
     createProject: '✨ 创建项目',
+    createModalTitle: '✨ 创建新项目',
+    editModalTitle: '✏️ 编辑项目',
+    detailModalTitle: '📋 项目详情',
+    aiModalTitle: '🤖 AI 智能生成',
     projectName: '项目名称',
     projectNamePlaceholder: '请输入项目名称',
     techField: '技术领域',
@@ -76,6 +80,10 @@ export const translations = {
     design: '外观设计',
     projectDesc: '项目描述',
     projectDescPlaceholder: '请描述您的创意想法...',
+    describeIdea: '描述你的灵感想法',
+    ideaPlaceholder: '输入你的灵感想法，AI 将帮你优化...',
+    apiKeyPlaceholder: '请输入您的 API Key',
+    apiKeyLabel: 'API Key',
     create: '创建',
     cancel: '取消',
 
@@ -96,6 +104,11 @@ export const translations = {
     generatePrompt: '生成提示词',
     generatePlan: '生成蓝图',
     generating: '生成中...',
+    copy: '复制',
+    submit: '提交',
+    startGeneration: '开始生成',
+    aiThinking: 'AI 正在思考中...',
+    generatedResult: '生成结果',
     saveToProject: '保存到项目',
     apiKeyNotice: '使用 AI 功能需要配置 API Key',
     apiKeySettings: '设置',
@@ -105,6 +118,10 @@ export const translations = {
     // Footer
     footerContact: '有问题或建议？联系我们',
     footerCopyright: '© 2026 IDEA Builder. 基于 AI 的创意孵化工具',
+    keyboardHint: '按 Enter 发送，Shift+Enter 换行',
+    copyright: '© 2026 IDEA Builder. 基于 AI 的创意孵化工具',
+    promptGenDesc: '生成高质量的提示词模板，可用于其他 AI 平台',
+    projectGenDesc: '生成完整的项目蓝图，包含详细的执行方案',
 
     // Messages
     confirmDelete: '确定要删除这个项目吗？',
