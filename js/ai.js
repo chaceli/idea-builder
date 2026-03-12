@@ -45,33 +45,28 @@ export const AI = {
     return AI_PROVIDERS[providerId] || AI_PROVIDERS.minimax;
   },
 
-  getApiUrl() {
-    return this.getProvider().apiUrl;
-  },
-
-  getModel() {
-    return this.getProvider().model;
-  },
-
   saveProvider(providerId) {
     Storage.set(STORAGE_KEYS.API_PROVIDER, providerId);
   },
 
-  async callMiniMax(prompt) {
+  async callAPI(prompt) {
     const apiKey = this.getApiKey();
     if (!apiKey) {
       return { error: true, message: I18n.t('apiKeyNotConfigured') };
     }
 
+    // Cache provider to avoid multiple storage reads
+    const provider = this.getProvider();
+
     try {
-      const response = await fetch(this.getApiUrl(), {
+      const response = await fetch(provider.apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: this.getModel(),
+          model: provider.model,
           messages: [{ role: 'user', content: prompt }],
           max_tokens: 2000
         })
@@ -94,17 +89,17 @@ export const AI = {
 
   async generatePrompt(idea) {
     const prompt = `Optimize this idea for AI interaction: ${idea}\n\nPlease provide an optimized prompt that will help AI better understand and work with this idea.`;
-    return this.callMiniMax(prompt);
+    return this.callAPI(prompt);
   },
 
   async generatePlan(idea) {
     const prompt = `Generate a detailed project plan for this idea: ${idea}\n\nPlease include:\n1. Project overview\n2. Key features\n3. Technical requirements\n4. Implementation steps\n5. Timeline estimates`;
-    return this.callMiniMax(prompt);
+    return this.callAPI(prompt);
   },
 
   async generatePatent(idea) {
     const prompt = `Generate a patent application draft for this idea: ${idea}\n\nPlease include:\n1. 技术领域 (Technical Field)\n2. 背景技术 (Background)\n3. 发明内容 (Invention Summary)\n4. 权利要求书 (Claims)\n5. 说明书摘要 (Abstract)`;
-    return this.callMiniMax(prompt);
+    return this.callAPI(prompt);
   },
 
   // Demo Mode - Check if should use demo mode

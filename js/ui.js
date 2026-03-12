@@ -1,9 +1,9 @@
 // js/ui.js - UI 交互模块
 
-import { PROJECT_ICONS, AI_PROVIDERS, STORAGE_KEYS } from './config.js';
+import { PROJECT_ICONS, AI_PROVIDERS } from './config.js';
 import { I18n } from './i18n.js';
 import { Theme } from './theme.js';
-import { Storage, ProjectStorage } from './storage.js';
+import { ProjectStorage } from './storage.js';
 import { AI } from './ai.js';
 
 // Import Projects at the end to minimize circular dependency issues
@@ -30,6 +30,14 @@ export const UI = {
   // AI Tab 状态
   currentAITab: 'prompt',
 
+  getTabLabels() {
+    return {
+      prompt: I18n.t('generatePrompt'),
+      blueprint: I18n.t('generatePlan'),
+      patent: I18n.t('generatePatent') || 'Generate Patent'
+    };
+  },
+
   switchAITab(tabName) {
     this.currentAITab = tabName;
 
@@ -41,11 +49,7 @@ export const UI = {
     // Update generate button text
     const generateBtn = document.getElementById('generateBtn');
     if (generateBtn) {
-      const labels = {
-        prompt: I18n.t('generatePrompt'),
-        blueprint: I18n.t('generatePlan'),
-        patent: I18n.t('generatePatent') || 'Generate Patent'
-      };
+      const labels = this.getTabLabels();
       generateBtn.textContent = `🚀 ${labels[tabName] || I18n.t('startGeneration')}`;
     }
   },
@@ -291,19 +295,10 @@ export const UI = {
 
   bindProviderEvents() {
     const providerSelect = document.getElementById('apiProvider');
-    const apiKeyInput = document.getElementById('apiKeyInput');
 
-    // Load saved provider
-    const savedProvider = Storage.get(STORAGE_KEYS.API_PROVIDER, 'minimax');
+    // Update placeholder on load (AI.init already loaded the saved provider)
     if (providerSelect) {
-      providerSelect.value = savedProvider;
-      this.updateApiKeyPlaceholder(savedProvider);
-    }
-
-    // Load saved API key
-    const savedKey = AI.getApiKey();
-    if (apiKeyInput && savedKey) {
-      apiKeyInput.value = savedKey;
+      this.updateApiKeyPlaceholder(providerSelect.value);
     }
 
     // Handle provider change
@@ -445,11 +440,7 @@ export const UI = {
       }
 
       generateBtn.disabled = false;
-      const labels = {
-        prompt: I18n.t('generatePrompt'),
-        blueprint: I18n.t('generatePlan'),
-        patent: I18n.t('generatePatent') || 'Generate Patent'
-      };
+      const labels = this.getTabLabels();
       generateBtn.textContent = `🚀 ${labels[this.currentAITab] || I18n.t('startGeneration')}`;
 
       const output = document.getElementById('aiOutput');
