@@ -1,9 +1,9 @@
 // js/ui.js - UI 交互模块
 
-import { PROJECT_ICONS } from './config.js';
+import { PROJECT_ICONS, AI_PROVIDERS, STORAGE_KEYS } from './config.js';
 import { I18n } from './i18n.js';
 import { Theme } from './theme.js';
-import { ProjectStorage } from './storage.js';
+import { Storage, ProjectStorage } from './storage.js';
 import { AI } from './ai.js';
 
 // Import Projects at the end to minimize circular dependency issues
@@ -136,8 +136,9 @@ export const UI = {
     this.bindSmoothScroll();
     this.bindKeyboardNav();
     this.bindAITabs();
-    this.bindAIGeneration();
     this.bindFormValidation();
+    this.bindProviderEvents();
+    this.bindAIGeneration();
   },
 
   bindThemeToggle() {
@@ -276,7 +277,7 @@ export const UI = {
     });
 
     saveBtn?.addEventListener('click', () => {
-      const key = document.getElementById('miniMaxApiKey')?.value.trim();
+      const key = document.getElementById('apiKeyInput')?.value.trim();
       if (!key) {
         this.showNotice(I18n.t('enterApiKey'), 'error');
         return;
@@ -286,6 +287,39 @@ export const UI = {
       const settings = document.getElementById('apiKeySettings');
       if (settings) settings.style.display = 'none';
     });
+  },
+
+  bindProviderEvents() {
+    const providerSelect = document.getElementById('apiProvider');
+    const apiKeyInput = document.getElementById('apiKeyInput');
+
+    // Load saved provider
+    const savedProvider = Storage.get(STORAGE_KEYS.API_PROVIDER, 'minimax');
+    if (providerSelect) {
+      providerSelect.value = savedProvider;
+      this.updateApiKeyPlaceholder(savedProvider);
+    }
+
+    // Load saved API key
+    const savedKey = AI.getApiKey();
+    if (apiKeyInput && savedKey) {
+      apiKeyInput.value = savedKey;
+    }
+
+    // Handle provider change
+    providerSelect?.addEventListener('change', (e) => {
+      const providerId = e.target.value;
+      AI.saveProvider(providerId);
+      this.updateApiKeyPlaceholder(providerId);
+    });
+  },
+
+  updateApiKeyPlaceholder(providerId) {
+    const apiKeyInput = document.getElementById('apiKeyInput');
+    const provider = AI_PROVIDERS[providerId];
+    if (apiKeyInput && provider) {
+      apiKeyInput.placeholder = provider.keyPlaceholder;
+    }
   },
 
   bindFeatureCards() {
