@@ -7,14 +7,23 @@ import { I18n } from './i18n.js';
 export const AI = {
   init() {
     const savedKey = Storage.get(STORAGE_KEYS.API_KEY);
-    const apiKeyInput = document.getElementById('miniMaxApiKey');
+    const savedProvider = Storage.get(STORAGE_KEYS.API_PROVIDER, 'minimax');
+    const apiKeyInput = document.getElementById('apiKeyInput');
+    const providerSelect = document.getElementById('apiProvider');
     const notice = document.getElementById('apiKeyNotice');
     const settings = document.getElementById('apiKeySettings');
 
-    if (savedKey && apiKeyInput) {
+    if (apiKeyInput && savedKey) {
       apiKeyInput.value = savedKey;
-      if (notice) notice.style.display = 'none';
-      if (settings) settings.style.display = 'block';
+    }
+    if (providerSelect && savedProvider) {
+      providerSelect.value = savedProvider;
+    }
+    if (savedKey && notice) {
+      notice.style.display = 'none';
+    }
+    if (savedKey && settings) {
+      settings.style.display = 'block';
     }
   },
 
