@@ -1,6 +1,6 @@
 // js/ai.js - AI API 调用
 
-import { STORAGE_KEYS, AI_CONFIG } from './config.js';
+import { STORAGE_KEYS, AI_PROVIDERS } from './config.js';
 import { Storage } from './storage.js';
 import { I18n } from './i18n.js';
 
@@ -31,6 +31,23 @@ export const AI = {
     return key && key.trim().length > 0;
   },
 
+  getProvider() {
+    const providerId = Storage.get(STORAGE_KEYS.API_PROVIDER, 'minimax');
+    return AI_PROVIDERS[providerId] || AI_PROVIDERS.minimax;
+  },
+
+  getApiUrl() {
+    return this.getProvider().apiUrl;
+  },
+
+  getModel() {
+    return this.getProvider().model;
+  },
+
+  saveProvider(providerId) {
+    Storage.set(STORAGE_KEYS.API_PROVIDER, providerId);
+  },
+
   async callMiniMax(prompt) {
     const apiKey = this.getApiKey();
     if (!apiKey) {
@@ -38,27 +55,28 @@ export const AI = {
     }
 
     try {
-      const response = await fetch(AI_CONFIG.apiUrl, {
+      const response = await fetch(this.getApiUrl(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: AI_CONFIG.model,
+          model: this.getModel(),
           messages: [{ role: 'user', content: prompt }],
-          max_tokens: AI_CONFIG.maxTokens
+          max_tokens: 2000
         })
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || `HTTP ${response.status}`);
       }
 
       const data = await response.json();
       return {
         error: false,
-        content: data.content?.[0]?.text || I18n.t('noResponse')
+        content: data.choices?.[0]?.message?.content || I18n.t('noResponse')
       };
     } catch (e) {
       return { error: true, message: I18n.t('apiError') + ': ' + e.message };
