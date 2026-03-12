@@ -1318,3 +1318,33 @@ html[data-theme="dark"] .demo-banner a {
   border-bottom: 2px solid var(--primary);
   margin-bottom: -9px;
 }
+
+/* ==================== Form Validation Styles ==================== */
+.form-label .required {
+  color: #EF4444;
+  margin-left: 2px;
+}
+
+.form-group.error .form-input,
+.form-group.error .form-textarea,
+.form-group.error .form-select {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-group .error-message {
+  color: #EF4444;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+/* Required field indicator */
+.form-label.required::after {
+  content: ' *';
+  color: #EF4444;
+}
