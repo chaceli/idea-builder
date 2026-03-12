@@ -133,7 +133,17 @@ export const translations = {
     apiKeySaved: 'API Key 保存成功',
     apiKeyNotConfigured: 'API Key 未配置，请点击"设置"输入您的 MiniMax API Key',
     noResponse: '无响应',
-    apiError: 'API 调用错误'
+    apiError: 'API 调用错误',
+
+    // Demo Mode
+    demoMode: '🎯 演示模式',
+    demoModeDesc: '此为演示输出，<a href="#" id="demoConfigLink">配置 API Key</a> 以使用真实 AI 生成',
+    patentGeneration: '专利生成',
+
+    // Form
+    requiredField: '此字段为必填项',
+    copied: '已复制到剪贴板',
+    generatePatent: '生成专利'
   },
 
   en: {
@@ -245,6 +255,16 @@ export const translations = {
     apiKeySaved: 'API Key saved successfully',
     apiKeyNotConfigured: 'API Key not configured. Please click "Settings" to enter your MiniMax API Key.',
     noResponse: 'No response',
-    apiError: 'API Error'
+    apiError: 'API Error',
+
+    // Demo Mode
+    demoMode: '🎯 Demo Mode',
+    demoModeDesc: 'This is demo output. <a href="#" id="demoConfigLink">Configure API Key</a> for real AI generation.',
+    patentGeneration: 'Patent Generation',
+
+    // Form
+    requiredField: 'This field is required',
+    copied: 'Copied to clipboard',
+    generatePatent: 'Generate Patent'
   }
 };
