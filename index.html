@@ -231,6 +231,15 @@
         <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="ai-modal-content">
+        <!-- Demo Mode Banner -->
+        <div class="demo-banner" id="demoBanner" style="display: none;">
+          <div class="demo-banner-icon">🎯</div>
+          <div class="demo-banner-content">
+            <div class="demo-banner-title" data-i18n="demoMode">Demo Mode</div>
+            <div class="demo-banner-desc" data-i18n="demoModeDesc">This is demo output. <a href="#" id="demoConfigLink">Configure API Key</a> for real AI generation.</div>
+          </div>
+        </div>
+
         <!-- API Key Tip -->
         <div class="api-key-notice" id="apiKeyNotice">
           <span data-i18n="apiKeyNotice">💡 Configure your MiniMax API Key to use AI features</span>
@@ -246,17 +255,19 @@
           <button type="button" class="btn btn-primary" id="saveApiKeyBtn" style="width: 100%;" data-i18n="saveApiKey">Save API Key</button>
         </div>
 
-        <!-- GenerateType Selection -->
-        <div class="ai-generation-type" id="generationType">
-          <button type="button" class="ai-type-btn active" data-type="prompt">
-            <div class="ai-type-btn-icon">🎯</div>
-            <div class="ai-type-btn-text" data-i18n="promptGeneration">Prompt Generation</div>
-            <div class="ai-type-btn-desc" data-i18n="promptGenDesc">Generate AI prompts</div>
+        <!-- AI Tabs -->
+        <div class="ai-tabs" id="aiTabs">
+          <button type="button" class="ai-tab active" data-tab="prompt">
+            <span>🎯</span>
+            <span data-i18n="promptGeneration">Prompt</span>
           </button>
-          <button type="button" class="ai-type-btn" data-type="project">
-            <div class="ai-type-btn-icon">📔</div>
-            <div class="ai-type-btn-text" data-i18n="projectPlan">Project Plan</div>
-            <div class="ai-type-btn-desc" data-i18n="projectGenDesc">Generate complete project</div>
+          <button type="button" class="ai-tab" data-tab="blueprint">
+            <span>📔</span>
+            <span data-i18n="projectPlan">Blueprint</span>
+          </button>
+          <button type="button" class="ai-tab" data-tab="patent">
+            <span>✨</span>
+            <span data-i18n="patentGeneration">Patent</span>
           </button>
         </div>
 

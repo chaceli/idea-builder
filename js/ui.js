@@ -27,6 +27,63 @@ export const UI = {
     });
   },
 
+  // AI Tab 状态
+  currentAITab: 'prompt',
+
+  switchAITab(tabName) {
+    this.currentAITab = tabName;
+
+    // Update tab buttons
+    document.querySelectorAll('.ai-tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tab === tabName);
+    });
+
+    // Update generate button text
+    const generateBtn = document.getElementById('generateBtn');
+    if (generateBtn) {
+      const labels = {
+        prompt: I18n.t('generatePrompt'),
+        blueprint: I18n.t('generatePlan'),
+        patent: I18n.t('generatePatent') || 'Generate Patent'
+      };
+      generateBtn.textContent = `🚀 ${labels[tabName] || I18n.t('startGeneration')}`;
+    }
+  },
+
+  openAIModal(tabIndex = 0) {
+    const tabs = ['prompt', 'blueprint', 'patent'];
+    this.openModal('aiModal');
+
+    // Update demo banner visibility
+    const demoBanner = document.getElementById('demoBanner');
+    if (demoBanner) {
+      demoBanner.style.display = AI.shouldUseDemo() ? 'flex' : 'none';
+    }
+
+    // Switch to specified tab
+    this.switchAITab(tabs[tabIndex] || 'prompt');
+  },
+
+  bindAITabs() {
+    document.querySelectorAll('.ai-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        this.switchAITab(tab.dataset.tab);
+      });
+    });
+
+    // Demo config link
+    const demoConfigLink = document.getElementById('demoConfigLink');
+    if (demoConfigLink) {
+      demoConfigLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const notice = document.getElementById('apiKeyNotice');
+        const settings = document.getElementById('apiKeySettings');
+        if (notice) notice.style.display = 'block';
+        if (settings) settings.style.display = 'block';
+      });
+    }
+  },
+
   // 平滑滚动
   smoothScrollTo(selector) {
     const target = document.querySelector(selector);
@@ -78,6 +135,7 @@ export const UI = {
     this.bindFeatureCards();
     this.bindSmoothScroll();
     this.bindKeyboardNav();
+    this.bindAITabs();
     this.bindAIGeneration();
   },
 
@@ -230,8 +288,11 @@ export const UI = {
   },
 
   bindFeatureCards() {
-    document.querySelectorAll('.feature-card[data-feature="ai"]').forEach(card => {
-      card.addEventListener('click', () => this.openModal('aiModal'));
+    document.querySelectorAll('.feature-card[data-feature="ai"]').forEach((card, index) => {
+      card.addEventListener('click', () => {
+        // index 0 → prompt, index 1 → blueprint, index 2 → patent
+        this.openAIModal(index);
+      });
     });
   },
 
