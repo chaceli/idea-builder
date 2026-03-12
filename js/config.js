@@ -177,6 +177,10 @@ export const translations = {
 
     // Form
     createProject: '✨ Create Project',
+    createModalTitle: '✨ Create New Project',
+    editModalTitle: '✏️ Edit Project',
+    detailModalTitle: '📋 Project Details',
+    aiModalTitle: '🤖 AI Generation',
     projectName: 'Project Name',
     projectNamePlaceholder: 'Enter project name',
     techField: 'Tech Field',
@@ -188,6 +192,10 @@ export const translations = {
     design: 'Design Patent',
     projectDesc: 'Description',
     projectDescPlaceholder: 'Describe your creative idea...',
+    describeIdea: 'Describe Your Spark of Inspiration',
+    ideaPlaceholder: 'Enter your spark of inspiration, AI will help refine it...',
+    apiKeyPlaceholder: 'Enter your API Key',
+    apiKeyLabel: 'API Key',
     create: 'Create',
     cancel: 'Cancel',
 
@@ -208,6 +216,11 @@ export const translations = {
     generatePrompt: 'Generate Prompt Template',
     generatePlan: 'Generate Blueprint',
     generating: 'Generating...',
+    copy: 'Copy',
+    submit: 'Submit',
+    startGeneration: 'Start Generation',
+    aiThinking: 'AI is thinking...',
+    generatedResult: 'Generated Result',
     saveToProject: 'Save to Project',
     apiKeyNotice: 'AI features require API Key configuration',
     apiKeySettings: 'Settings',
@@ -217,6 +230,10 @@ export const translations = {
     // Footer
     footerContact: 'Questions or suggestions? Contact Us',
     footerCopyright: '© 2026 IDEA Builder. AI-powered Creative Incubator',
+    keyboardHint: 'Press Enter to send, Shift+Enter for new line',
+    copyright: '© 2026 IDEA Builder. AI-powered Creative Incubator',
+    promptGenDesc: 'Generate high-quality prompt templates for other AI platforms',
+    projectGenDesc: 'Generate complete project blueprints with detailed execution plans',
 
     // Messages
     confirmDelete: 'Are you sure you want to delete this project?',
