@@ -42,6 +42,8 @@ export const UI = {
 
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'polite');
 
     // Add icon based on type
     const icons = {
@@ -51,7 +53,13 @@ export const UI = {
       info: 'ℹ️'
     };
 
-    toast.innerHTML = `<span>${icons[type] || 'ℹ️'}</span><span>${message}</span>`;
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = icons[type] || 'ℹ️';
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = message;
+    toast.appendChild(iconSpan);
+    toast.appendChild(msgSpan);
+
     container.appendChild(toast);
 
     // Auto remove after 3 seconds
