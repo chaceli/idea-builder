@@ -163,26 +163,6 @@ Apache License 2.0
 
 ---
 
-## 最近更新 / Recent Updates
-
-### 2026-03-12 翻译改进 / Translation Improvements
-
-**核心术语专业化 / Professional Terminology:**
-- 专利类型：发明专利 (Invention Patent)、实用新型 (Utility Model)、外观设计 (Design Patent)
-- 提示词 → Prompt Template
-- 项目方案 → Project Blueprint
-
-**品牌定位更新 / Brand Positioning Update:**
-- Slogan: "让每一个灵感火花，都变成现实" / "Turn Every Spark of Inspiration Into Reality"
-- 产品定位：AI 创意孵化器 / AI-powered Creative Incubator
-
-**功能标题优化 / Feature Titles:**
-- AI 提示词生成 → AI Prompt Template Generator
-- AI 蓝图生成 → AI Blueprint Generator
-- AI 专利生成 → AI Patent Generator
-
----
-
 让每一个灵感火花，都变成现实 💡
 
 *Turn Every Spark of Inspiration Into Reality*
