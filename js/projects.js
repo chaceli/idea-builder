@@ -35,7 +35,7 @@ export const Projects = {
       const iconName = project.icon || PROJECT_ICONS[index % PROJECT_ICONS.length];
 
       return `
-        <article class="project-card" data-id="${project.id}" tabindex="0">
+        <article class="project-card" data-id="${project.id}" data-index="${index % 8}" tabindex="0">
           <div class="project-cover">${this.createIcon(iconName)}</div>
           <div class="project-info">
             <h3 class="project-name">${this.escapeHtml(project.name)}</h3>
@@ -68,7 +68,8 @@ export const Projects = {
   showDetail(id) {
     const project = ProjectStorage.getById(id);
     if (!project) {
-      alert(I18n.t('notExist'));
+      // Use toast instead of alert (Issue #1)
+      if (window.UI) window.UI.showNotice(I18n.t('notExist'), 'error');
       return;
     }
 
@@ -95,18 +96,26 @@ export const Projects = {
       lucide.createIcons();
     }
 
-    // Open modal
-    const modal = document.getElementById('detailModal');
-    if (modal) modal.classList.add('active');
+    // Open modal using UI.openModal for proper focus trap and aria-hidden
+    if (window.UI) {
+      UI.openModal('detailModal');
+    } else {
+      const modal = document.getElementById('detailModal');
+      if (modal) modal.classList.add('active');
+    }
   },
 
   openEdit(id) {
     const project = ProjectStorage.getById(id);
     if (!project) return;
 
-    // Close detail modal
-    const detailModal = document.getElementById('detailModal');
-    if (detailModal) detailModal.classList.remove('active');
+    // Close detail modal using UI.closeModal
+    if (window.UI) {
+      UI.closeModal('detailModal');
+    } else {
+      const detailModal = document.getElementById('detailModal');
+      if (detailModal) detailModal.classList.remove('active');
+    }
 
     // Fill edit form
     document.getElementById('editProjectId').value = project.id;
@@ -122,17 +131,14 @@ export const Projects = {
     }, 100);
   },
 
-  delete(id) {
-    if (!confirm(I18n.t('confirmDelete'))) return;
+  async delete(id) {
+    const confirmed = await window.UI.showConfirm(I18n.t('confirmDelete'));
+    if (!confirmed) return;
 
     ProjectStorage.delete(id);
     this.render();
-
-    // Close detail modal
-    const detailModal = document.getElementById('detailModal');
-    if (detailModal) detailModal.classList.remove('active');
-
-    alert(I18n.t('deleteSuccess'));
+    window.UI.closeModal('detailModal');
+    window.UI.showNotice(I18n.t('deleteSuccess'), 'success');
   },
 
   escapeHtml(text) {

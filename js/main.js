@@ -13,6 +13,7 @@ if (typeof lucide !== 'undefined') {
 
 // 暴露到全局供 onclick 属性使用
 window.Projects = Projects;
+window.UI = UI;
 
 // 应用初始化
 document.addEventListener('DOMContentLoaded', () => {
