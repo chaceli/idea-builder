@@ -921,6 +921,52 @@ html[data-theme="dark"] .modal {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* ==================== Modal Responsiveness ==================== */
+@media (min-width: 768px) {
+  .modal {
+    max-width: 600px;
+    padding: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 800px;
+    padding: 40px;
+  }
+
+  .modal.modal-ai {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .modal {
+    max-width: 1000px;
+  }
+
+  .modal.modal-ai {
+    max-width: 1100px;
+  }
+}
+
+/* AI Modal Two-Column Layout for Large Screens */
+@media (min-width: 1024px) {
+  .modal-ai .ai-modal-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .modal-ai .ai-input-section {
+    grid-column: 1;
+  }
+
+  .modal-ai .ai-result-section {
+    grid-column: 2;
+  }
+}
+
 .modal-header {
   display: flex;
   align-items: center;
