@@ -5,6 +5,7 @@ import { I18n } from './i18n.js';
 import { Theme } from './theme.js';
 import { ProjectStorage } from './storage.js';
 import { AI } from './ai.js';
+import { ResultFormatter } from './formatter.js';
 
 // Import Projects at the end to minimize circular dependency issues
 import { Projects } from './projects.js';
@@ -460,8 +461,12 @@ export const UI = {
       const aiResult = document.getElementById('aiResult');
       const aiResultContent = document.getElementById('aiResultContent');
       if (aiResult && aiResultContent && !result.error) {
-        aiResultContent.textContent = result.content;
+        aiResultContent.innerHTML = ResultFormatter.formatResult(result.content, this.currentAITab);
         aiResult.style.display = 'block';
+        // Re-create Lucide icons for section headers
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
       }
     });
 
