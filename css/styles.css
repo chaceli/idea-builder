@@ -555,6 +555,12 @@ html[data-theme="dark"] .navbar {
   font-size: 48px;
 }
 
+.project-cover .icon {
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
 .project-card:nth-child(2) .project-cover {
   background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
 }
@@ -1050,6 +1056,12 @@ html[data-theme="dark"] .modal {
 .project-detail-icon {
   font-size: 64px;
   margin-bottom: 16px;
+}
+
+.project-detail-icon .icon {
+  width: 64px;
+  height: 64px;
+  color: var(--primary);
 }
 
 .project-detail-name {

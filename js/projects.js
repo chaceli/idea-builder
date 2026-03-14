@@ -8,6 +8,11 @@ import { I18n } from './i18n.js';
 // The UI module imports Projects, so we reference window.UI at runtime
 
 export const Projects = {
+  // Helper to create Lucide icon HTML
+  createIcon(iconName, className = 'icon') {
+    return `<i data-lucide="${iconName}" class="${className}"></i>`;
+  },
+
   render() {
     const projects = ProjectStorage.getAll();
     const grid = document.getElementById('projectsGrid');
@@ -27,22 +32,27 @@ export const Projects = {
 
     grid.innerHTML = projects.map((project, index) => {
       const typeInfo = PROJECT_TYPES[project.type] || PROJECT_TYPES.invention;
-      const icon = project.icon || PROJECT_ICONS[index % PROJECT_ICONS.length];
+      const iconName = project.icon || PROJECT_ICONS[index % PROJECT_ICONS.length];
 
       return `
         <article class="project-card" data-id="${project.id}" tabindex="0">
-          <div class="project-cover">${icon}</div>
+          <div class="project-cover">${this.createIcon(iconName)}</div>
           <div class="project-info">
             <h3 class="project-name">${this.escapeHtml(project.name)}</h3>
             <p class="project-desc">${this.escapeHtml(project.description || I18n.t('noDesc'))}</p>
             <div class="project-meta">
-              <span class="project-tag ${typeInfo.class}">${I18n.t(project.type)}</span>
+              <span class="project-tag ${typeInfo.class}">${this.createIcon(typeInfo.icon, 'icon-sm')} ${I18n.t(project.type)}</span>
               <span class="project-date">${project.date || ''}</span>
             </div>
           </div>
         </article>
       `;
     }).join('');
+
+    // Initialize Lucide icons for the new content
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
 
     this.bindCardEvents();
   },
@@ -67,18 +77,23 @@ export const Projects = {
     if (!content) return;
 
     content.innerHTML = `
-      <div class="project-detail-icon">${project.icon || '📄'}</div>
+      <div class="project-detail-icon">${this.createIcon(project.icon || 'file-text')}</div>
       <h2 class="project-detail-name">${this.escapeHtml(project.name)}</h2>
       <div class="project-detail-meta">
-        <span class="project-tag ${typeInfo.class}">${I18n.t(project.type)}</span>
+        <span class="project-tag ${typeInfo.class}">${this.createIcon(typeInfo.icon, 'icon-sm')} ${I18n.t(project.type)}</span>
         <span>${this.escapeHtml(project.field)}</span>
       </div>
       <p class="project-detail-desc">${this.escapeHtml(project.description || I18n.t('noDesc'))}</p>
       <div class="project-detail-actions">
-        <button class="btn btn-secondary" onclick="Projects.openEdit('${id}')">${I18n.t('edit')}</button>
-        <button class="btn btn-danger" onclick="Projects.delete('${id}')">${I18n.t('delete')}</button>
+        <button class="btn btn-secondary" onclick="Projects.openEdit('${id}')">${this.createIcon('pencil', 'icon-sm')} ${I18n.t('edit')}</button>
+        <button class="btn btn-danger" onclick="Projects.delete('${id}')">${this.createIcon('trash-2', 'icon-sm')} ${I18n.t('delete')}</button>
       </div>
     `;
+
+    // Initialize Lucide icons for the new content
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
 
     // Open modal
     const modal = document.getElementById('detailModal');

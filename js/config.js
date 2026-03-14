@@ -9,13 +9,14 @@ export const STORAGE_KEYS = {
 };
 
 export const PROJECT_ICONS = [
-  '🏠', '🚗', '🏥', '📱', '🔋', '🎮', '🤖', '🛰️', '💊', '🎓', '🌾', '🏭'
+  'home', 'car', 'hospital', 'smartphone', 'battery', 'gamepad-2',
+  'bot', 'satellite', 'pill', 'graduation-cap', 'leaf', 'factory'
 ];
 
 export const PROJECT_TYPES = {
-  invention: { name: 'Invention Patent', class: 'tag-invention', icon: '💡' },
-  utility: { name: 'Utility Model', class: 'tag-utility', icon: '🔧' },
-  design: { name: 'Design Patent', class: 'tag-design', icon: '🎨' }
+  invention: { name: 'Invention Patent', class: 'tag-invention', icon: 'graduation-cap' },
+  utility: { name: 'Utility Model', class: 'tag-utility', icon: 'wrench' },
+  design: { name: 'Design Patent', class: 'tag-design', icon: 'palette' }
 };
 
 export const AI_PROVIDERS = {
