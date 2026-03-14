@@ -11,20 +11,145 @@ import { ResultFormatter } from './formatter.js';
 import { Projects } from './projects.js';
 
 export const UI = {
+  // Focus trap handler reference
+  _focusTrapHandler: null,
+  _previousActiveElement: null,
+
   // 模态框操作
   openModal(id) {
     const modal = document.getElementById(id);
-    if (modal) modal.classList.add('active');
+    if (!modal) return;
+
+    // Fix Issue #12: Set aria-hidden on background
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.setAttribute('aria-hidden', 'true');
+    }
+
+    // Store the currently focused element to restore later
+    this._previousActiveElement = document.activeElement;
+
+    modal.classList.add('active');
+
+    // Fix Issue #11: Add focus trap
+    this._setupFocusTrap(modal);
+
+    // Focus the first focusable element in the modal
+    const firstFocusable = modal.querySelector('input, button, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (firstFocusable) {
+      setTimeout(() => firstFocusable.focus(), 50);
+    }
   },
 
   closeModal(id) {
     const modal = document.getElementById(id);
-    if (modal) modal.classList.remove('active');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    this._cleanupAfterModalClose();
   },
 
   closeAllModals() {
     document.querySelectorAll('.modal-overlay').forEach(modal => {
       modal.classList.remove('active');
+    });
+    this._cleanupAfterModalClose();
+  },
+
+  // Fix Issue #11: Focus trap implementation
+  _setupFocusTrap(modal) {
+    this._removeFocusTrap();
+
+    this._focusTrapHandler = (e) => {
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = modal.querySelectorAll(
+        'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', this._focusTrapHandler);
+  },
+
+  _removeFocusTrap() {
+    if (this._focusTrapHandler) {
+      document.removeEventListener('keydown', this._focusTrapHandler);
+      this._focusTrapHandler = null;
+    }
+  },
+
+  _cleanupAfterModalClose() {
+    // Remove focus trap
+    this._removeFocusTrap();
+
+    // Fix Issue #12: Remove aria-hidden from background
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.removeAttribute('aria-hidden');
+    }
+
+    // Restore focus to previous element
+    if (this._previousActiveElement) {
+      this._previousActiveElement.focus();
+      this._previousActiveElement = null;
+    }
+  },
+
+  // Custom confirm modal - replaces native confirm()
+  showConfirm(message) {
+    return new Promise((resolve) => {
+      const modal = document.getElementById('confirmModal');
+      const messageEl = document.getElementById('confirmMessage');
+      const confirmBtn = document.getElementById('confirmOkBtn');
+      const cancelBtn = document.getElementById('confirmCancelBtn');
+
+      if (!modal || !messageEl || !confirmBtn || !cancelBtn) {
+        // Fallback to native confirm if modal not found
+        resolve(confirm(message));
+        return;
+      }
+
+      // Set message
+      messageEl.textContent = message;
+
+      // Store resolve function for button handlers
+      this._confirmResolve = resolve;
+
+      // Open modal using standard method
+      this.openModal('confirmModal');
+
+      // One-time event handlers
+      const handleConfirm = () => {
+        this.closeAllModals();
+        resolve(true);
+        cleanup();
+      };
+
+      const handleCancel = () => {
+        this.closeAllModals();
+        resolve(false);
+        cleanup();
+      };
+
+      const cleanup = () => {
+        confirmBtn.removeEventListener('click', handleConfirm);
+        cancelBtn.removeEventListener('click', handleCancel);
+        this._confirmResolve = null;
+      };
+
+      confirmBtn.addEventListener('click', handleConfirm);
+      cancelBtn.addEventListener('click', handleCancel);
     });
   },
 
@@ -94,6 +219,8 @@ export const UI = {
 
   // 平滑滚动
   smoothScrollTo(selector) {
+    // Fix Issue #2: Validate selector before querySelector
+    if (!selector || selector === '#') return;
     const target = document.querySelector(selector);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -138,6 +265,7 @@ export const UI = {
   bindEvents() {
     this.bindThemeToggle();
     this.bindLangToggle();
+    this.bindHamburgerMenu();
     this.bindModalEvents();
     this.bindFormEvents();
     this.bindFeatureCards();
@@ -161,6 +289,40 @@ export const UI = {
     if (btn) {
       btn.addEventListener('click', () => I18n.toggleLang());
     }
+  },
+
+  // Fix Issue #10: Mobile Hamburger Menu Toggle
+  bindHamburgerMenu() {
+    const hamburger = document.getElementById('navHamburger');
+    const mobileMenu = document.getElementById('navMobileMenu');
+
+    if (!hamburger || !mobileMenu) return;
+
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', () => {
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('active');
+      mobileMenu.setAttribute('aria-hidden', isExpanded);
+    });
+
+    // Close menu when clicking mobile links
+    mobileMenu.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // Close menu on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
   },
 
   bindModalEvents() {
@@ -197,16 +359,27 @@ export const UI = {
     // 创建按钮
     document.getElementById('createProjectBtn')?.addEventListener('click', () => {
       document.getElementById('createForm')?.reset();
+      this.clearFormErrors('createForm'); // Fix Issue #20: Clear validation errors on reset
       this.openModal('createModal');
     });
 
     document.getElementById('emptyCreateBtn')?.addEventListener('click', () => {
       document.getElementById('createForm')?.reset();
+      this.clearFormErrors('createForm'); // Fix Issue #20: Clear validation errors on reset
       this.openModal('createModal');
     });
 
     // API Key 设置
     this.bindApiKeyEvents();
+  },
+
+  // Fix Issue #20: Clear form validation errors
+  clearFormErrors(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.querySelectorAll('.form-group.error').forEach(group => {
+      group.classList.remove('error');
+    });
   },
 
   bindCreateForm() {
@@ -388,15 +561,30 @@ export const UI = {
   },
 
   bindKeyboardNav() {
+    const keyboardHint = document.getElementById('keyboardHint');
+
     // 添加键盘导航类
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Tab') {
         document.body.classList.add('keyboard-nav');
+        // Fix Issue #6: Show keyboard hint on Tab press
+        if (keyboardHint) {
+          keyboardHint.classList.add('visible');
+          // Hide after 3 seconds
+          clearTimeout(this._keyboardHintTimeout);
+          this._keyboardHintTimeout = setTimeout(() => {
+            keyboardHint.classList.remove('visible');
+          }, 3000);
+        }
       }
     });
 
     document.addEventListener('mousedown', () => {
       document.body.classList.remove('keyboard-nav');
+      // Hide keyboard hint on mouse click
+      if (keyboardHint) {
+        keyboardHint.classList.remove('visible');
+      }
     });
   },
 
@@ -406,7 +594,8 @@ export const UI = {
     generateBtn?.addEventListener('click', async () => {
       const idea = document.getElementById('aiIdeaInput')?.value?.trim();
       if (!idea) {
-        this.showNotice(I18n.t('enterIdea') || 'Please enter your idea', 'error');
+        // Fix Issue #5: Use existing translation key instead of missing 'enterIdea'
+        this.showNotice(I18n.t('fillRequired'), 'error');
         return;
       }
 
@@ -452,20 +641,26 @@ export const UI = {
         lucide.createIcons();
       }
 
-      const output = document.getElementById('aiOutput');
-      if (output) {
-        output.value = result.error ? result.message : result.content;
-      }
+      // Fix Issue #3, #14: Removed dead aiOutput code, result is displayed via aiResultContent
 
       // Show result section
       const aiResult = document.getElementById('aiResult');
       const aiResultContent = document.getElementById('aiResultContent');
-      if (aiResult && aiResultContent && !result.error) {
-        aiResultContent.innerHTML = ResultFormatter.formatResult(result.content, this.currentAITab);
-        aiResult.style.display = 'block';
-        // Re-create Lucide icons for section headers
-        if (typeof lucide !== 'undefined') {
-          lucide.createIcons();
+      const saveToProjectBtn = document.getElementById('saveToProjectBtn');
+      if (aiResult && aiResultContent) {
+        if (!result.error) {
+          aiResultContent.innerHTML = ResultFormatter.formatResult(result.content, this.currentAITab);
+          aiResult.style.display = 'block';
+          // Show save button when result is successful
+          if (saveToProjectBtn) saveToProjectBtn.style.display = 'flex';
+          // Re-create Lucide icons for section headers
+          if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+          }
+        } else {
+          aiResultContent.innerHTML = `<p class="result-p" style="color: #EF4444;">${result.message}</p>`;
+          aiResult.style.display = 'block';
+          if (saveToProjectBtn) saveToProjectBtn.style.display = 'none';
         }
       }
     });
@@ -477,6 +672,37 @@ export const UI = {
       if (content) {
         navigator.clipboard.writeText(content);
         this.showNotice(I18n.t('copied') || 'Copied to clipboard', 'success');
+      }
+    });
+
+    // Fix Issue #5/14: Save to Project button handler
+    const saveToProjectBtn = document.getElementById('saveToProjectBtn');
+    saveToProjectBtn?.addEventListener('click', () => {
+      const content = document.getElementById('aiResultContent')?.textContent;
+      const ideaInput = document.getElementById('aiIdeaInput');
+      const idea = ideaInput?.value?.trim() || '';
+
+      if (content) {
+        // Create a new project with the AI result
+        const name = idea.substring(0, 50) + (idea.length > 50 ? '...' : '');
+
+        // Dynamically import to avoid circular dependency
+        import('./storage.js').then(module => {
+          const projects = module.ProjectStorage.getAll();
+          const newProject = {
+            id: module.ProjectStorage.generateId(),
+            name: name || 'AI Generated Content',
+            field: 'AI Generated',
+            type: 'invention',
+            description: content.substring(0, 500),
+            date: new Date().toISOString().split('T')[0],
+            icon: PROJECT_ICONS[projects.length % PROJECT_ICONS.length]
+          };
+          module.ProjectStorage.add(newProject);
+          this.showNotice(I18n.t('createSuccess'), 'success');
+          // Re-render projects
+          import('./projects.js').then(p => p.Projects.render());
+        });
       }
     });
   }
