@@ -4,87 +4,89 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-IDEA Builder is an AI-powered creative idea generator that helps transform ideas into actionable project plans (including patent documents). The project has two main components:
+IDEA Builder is an AI-powered creative incubator that transforms ideas into patents, blueprints, or prompt templates. Bilingual support (English/Chinese) with light/dark themes.
 
-- **Frontend**: Single-page application in `index.html` (HTML5 + CSS3 + Vanilla JavaScript)
-- **Backend**: Node.js/Express/TypeScript API in `backend/` directory
+**Frontend**: Modular ES Modules app in `js/` + `css/` + `index.html`
+**Backend**: Node.js/Express/TypeScript API in `backend/` (optional, for advanced features)
 
 ## Commands
 
 ### Frontend
 ```bash
-# Open directly in browser or serve locally
-open index.html
-# Or use any static server
+# Serve locally
 npx serve .
+# Or open directly
+open index.html
 ```
 
 ### Backend
 ```bash
 cd backend
-npm install          # Install dependencies
-npm run dev          # Development (uses nodemon + ts-node)
-npm run build        # Build TypeScript
-npm start            # Production
-npm test             # Run tests (currently not configured)
+npm install
+npm run build     # Compile TypeScript
+npm start         # Production (requires ts-node)
 ```
 
+Note: Backend `npm run dev` and `npm test` are not configured in package.json.
+
 ### Deployment
-- Frontend is deployed to GitHub Pages via `.github/workflows/deploy.yml`
-- Pushes to master branch trigger automatic deployment
+Pushes to master branch auto-deploy to GitHub Pages via `.github/workflows/deploy.yml`.
 
-## Architecture
+## Frontend Architecture
 
-### Frontend (index.html)
-Single-file application with embedded CSS and JavaScript:
-- CSS Variables for theming (light/dark mode support)
-- localStorage for data persistence
-- Responsive design (Flexbox + Grid)
-- Internationalization (English/Chinese)
+### Module Structure
+```
+js/
+├── main.js      # App entry point, initializes all modules
+├── config.js    # STORAGE_KEYS, AI_PROVIDERS, translations (zh/en)
+├── storage.js   # localStorage wrapper with namespaced keys
+├── theme.js     # Light/dark mode toggle
+├── i18n.js      # Internationalization (I18n.t('key'))
+├── projects.js  # Project CRUD operations
+├── ai.js        # AI API calls and demo mode fallbacks
+└── ui.js        # Modal dialogs and DOM interactions
+```
 
-### Backend Structure
+### Key Patterns
+
+**Storage**: All localStorage keys use `idea-builder-` prefix (see `STORAGE_KEYS` in config.js).
+
+**i18n**: Use `I18n.t('key')` for translations. Keys defined in `translations` object in config.js. Some keys use `data-i18n-html` for HTML content.
+
+**AI Providers**: Frontend supports MiniMax and OpenAI via `AI_PROVIDERS` config. User selects provider stored in localStorage.
+
+**Demo Mode**: When no API key configured, `ai.js` returns demo responses from `getDemoPromptResponse()`, `getDemoBlueprintResponse()`, `getDemoPatentResponse()`.
+
+### UI Patterns
+- CSS variables for theming in `css/styles.css`
+- Modals: create, edit, detail, ai-generation modals
+- Project cards with patent type tags (invention/utility/design)
+
+## Backend Architecture
 
 ```
 backend/src/
-├── ai/adapters/       # AI provider adapters (MiniMax, OpenAI, Claude, Gemini)
-│   ├── IAdapter.ts    # Interface and supported models list
-│   └── index.ts       # AdapterFactory for creating adapters
-├── config/            # Environment configuration
-├── controllers/       # Route handlers
-├── db/                # Database connections (Sequelize/MySQL, Redis)
-├── middleware/        # Express middleware (auth, rate-limit, security)
-├── models/            # Sequelize models (User, Patent, Memory, etc.)
-├── routes/            # Express routes
-└── services/          # Business logic (AIService, PatentService, etc.)
+├── ai/adapters/     # Multi-provider AI adapters
+│   ├── IAdapter.ts  # Interface + SUPPORTED_MODELS list
+│   └── index.ts     # AdapterFactory
+├── config/          # Environment config
+├── controllers/     # Route handlers
+├── db/              # Sequelize/MySQL, Redis
+├── middleware/      # Auth, rate-limit, security, logging
+├── models/          # User, Patent, PatentVersion, Memory, Message, ApiConfig, Schedule
+├── routes/          # auth, chat, user, schedule, patent
+├── services/        # AIService, PatentService, MemoryService, EmotionService, TTSService
+└── utils/           # Utilities
 ```
 
-### AI Provider Pattern
-
-The backend uses an adapter pattern for multi-provider AI support:
-- `IAdapter` interface defines `chat()` and `validateKey()` methods
-- `AdapterFactory` creates appropriate adapter based on model ID
-- Supported providers: MiniMax, OpenAI (GPT-4o), Anthropic (Claude), Google (Gemini)
-- Model selection via `modelId` parameter in requests
-
-### Key Services
-
-- **AIService**: Orchestrates AI calls with memory context, emotion analysis, and TTS
-- **PatentService**: Patent document generation and management
-- **MemoryService**: Conversation history and semantic memory retrieval
-- **EmotionService**: Sentiment analysis of responses
-- **TTSService**: Text-to-speech synthesis
-
-### Database Models
-
-- `User` - User accounts
-- `Patent` / `PatentVersion` - Patent documents with versioning
-- `Memory` / `Message` - Conversation memory
-- `ApiConfig` - User API key configurations
-- `Schedule` - Scheduled tasks
+### AI Adapter Pattern
+- `IAdapter` interface: `chat(prompt, options)` and `validateKey(apiKey)`
+- `AdapterFactory` creates adapter based on model ID
+- Supported: MiniMax, OpenAI (GPT-4o), Anthropic (Claude), Google (Gemini)
 
 ## Environment Variables
 
-Backend requires these environment variables (see `backend/src/config/index.ts`):
+Backend requires (see `backend/src/config/index.ts`):
 ```
 PORT=3000
 NODE_ENV=development
@@ -102,6 +104,9 @@ AI_MODEL=MiniMax-M2.5
 
 ## Patent Document Structure
 
-See `PATENT_STRUCTURE.md` for the complete patent document format:
-- Chinese patent types: 发明专利 (20 years), 实用新型 (10 years), 外观设计 (15 years)
-- Document structure: 技术领域, 背景技术, 发明内容, 权利要求书, 说明书摘要
+See `PATENT_STRUCTURE.md` for full reference:
+- **发明专利** (Invention Patent): 20 years protection
+- **实用新型** (Utility Model): 10 years protection
+- **外观设计** (Design Patent): 15 years protection
+
+Document sections: 技术领域, 背景技术, 发明内容, 权利要求书, 说明书摘要

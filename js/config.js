@@ -75,11 +75,11 @@ export const translations = {
     step4: '付诸实践',
 
     // Form
-    createProject: '✨ 创建项目',
-    createModalTitle: '✨ 创建新项目',
-    editModalTitle: '✏️ 编辑项目',
-    detailModalTitle: '📋 项目详情',
-    aiModalTitle: '🤖 AI 智能生成',
+    createProject: '创建项目',
+    createModalTitle: '创建新项目',
+    editModalTitle: '编辑项目',
+    detailModalTitle: '项目详情',
+    aiModalTitle: 'AI 智能生成',
     projectName: '项目名称',
     projectNamePlaceholder: '请输入项目名称',
     techField: '技术领域',
@@ -185,7 +185,7 @@ export const translations = {
     projectsDesc: 'Manage your creative projects',
     emptyStateTitle: 'No Projects Yet',
     emptyStateDesc: 'Click "Create Project" to start your creative journey',
-    createFirst: '✨ Create First Project',
+    createFirst: 'Create First Project',
     noDesc: 'No description',
 
     // Process
@@ -197,11 +197,11 @@ export const translations = {
     step4: 'Make It Real',
 
     // Form
-    createProject: '✨ Create Project',
-    createModalTitle: '✨ Create New Project',
-    editModalTitle: '✏️ Edit Project',
-    detailModalTitle: '📋 Project Details',
-    aiModalTitle: '🤖 AI Generation',
+    createProject: 'Create Project',
+    createModalTitle: 'Create New Project',
+    editModalTitle: 'Edit Project',
+    detailModalTitle: 'Project Details',
+    aiModalTitle: 'AI Generation',
     projectName: 'Project Name',
     projectNamePlaceholder: 'Enter project name',
     techField: 'Tech Field',
