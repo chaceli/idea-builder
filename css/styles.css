@@ -894,7 +894,10 @@ html[data-theme="dark"] .navbar {
 }
 
 .modal {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-lg);
   padding: 32px;
   max-width: 480px;
@@ -903,11 +906,19 @@ html[data-theme="dark"] .navbar {
   overflow-y: auto;
   transform: scale(0.9) translateY(20px);
   transition: all 0.3s ease;
-  box-shadow: var(--shadow-lg);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .modal-overlay.active .modal {
   transform: scale(1) translateY(0);
+}
+
+html.dark .modal,
+html[data-theme="dark"] .modal {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .modal-header {
