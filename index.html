@@ -238,8 +238,10 @@
         <button class="modal-close" aria-label="Close">&times;</button>
       </div>
       <div class="ai-modal-content">
-        <!-- Demo Mode Banner -->
-        <div class="demo-banner" id="demoBanner" style="display: none;">
+        <!-- Input Section -->
+        <div class="ai-input-section">
+          <!-- Demo Mode Banner -->
+          <div class="demo-banner" id="demoBanner" style="display: none;">
           <div class="demo-banner-icon"><i data-lucide="target" class="icon"></i></div>
           <div class="demo-banner-content">
             <div class="demo-banner-title" data-i18n="demoMode">Demo Mode</div>
@@ -299,9 +301,12 @@
           <div class="ai-loading-spinner"></div>
           <div class="ai-loading-text" data-i18n="aiThinking">AI is thinking...</div>
         </div>
+        </div>
 
-        <!-- AI Result -->
-        <div class="ai-result" id="aiResult" style="display: none;">
+        <!-- Result Section -->
+        <div class="ai-result-section">
+          <!-- AI Result -->
+          <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
             <span class="ai-result-title" data-i18n="generatedResult">Generated Result</span>
             <button class="ai-result-copy" id="copyResultBtn"><i data-lucide="clipboard" class="icon"></i> <span data-i18n="copy">Copy</span></button>
@@ -311,6 +316,7 @@
 
         <!-- Save to Project Button -->
         <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;"><i data-lucide="save" class="icon"></i> <span data-i18n="saveToProject">Save to Project</span></button>
+        </div>
       </div>
     </div>
   </div>
