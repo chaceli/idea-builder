@@ -6,6 +6,11 @@ import { Projects } from './projects.js';
 import { AI } from './ai.js';
 import { UI } from './ui.js';
 
+// Initialize Lucide icons
+if (typeof lucide !== 'undefined') {
+  lucide.createIcons();
+}
+
 // 暴露到全局供 onclick 属性使用
 window.Projects = Projects;
 
@@ -18,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
   Projects.render();
   AI.init();
   UI.bindEvents();
+
+  // Re-create icons after dynamic content
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 
   console.log('IDEA Builder initialized successfully');
 });
