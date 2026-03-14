@@ -3,6 +3,7 @@
 import { STORAGE_KEYS, AI_PROVIDERS } from './config.js';
 import { Storage } from './storage.js';
 import { I18n } from './i18n.js';
+import { ResultFormatter } from './formatter.js';
 
 export const AI = {
   init() {
@@ -184,5 +185,10 @@ A creative project featuring ${idea}, modern design, high quality, detailed, pro
 
 ---
 *此为演示输出，配置 API Key 后可获得真实 AI 生成内容*`;
+  },
+
+  // Format result for display
+  formatResult(content, type) {
+    return ResultFormatter.formatResult(content, type);
   }
 };
