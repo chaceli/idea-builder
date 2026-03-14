@@ -240,7 +240,7 @@
       <div class="ai-modal-content">
         <!-- Demo Mode Banner -->
         <div class="demo-banner" id="demoBanner" style="display: none;">
-          <div class="demo-banner-icon">🎯</div>
+          <div class="demo-banner-icon"><i data-lucide="target" class="icon"></i></div>
           <div class="demo-banner-content">
             <div class="demo-banner-title" data-i18n="demoMode">Demo Mode</div>
             <div class="demo-banner-desc" data-i18n-html="demoModeDesc">This is demo output. <a href="#" id="demoConfigLink">Configure API Key</a> for real AI generation.</div>
@@ -272,15 +272,15 @@
         <!-- AI Tabs -->
         <div class="ai-tabs" id="aiTabs">
           <button type="button" class="ai-tab active" data-tab="prompt">
-            <span>🎯</span>
+            <i data-lucide="target" class="icon"></i>
             <span data-i18n="promptGeneration">Prompt</span>
           </button>
           <button type="button" class="ai-tab" data-tab="blueprint">
-            <span>📔</span>
+            <i data-lucide="book-open" class="icon"></i>
             <span data-i18n="projectPlan">Blueprint</span>
           </button>
           <button type="button" class="ai-tab" data-tab="patent">
-            <span>✨</span>
+            <i data-lucide="sparkles" class="icon"></i>
             <span data-i18n="patentGeneration">Patent</span>
           </button>
         </div>
@@ -292,7 +292,7 @@
         </div>
 
         <!-- GenerateButton -->
-        <button type="button" class="btn btn-primary" id="generateBtn" style="width: 100%;" data-i18n="startGeneration">🚀 Start Generation</button>
+        <button type="button" class="btn btn-primary" id="generateBtn" style="width: 100%;"><i data-lucide="rocket" class="icon"></i> <span data-i18n="startGeneration">Start Generation</span></button>
 
         <!-- Loading Animation -->
         <div class="ai-loading" id="aiLoading" style="display: none;">
@@ -304,13 +304,13 @@
         <div class="ai-result" id="aiResult" style="display: none;">
           <div class="ai-result-header">
             <span class="ai-result-title" data-i18n="generatedResult">Generated Result</span>
-            <button class="ai-result-copy" id="copyResultBtn" data-i18n="copy">📋 Copy</button>
+            <button class="ai-result-copy" id="copyResultBtn"><i data-lucide="clipboard" class="icon"></i> <span data-i18n="copy">Copy</span></button>
           </div>
           <div class="ai-result-content" id="aiResultContent"></div>
         </div>
 
         <!-- Save to Project Button -->
-        <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;" data-i18n="saveToProject">💾 Save to Project</button>
+        <button type="button" class="ai-save-btn" id="saveToProjectBtn" style="display: none;"><i data-lucide="save" class="icon"></i> <span data-i18n="saveToProject">Save to Project</span></button>
       </div>
     </div>
   </div>
