@@ -46,11 +46,14 @@ export const UI = {
       tab.classList.toggle('active', tab.dataset.tab === tabName);
     });
 
-    // Update generate button text
+    // Update generate button text (preserve Lucide icon structure)
     const generateBtn = document.getElementById('generateBtn');
     if (generateBtn) {
       const labels = this.getTabLabels();
-      generateBtn.textContent = `🚀 ${labels[tabName] || I18n.t('startGeneration')}`;
+      const span = generateBtn.querySelector('span[data-i18n="startGeneration"]');
+      if (span) {
+        span.textContent = labels[tabName] || I18n.t('startGeneration');
+      }
     }
   },
 
@@ -441,7 +444,12 @@ export const UI = {
 
       generateBtn.disabled = false;
       const labels = this.getTabLabels();
-      generateBtn.textContent = `🚀 ${labels[this.currentAITab] || I18n.t('startGeneration')}`;
+      // Restore button with Lucide icon (preserve icon structure)
+      generateBtn.innerHTML = `<i data-lucide="rocket" class="icon"></i> <span data-i18n="startGeneration">${labels[this.currentAITab] || I18n.t('startGeneration')}</span>`;
+      // Re-initialize Lucide icons
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
 
       const output = document.getElementById('aiOutput');
       if (output) {

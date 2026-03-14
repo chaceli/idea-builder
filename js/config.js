@@ -146,7 +146,7 @@ export const translations = {
     apiError: 'API 调用错误',
 
     // Demo Mode
-    demoMode: '🎯 演示模式',
+    demoMode: '演示模式',
     demoModeDesc: '此为演示输出，<a href="#" id="demoConfigLink">配置 API Key</a> 以使用真实 AI 生成',
     patentGeneration: '专利生成',
 
@@ -268,7 +268,7 @@ export const translations = {
     apiError: 'API Error',
 
     // Demo Mode
-    demoMode: '🎯 Demo Mode',
+    demoMode: 'Demo Mode',
     demoModeDesc: 'This is demo output. <a href="#" id="demoConfigLink">Configure API Key</a> for real AI generation.',
     patentGeneration: 'Patent Generation',
 
