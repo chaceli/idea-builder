@@ -1508,3 +1508,82 @@ html[data-theme="dark"] .demo-banner a {
   content: ' *';
   color: #EF4444;
 }
+
+/* ==================== AI Result Formatting ==================== */
+.result-content {
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.result-h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 20px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.result-h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 16px 0 10px;
+}
+
+.result-h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 14px 0 8px;
+}
+
+.result-p {
+  margin: 8px 0;
+  line-height: 1.7;
+}
+
+.result-list {
+  margin: 12px 0;
+  padding-left: 24px;
+  list-style-type: disc;
+}
+
+.result-list li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+/* Section Cards */
+.result-section {
+  background: rgba(99, 102, 241, 0.05);
+  border-left: 3px solid var(--primary);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: var(--transition);
+}
+
+.result-section:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.result-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.result-section-header .section-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+}
+
+.result-section-content {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
